@@ -26,15 +26,15 @@ import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
  *
  */
 public class Signal extends Observable implements SignalActionner, TopicAttached {
-    
-    
+
+
     /**
      *
      */
     private static final long serialVersionUID = -3262485442303240084L;
     /** */
     private final String topicName;
-    
+
     /**
      *
      * @param topicName
@@ -43,7 +43,7 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
         super();
         this.topicName = topicName;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -51,7 +51,7 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
     public void attachSlotReceiver(final SlotActionnable receiver) {
         this.addObserver(receiver);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -60,7 +60,7 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
         this.setChanged();
         this.notifyObservers(object);
     }
-    
+
     /**
      * {@inheritDoc}
      */

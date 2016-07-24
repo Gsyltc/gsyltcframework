@@ -27,16 +27,16 @@ import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
  *
  */
 public class Slot implements SlotActionnable, TopicAttached {
-
-
+    
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Slot.class);
-
+    
     /**
      *
      */
     private static final long serialVersionUID = 7440550503924717386L;
-
+    
     /** the slot action */
     private SlotAction slotAction;
     /** The topic to listen */
@@ -45,7 +45,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     private final String receiverName;
     /** true if slot is registered in the SlotProvider */
     private boolean registered = false;
-
+    
     /**
      * A slot can listen an event fire by a signal.
      *
@@ -59,7 +59,7 @@ public class Slot implements SlotActionnable, TopicAttached {
         this.receiverName = receiverName;
         registerSlot();
     }
-
+    
     /**
      * Return receiver *
      *
@@ -69,7 +69,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public SlotAction getSlotAction() {
         return this.slotAction;
     }
-
+    
     /**
      * Return the topic name of the slotslotAction
      *
@@ -79,14 +79,14 @@ public class Slot implements SlotActionnable, TopicAttached {
     public String getTopicName() {
         return this.topicName;
     }
-
+    
     /**
      * @return the receiverName
      */
     public String getSlotName() {
         return topicName + "." + receiverName;
     }
-
+    
     /**
      * Define the action for the slot.
      *
@@ -96,7 +96,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public void setSlotAction(final SlotAction newSlotAction) {
         this.slotAction = newSlotAction;
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -108,7 +108,7 @@ public class Slot implements SlotActionnable, TopicAttached {
         }
         this.slotAction.doAction(toUpdate);
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -120,14 +120,14 @@ public class Slot implements SlotActionnable, TopicAttached {
             setRegistered(true);
         }
     }
-
+    
     /**
      * @return the registered
      */
     public boolean isRegistered() {
         return registered;
     }
-
+    
     /**
      * @param registered
      *            the registered to set
@@ -135,5 +135,5 @@ public class Slot implements SlotActionnable, TopicAttached {
     private void setRegistered(final boolean registered) {
         this.registered = registered;
     }
-
+    
 }

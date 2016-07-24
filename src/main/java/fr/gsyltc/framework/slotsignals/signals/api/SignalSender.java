@@ -12,12 +12,14 @@
 
 package fr.gsyltc.framework.slotsignals.signals.api;
 
+import fr.gsyltc.framework.slotsignals.signals.Signal;
+
 /**
  * @author Goubaud Sylvain
  *
  */
 public interface SignalSender {
-    
+
     /**
      * Create a signal to the visual elements. With this method, the visual
      * elements can send a signal event over a topic.
