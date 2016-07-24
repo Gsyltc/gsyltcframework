@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <bean id="id-InjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
+        <constructor-arg value="INJECTION_TOPIC" />
+    </bean>
+
+    <util:map id="id-Slots" key-type="java.lang.String" value-type="fr.gsyltc.framework.slotsignals.slots.Slot">
+        <entry>
+            <key>
+                <value>INJECTION_TOPIC</value>
+            </key>
+            <ref bean="id-InjectedSlot" />
+        </entry>
+    </util:map>
+</beans>
