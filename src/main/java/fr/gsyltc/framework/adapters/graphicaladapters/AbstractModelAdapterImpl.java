@@ -21,8 +21,9 @@ import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter
  *         presenters
  * @param <M>
  */
-public class GraphicalModelAdapterImpl<M> implements IGraphicalModelAdapter<M>, Serializable {
-    
+public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdapter<M>, Serializable {
+
+
     /**
      *
      */
@@ -34,37 +35,58 @@ public class GraphicalModelAdapterImpl<M> implements IGraphicalModelAdapter<M>, 
     /**
      * Name of the model.
      */
-    private String adapterName;
-    
+    private final String adapterName;
+
+    /**
+     * Constructor.
+     *
+     * @param adapterName
+     *            the adapter name.
+     * @param model
+     *            The model of the adapter.
+     */
+    public AbstractModelAdapterImpl(final String adapterName, final M model) {
+        this.model = model;
+        this.adapterName = adapterName;
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param adapterName
+     *            the adapter name.
+     */
+    public AbstractModelAdapterImpl(final String adapterName) {
+        this(adapterName, null);
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getAdapterName() {
+    public final String getAdapterName() {
         return this.adapterName;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public M getModel() {
+    public final M getModel() {
         return this.model;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setAdapterName(final String name) {
-        this.adapterName = name;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setModel(final M model) {
+    public final void setModel(final M model) {
         this.model = model;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract void init();
 }

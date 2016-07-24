@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.slotsignals.common;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,43 +29,43 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public final class SlotsProvider {
-
-
+    
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
     /** List of slots registered. */
     private static final Map<String, Slot> SLOTS = new ConcurrentHashMap<String, Slot>();
-
+    
     /**
      * Register a slot.
      *
      * @param newSlot
      *            the slot to register.
-     * @return the registered slot.
      */
-    public static Slot addSlot(final Slot newSlot) {
-        Slot slot = findSlotByTopicName(newSlot.getTopicName());
+    public static void registerSlot(final Slot newSlot) {
+        Slot slot = findSlotBySlotName(newSlot.getSlotName());
         if (null == slot) {
             slot = newSlot;
-            SLOTS.put(slot.getTopicName(), slot);
+            SLOTS.put(slot.getSlotName(), slot);
         } else {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error("The slot is already registered");
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("The slot is already registered : " + slot.getSlotName());
             }
         }
-        return slot;
     }
-
+    
     /**
      * Register multiple slot.
      *
-     * @param slotsMap
-     *            map of slots to register.
+     * @param slots
+     *            list of slots to register.
      */
-    public static void createSlots(final Map<String, Slot> slotsMap) {
-        SLOTS.putAll(slotsMap);
+    public static void regsiterSlots(final List<Slot> slots) {
+        for (final Slot slot : slots) {
+            registerSlot(slot);
+        }
     }
-
+    
     /**
      * Find a registered slot by his topic name.
      *
@@ -71,10 +73,17 @@ public final class SlotsProvider {
      *            the topic of the slot
      * @return the registered slot.
      */
-    public static Slot findSlotByTopicName(final String topicName) {
+    public static Slot findSlotBySlotName(final String topicName) {
         return SLOTS.get(topicName);
     }
-
+    
+    /**
+     * @return the slots
+     */
+    public static Map<String, Slot> getSlots() {
+        return Collections.unmodifiableMap(SLOTS);
+    }
+    
     /**
      * Protected Constructor
      */

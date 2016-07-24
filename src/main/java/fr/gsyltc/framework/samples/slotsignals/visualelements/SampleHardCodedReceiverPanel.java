@@ -42,6 +42,7 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
      */
     public SampleHardCodedReceiverPanel() {
         super();
+        setName(getClass().getSimpleName());
     }
 
     /**
@@ -75,7 +76,9 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
     public void createSlots() {
         // Create an java hard coded slot
         super.createSlots();
-        final Slot slot = new Slot(TopicName.HARD_CODED_TOPIC.name());
+        final Slot slot = new Slot(TopicName.HARD_CODED_TOPIC.name(), getClass().getSimpleName());
+        slot.registerSlot();
+        // attachSlot(TopicName.HARD_CODED_TOPIC.name());
         slot.setSlotAction(new SlotAction<String>() {
 
 
@@ -88,7 +91,5 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
                 hardCodedTf.setText(arg);
             }
         });
-
-        this.registerSlot(slot);
     }
 }

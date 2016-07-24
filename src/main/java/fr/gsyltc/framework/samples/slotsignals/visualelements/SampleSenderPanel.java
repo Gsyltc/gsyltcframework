@@ -50,8 +50,8 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
      */
     public SampleSenderPanel() {
         super();
+        setName(getClass().getSimpleName());
     }
-    
     /**
      * {@inheritDoc}
      */
@@ -126,6 +126,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
         final Signal hardCodedSignal = new Signal(TopicName.HARD_CODED_TOPIC.name());
         registerSignal(hardCodedSignal);
         
+        // attach an injected signal
         attachSignal(TopicName.INJECTION_TOPIC.name());
     }
     

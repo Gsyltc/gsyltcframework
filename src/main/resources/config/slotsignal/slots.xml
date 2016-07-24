@@ -3,16 +3,23 @@
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
-    <bean id="id-InjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
-        <constructor-arg value="INJECTION_TOPIC" />
+    <bean id="id-SampleInjectedReceiverPanelInjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
+        <constructor-arg index="0" value="INJECTION_TOPIC" />
+        <constructor-arg index="1" value="SampleInjectedReceiverPanel" />
+    </bean>
+    <bean id="id-SampleDualReceiverPanelInjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
+        <constructor-arg index="0" value="INJECTION_TOPIC" />
+        <constructor-arg index="1" value="SampleDualReceiverPanel" />
     </bean>
 
-    <util:map id="id-Slots" key-type="java.lang.String" value-type="fr.gsyltc.framework.slotsignals.slots.Slot">
-        <entry>
-            <key>
-                <value>INJECTION_TOPIC</value>
-            </key>
-            <ref bean="id-InjectedSlot" />
-        </entry>
-    </util:map>
+    <bean id="id-SampleReceiverAdapterInjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
+        <constructor-arg index="0" value="INJECTION_TOPIC" />
+        <constructor-arg index="1" value="SampleReceiverAdapter" />
+    </bean>
+
+    <util:list id="id-Slots" value-type="fr.gsyltc.framework.slotsignals.slots.Slot">
+        <ref bean="id-SampleInjectedReceiverPanelInjectedSlot" />
+        <ref bean="id-SampleDualReceiverPanelInjectedSlot" />
+        <ref bean="id-SampleReceiverAdapterInjectedSlot" />
+    </util:list>
 </beans>

@@ -14,8 +14,9 @@ package fr.gsyltc.framework.slotsignals.signals;
 
 import java.util.Observable;
 
-import fr.gsyltc.framework.slotsignals.signals.api.SignalSender;
-import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
+import fr.gsyltc.framework.slotsignals.common.api.TopicAttached;
+import fr.gsyltc.framework.slotsignals.signals.api.SignalActionner;
+import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
 
 /**
  * Define a signal. A signal is an observable objet, attached to a topic. An
@@ -24,16 +25,16 @@ import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
  * @author Goubaud Sylvain
  *
  */
-public class Signal extends Observable implements SignalSender {
-
-
+public class Signal extends Observable implements SignalActionner, TopicAttached {
+    
+    
     /**
      *
      */
     private static final long serialVersionUID = -3262485442303240084L;
     /** */
     private final String topicName;
-
+    
     /**
      *
      * @param topicName
@@ -41,17 +42,16 @@ public class Signal extends Observable implements SignalSender {
     public Signal(final String topicName) {
         super();
         this.topicName = topicName;
-        // SignalProvider.addSignal(this);
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
-    public void attachSlotReceiver(final SlotReceiver receiver) {
+    public void attachSlotReceiver(final SlotActionnable receiver) {
         this.addObserver(receiver);
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -60,11 +60,12 @@ public class Signal extends Observable implements SignalSender {
         this.setChanged();
         this.notifyObservers(object);
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public String getTopicName() {
-        return this.topicName;
-    }}
+        return topicName;
+    }
+}

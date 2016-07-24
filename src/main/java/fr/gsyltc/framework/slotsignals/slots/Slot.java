@@ -18,13 +18,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import fr.gsyltc.framework.slotsignals.action.api.SlotAction;
-import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
+import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
+import fr.gsyltc.framework.slotsignals.common.api.TopicAttached;
+import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
 
 /**
  * @author Goubaud Sylvain
  *
  */
-public class Slot implements SlotReceiver {
+public class Slot implements SlotActionnable, TopicAttached {
 
 
     /** The logger of this class. */
@@ -39,15 +41,23 @@ public class Slot implements SlotReceiver {
     private SlotAction slotAction;
     /** The topic to listen */
     private final String topicName;
+    /** */
+    private final String receiverName;
+    /** true if slot is registered in the SlotProvider */
+    private boolean registered = false;
 
     /**
      * A slot can listen an event fire by a signal.
      *
      * @param newTopicName
      *            define the topic to listen.
+     * @param receiverName
+     *            Receiver Name.
      */
-    public Slot(final String newTopicName) {
+    public Slot(final String newTopicName, final String receiverName) {
         this.topicName = newTopicName;
+        this.receiverName = receiverName;
+        registerSlot();
     }
 
     /**
@@ -71,6 +81,13 @@ public class Slot implements SlotReceiver {
     }
 
     /**
+     * @return the receiverName
+     */
+    public String getSlotName() {
+        return topicName + "." + receiverName;
+    }
+
+    /**
      * Define the action for the slot.
      *
      * @param newSlotAction
@@ -90,6 +107,33 @@ public class Slot implements SlotReceiver {
             LOGGER.debug("Object to update : " + toUpdate);
         }
         this.slotAction.doAction(toUpdate);
-
     }
+
+    /**
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    public final void registerSlot() {
+        if (!registered) {
+            SlotsProvider.registerSlot(this);
+            setRegistered(true);
+        }
+    }
+
+    /**
+     * @return the registered
+     */
+    public boolean isRegistered() {
+        return registered;
+    }
+
+    /**
+     * @param registered
+     *            the registered to set
+     */
+    private void setRegistered(final boolean registered) {
+        this.registered = registered;
+    }
+
 }

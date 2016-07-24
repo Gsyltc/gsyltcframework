@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.adapters.graphicaladapters.api;
 
+import fr.gsyltc.framework.adapters.api.AbstractCommonAdapter;
+
 /**
  * @author Goubaud Sylvain
  * @param <M>
@@ -19,15 +21,8 @@ package fr.gsyltc.framework.adapters.graphicaladapters.api;
  *            GraphicalModelAdapter.
  *
  */
-public interface IGraphicalModelAdapter<M> {
+public interface IGraphicalModelAdapter<M> extends AbstractCommonAdapter {
 
-
-    /**
-     * Get the Adapter Name.
-     *
-     * @return the Adapter Name.
-     */
-    String getAdapterName();
 
     /**
      * Get the model adapter.
@@ -35,14 +30,6 @@ public interface IGraphicalModelAdapter<M> {
      * @return The model.
      */
     M getModel();
-
-    /**
-     * Set the Adapter Name.
-     *
-     * @param name
-     *            the Adapter Name.
-     */
-    void setAdapterName(String name);
 
     /**
      * Set the Model Adapter.

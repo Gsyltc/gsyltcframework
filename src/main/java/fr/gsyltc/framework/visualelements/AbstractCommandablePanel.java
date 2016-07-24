@@ -32,8 +32,8 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public abstract class AbstractCommandablePanel extends AbstractCommonPanel implements SlotCommandable {
-
-
+    
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractCommandablePanel.class);
     /** */
@@ -42,9 +42,9 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private static final long serialVersionUID = 2794578279603616940L;
     /** Signals list. */
     private Map<String, Signal> signals;
-    /** Slots list */
-    private Map<String, Slot> slots;
-
+    //    /** Slots list */
+    //    private Map<String, Slot> slots;
+    
     /**
      * Constructor.
      *
@@ -58,7 +58,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             }
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -66,63 +66,37 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     @Override
     public final void attachSignal(final String topicName) {
         final Signal signal = SignalProvider.findSignalByTopicName(topicName);
-        registerSignal(signal);
+        if (null == this.signals) {
+            this.signals = new ConcurrentHashMap<String, Signal>();
+        }
+        if (null == signal) {
+            throw new NotImplementedException("No signal to regsiter");
+        }
+        if (signals.containsKey(topicName)) {
+            throw new NotImplementedException("Signal Already attached for " + getName());
+        }
+        this.signals.put(topicName, signal);
     }
-
+    
     /**
      *
      * {@inheritDoc}
      */
     @Override
     public final void registerSignal(final Signal newSignal) {
-        if (null == this.signals) {
-            this.signals = new ConcurrentHashMap<String, Signal>();
-        }
-        if (null == newSignal) {
-            throw new NotImplementedException("No signal to regsiter");
-        }
-        final String topicName = newSignal.getTopicName();
-
-        if (signals.containsKey(topicName)) {
-            throw new NotImplementedException("Signal Already Exist");
-        }
-
-        final Signal signal = SignalProvider.findSignalByTopicName(topicName);
-        if (null == signal) {
-            SignalProvider.addSignal(newSignal);
-        }
-
-        this.signals.put(topicName, newSignal);
+        SignalProvider.registerSignal(newSignal);
+        attachSignal(newSignal.getTopicName());
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public final Slot attachSlot(final String topicName) {
-        final Slot slot = SlotsProvider.findSlotByTopicName(topicName);
-        registerSlot(slot);
+        final Slot slot = SlotsProvider.findSlotBySlotName(topicName + "." + getName());
         return slot;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final void registerSlot(final Slot newSlot) {
-        if (null == this.slots) {
-            this.slots = new ConcurrentHashMap<String, Slot>();
-        }
-        final String topicName = newSlot.getTopicName();
-        this.slots.put(topicName, newSlot);
-        Signal signal = SignalProvider.findSignalByTopicName(topicName);
-        if (null == signal) {
-            final Signal newSignal = new Signal(topicName);
-            signal = SignalProvider.addSignal(newSignal);
-        }
-        signal.attachSlotReceiver(newSlot);
-    }
-
+    
     /**
      * Build the visual element.
      */
@@ -131,8 +105,9 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         super.build();
         this.createSignals();
         this.createSlots();
+        //        registerSlots();
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -140,15 +115,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public Signal findSignal(final String topicName) {
         return signals.get(topicName);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Slot findSlot(final String topicName) {
-        return slots.get(topicName);
-    }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -158,7 +125,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Signals for" + this.getName());
         }
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -168,12 +135,12 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Slots for" + this.getName());
         }
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public final String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder//
         .append("Component  : " + this.getName()) //

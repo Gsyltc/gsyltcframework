@@ -3,5 +3,11 @@
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+    <bean id="id-SampleReceiverAdapter" class="fr.gsyltc.framework.samples.slotsignals.adapters.SampleReceiverAdapter" init-method="init">
+        <constructor-arg value="SampleReceiverAdapter" />
+    </bean>
 
+    <util:list id="id-Adapters" value-type="fr.gsyltc.framework.slotsignals.signals.Signal">
+        <ref bean="id-SampleReceiverAdapter" />
+    </util:list>
 </beans>

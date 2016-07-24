@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.slotsignals.common;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -42,14 +44,15 @@ public final class SignalProvider {
      *            the signal to register.
      * @return the registered signal.
      */
-    public static Signal addSignal(final Signal newSignal) {
-        Signal signal = findSignalByTopicName(newSignal.getTopicName());
+    public static Signal registerSignal(final Signal newSignal) {
+        final String topicName = newSignal.getTopicName();
+        Signal signal = findSignalByTopicName(topicName);
         if (null == signal) {
             signal = newSignal;
-            SIGNALS.put(signal.getTopicName(), signal);
+            SIGNALS.put(topicName, signal);
         } else {
             if (LOGGER.isErrorEnabled()) {
-                LOGGER.error("The signal is already registered");
+                LOGGER.error("The signal is already registered : " + topicName);
             }
         }
         return signal;
@@ -58,11 +61,13 @@ public final class SignalProvider {
     /**
      * Register multiple signals.
      *
-     * @param signalsMap
+     * @param signals
      *            map of signals to register.
      */
-    public static void registerSignals(final Map<String, Signal> signalsMap) {
-        SIGNALS.putAll(signalsMap);
+    public static void registerSignals(final List<Signal> signals) {
+        for (final Signal signal : signals) {
+            SIGNALS.put(signal.getTopicName(), signal);
+        }
     }
     
     /**
@@ -74,6 +79,13 @@ public final class SignalProvider {
      */
     public static Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
+    }
+
+    /**
+     * @return the slots
+     */
+    public static Map<String, Signal> getSignals() {
+        return Collections.unmodifiableMap(SIGNALS);
     }
     
     /**

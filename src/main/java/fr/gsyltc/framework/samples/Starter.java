@@ -14,7 +14,6 @@ package fr.gsyltc.framework.samples;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -22,12 +21,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import fr.gsyltc.framework.slotsignals.common.SignalProvider;
-import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
-import fr.gsyltc.framework.slotsignals.signals.Signal;
-import fr.gsyltc.framework.slotsignals.slots.Slot;
+import fr.gsyltc.framework.lifecycle.LifeCycleManager;
 
 /**
  * @author Goubaud Sylvain
@@ -35,9 +30,6 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  */
 public class Starter {
     
-    
-    /** */
-    protected final static ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Starter.class);
@@ -53,9 +45,10 @@ public class Starter {
      * @param args
      */
     public static void main(final String... args) {
+        // Load spring configuration
+        LifeCycleManager.initApplication();
         
         EventQueue.invokeLater(new Runnable() {
-            
             
             /**
              *
@@ -64,20 +57,16 @@ public class Starter {
             @Override
             public void run() {
                 try {
-                    
-                    final Map<String, Slot> slots = (Map<String, Slot>) CONTEXT.getBean("id-Slots");
-                    final Map<String, Signal> signals = (Map<String, Signal>) CONTEXT.getBean("id-Signals");
-                    SignalProvider.registerSignals(signals);
-                    SlotsProvider.createSlots(slots);
-                    
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     final JFrame mainFrame = new JFrame("Sample Panels");
                     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     mainFrame.getContentPane().add(new MainPanel(), BorderLayout.CENTER);
                     mainFrame.pack();
-                    //                    mainFrame.setMinimumSize(mainFrame.getPreferredSize());
+                    // mainFrame.setMinimumSize(mainFrame.getPreferredSize());
                     mainFrame.setVisible(true);
                     
+                    // LiveCycle attach register slots to signals
+                    LifeCycleManager.registerBeans();
                 } catch (final UnsupportedLookAndFeelException | //
                         ClassNotFoundException | //
                         InstantiationException | //
@@ -88,6 +77,7 @@ public class Starter {
                 }
             }
         });
+        
     }
     
 }

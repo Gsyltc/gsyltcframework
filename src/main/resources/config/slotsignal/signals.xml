@@ -7,12 +7,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
         <constructor-arg value="INJECTION_TOPIC" />
     </bean>
 
-    <util:map id="id-Signals" key-type="java.lang.String" value-type="fr.gsyltc.framework.slotsignals.signals.Signal">
-        <entry>
-            <key>
-                <value>INJECTION_TOPIC</value>
-            </key>
-            <ref bean="id-InjectedSignal" />
-        </entry>
-    </util:map>
+    <util:list id="id-Signals" value-type="fr.gsyltc.framework.slotsignals.signals.Signal">
+        <ref bean="id-InjectedSignal" />
+    </util:list>
 </beans>

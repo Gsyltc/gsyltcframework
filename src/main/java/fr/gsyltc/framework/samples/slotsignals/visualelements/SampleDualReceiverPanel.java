@@ -15,6 +15,9 @@ package fr.gsyltc.framework.samples.slotsignals.visualelements;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
@@ -32,6 +35,8 @@ import fr.gsyltc.framework.visualelements.AbstractCommandablePanel;
 public class SampleDualReceiverPanel extends AbstractCommandablePanel {
     
     
+    /** The logger of this class. */
+    private static final Log LOGGER = LogFactory.getLog(SampleDualReceiverPanel.class);
     /** */
     private static final long serialVersionUID = -2157595278063874081L;
     /** */
@@ -44,6 +49,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
      */
     public SampleDualReceiverPanel() {
         super();
+        setName(getClass().getSimpleName());
     }
     
     /**
@@ -83,7 +89,9 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
     public void createSlots() {
         // Create an java hard coded slot
         super.createSlots();
-        final Slot slot = new Slot(TopicName.HARD_CODED_TOPIC.name());
+        final Slot slot = new Slot(TopicName.HARD_CODED_TOPIC.name(), getClass().getSimpleName());
+        slot.registerSlot();
+        //        attachSlot(TopicName.HARD_CODED_TOPIC.name());
         slot.setSlotAction(new SlotAction<String>() {
             
             
@@ -97,20 +105,20 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
             }
         });
         
-        this.registerSlot(slot);
-        
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
-        injectedSlot.setSlotAction(new SlotAction<String>() {
-            
-            
-            /**
-             *
-             * {@inheritDoc}
-             */
-            @Override
-            public void doAction(final String arg) {
-                injectedTf.setText(arg);
-            }
-        });
+        if (null != injectedSlot) {
+            injectedSlot.setSlotAction(new SlotAction<String>() {
+                
+                
+                /**
+                 *
+                 * {@inheritDoc}
+                 */
+                @Override
+                public void doAction(final String arg) {
+                    injectedTf.setText(arg);
+                }
+            });
+        }
     }
 }
