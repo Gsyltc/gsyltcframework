@@ -26,14 +26,14 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  * @author Goubaud Sylvain
  *
  */
-public class SlotsProvider {
-    
-    
+public final class SlotsProvider {
+
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
     /** List of slots registered. */
     private static final Map<String, Slot> SLOTS = new ConcurrentHashMap<String, Slot>();
-    
+
     /**
      * Register a slot.
      *
@@ -53,7 +53,7 @@ public class SlotsProvider {
         }
         return slot;
     }
-    
+
     /**
      * Register multiple slot.
      *
@@ -63,7 +63,7 @@ public class SlotsProvider {
     public static void createSlots(final Map<String, Slot> slotsMap) {
         SLOTS.putAll(slotsMap);
     }
-    
+
     /**
      * Find a registered slot by his topic name.
      *
@@ -74,7 +74,7 @@ public class SlotsProvider {
     public static Slot findSlotByTopicName(final String topicName) {
         return SLOTS.get(topicName);
     }
-    
+
     /**
      * Protected Constructor
      */
