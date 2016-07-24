@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 23 juil. 2016.
+ * Modified : 24 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -16,28 +16,12 @@ import fr.gsyltc.framework.slotsignals.signals.Signal;
 import fr.gsyltc.framework.slotsignals.slots.Slot;
 
 /**
+ * This interface make a component commandable by signal/slot.
+ *
  * @author Goubaud Sylvain
  */
 public interface SlotCommandable {
     
-    
-    // /**
-    // * *Attach a signal to the visual elements. With this method, the visual
-    // * elements can send a signal event over a topic.
-    // *
-    // * @param signal
-    // * signal to attach
-    // */
-    // void attachSignal(Signal signal);
-    //
-    // /**
-    // * Attach a slot to the visual elements. With this method, the visual
-    // * elements can receive a signal event over a topic.
-    // *
-    // * @param slot
-    // * slot to attach
-    // */
-    // void attachSlot(Slot slot);
     
     /**
      * Create a signal to the visual elements. With this method, the visual
