@@ -32,8 +32,8 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public abstract class AbstractCommandablePanel extends AbstractCommonPanel implements SlotCommandable {
-    
-    
+
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractCommandablePanel.class);
     /** */
@@ -44,7 +44,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private Map<String, Signal> signals;
     /** Slots list */
     private Map<String, Slot> slots;
-    
+
     /**
      * Constructor.
      *
@@ -58,7 +58,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             }
         }
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -68,7 +68,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         final Signal signal = SignalProvider.findSignalByTopicName(topicName);
         registerSignal(signal);
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -82,19 +82,19 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             throw new NotImplementedException("No signal to regsiter");
         }
         final String topicName = newSignal.getTopicName();
-        
+
         if (signals.containsKey(topicName)) {
             throw new NotImplementedException("Signal Already Exist");
         }
-        
+
         final Signal signal = SignalProvider.findSignalByTopicName(topicName);
         if (null == signal) {
             SignalProvider.addSignal(newSignal);
         }
-        
+
         this.signals.put(topicName, newSignal);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -104,7 +104,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         registerSlot(slot);
         return slot;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -122,16 +122,17 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         }
         signal.attachSlotReceiver(newSlot);
     }
-    
+
     /**
      * Build the visual element.
      */
+    @Override
     public void build() {
+        super.build();
         this.createSignals();
         this.createSlots();
-        
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -139,7 +140,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public Signal findSignal(final String topicName) {
         return signals.get(topicName);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -147,7 +148,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public Slot findSlot(final String topicName) {
         return slots.get(topicName);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -157,7 +158,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Signals for" + this.getName());
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -167,7 +168,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Slots for" + this.getName());
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */

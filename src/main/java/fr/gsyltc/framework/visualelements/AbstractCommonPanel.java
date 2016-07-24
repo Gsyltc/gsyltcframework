@@ -65,6 +65,15 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     }
 
     /**
+     * Build the visual element.
+     */
+    public void build() {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Build the panel");
+        }
+    }
+
+    /**
      *
      * {@inheritDoc}
      */

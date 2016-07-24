@@ -26,15 +26,15 @@ import fr.gsyltc.framework.slotsignals.signals.Signal;
  * @author Goubaud Sylvain
  *
  */
-public class SignalProvider {
-
-
+public final class SignalProvider {
+    
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SignalProvider.class);
-
+    
     /** List of signals registered. */
     private static final Map<String, Signal> SIGNALS = new ConcurrentHashMap<String, Signal>();
-
+    
     /**
      * Register a signal.
      *
@@ -54,7 +54,7 @@ public class SignalProvider {
         }
         return signal;
     }
-
+    
     /**
      * Register multiple signals.
      *
@@ -64,7 +64,7 @@ public class SignalProvider {
     public static void registerSignals(final Map<String, Signal> signalsMap) {
         SIGNALS.putAll(signalsMap);
     }
-
+    
     /**
      * Find a registered signal by his topic name.
      *
@@ -75,7 +75,7 @@ public class SignalProvider {
     public static Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
     }
-
+    
     /**
      * Protected Constructor
      */
