@@ -18,13 +18,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import fr.gsyltc.framework.slotsignals.action.api.SlotAction;
+import fr.gsyltc.framework.slotsignals.common.api.TopicAttached;
 import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
 
 /**
  * @author Goubaud Sylvain
  *
  */
-public class Slot implements SlotReceiver {
+public class Slot implements SlotReceiver, TopicAttached {
 
 
     /** The logger of this class. */
