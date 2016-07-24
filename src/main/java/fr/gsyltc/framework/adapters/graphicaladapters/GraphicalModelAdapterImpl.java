@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.adapters.graphicaladapters;
 
+import java.io.Serializable;
+
 import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter;
 
 /**
@@ -19,8 +21,12 @@ import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter
  *         presenters
  * @param <M>
  */
-public class GraphicalModelAdapterImpl<M> implements IGraphicalModelAdapter<M> {
-
+public class GraphicalModelAdapterImpl<M> implements IGraphicalModelAdapter<M>, Serializable {
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8284760937318141343L;
     /**
      * The model.
      */
@@ -28,16 +34,16 @@ public class GraphicalModelAdapterImpl<M> implements IGraphicalModelAdapter<M> {
     /**
      * Name of the model.
      */
-    private String name;
-
+    private String adapterName;
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public String getAdapterName() {
-        return this.name;
+        return this.adapterName;
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -45,15 +51,15 @@ public class GraphicalModelAdapterImpl<M> implements IGraphicalModelAdapter<M> {
     public M getModel() {
         return this.model;
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public void setAdapterName(final String name) {
-        this.name = name;
+        this.adapterName = name;
     }
-
+    
     /**
      * {@inheritDoc}
      */
