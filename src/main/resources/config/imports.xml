@@ -4,10 +4,10 @@ http://www.springframework.org/schema/lang http://www.springframework.org/schema
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
-    <!-- ADAPTERS SAMPLES -->
-    <import resource="./adapters/adapters.xml" />
-
     <!-- SLOT SIGNALS SAMPLES -->
     <import resource="./slotsignal/slots.xml" />
     <import resource="./slotsignal/signals.xml" />
+
+    <!-- ADAPTERS SAMPLES -->
+    <import resource="./adapters/adapters.xml" />
 </beans>

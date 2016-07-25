@@ -20,8 +20,8 @@ import fr.gsyltc.framework.slotsignals.signals.Signal;
  * @author Goubaud Sylvain
  */
 public interface SlotRegister {
-    
-    
+
+
     /**
      * Attach an existing (injected by spring) signal to a component. With this
      * method, the visual elements can send a signal event over a topic.
@@ -30,7 +30,7 @@ public interface SlotRegister {
      *            the topic name.
      */
     void attachSignal(String topicName);
-    
+
     /**
      * Register an hard coded signal to a component.
      *

@@ -15,9 +15,6 @@ package fr.gsyltc.framework.samples.slotsignals.visualelements;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
@@ -35,15 +32,15 @@ import fr.gsyltc.framework.visualelements.AbstractCommandablePanel;
 public class SampleDualReceiverPanel extends AbstractCommandablePanel {
     
     
-    /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SampleDualReceiverPanel.class);
     /** */
     private static final long serialVersionUID = -2157595278063874081L;
     /** */
     protected JTextField hardCodedTf;
     /** */
     protected JTextField injectedTf;
-    
+    /** */
+    private static final int COLLUMN_LENGTH = 10;
+
     /**
      *
      */
@@ -51,14 +48,14 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void build() {
         super.build();
-        
+
         setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("pref:grow"), //
@@ -68,22 +65,22 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-        
-        hardCodedTf = new JTextField();
-        hardCodedTf.setEditable(false);
-        add(hardCodedTf, "2, 2, fill, default");
-        hardCodedTf.setColumns(10);
-        
-        injectedTf = new JTextField();
-        injectedTf.setEditable(false);
-        add(injectedTf, "4, 2, fill, default");
-        injectedTf.setColumns(10);
-        
+
+        this.hardCodedTf = new JTextField();
+        this.hardCodedTf.setEditable(false);
+        add(this.hardCodedTf, "2, 2, fill, default");
+        this.hardCodedTf.setColumns(COLLUMN_LENGTH);
+
+        this.injectedTf = new JTextField();
+        this.injectedTf.setEditable(false);
+        add(this.injectedTf, "4, 2, fill, default");
+        this.injectedTf.setColumns(COLLUMN_LENGTH);
+
         setBorder(new TitledBorder("Double signal panel receiver"));
     }
-    
+
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public void createSlots() {
@@ -91,9 +88,14 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
         super.createSlots();
         final Slot slot = new Slot(TopicName.HARD_CODED_TOPIC.name(), getClass().getSimpleName());
         slot.registerSlot();
-        //        attachSlot(TopicName.HARD_CODED_TOPIC.name());
+        // attachSlot(TopicName.HARD_CODED_TOPIC.name());
         slot.setSlotAction(new SlotAction<String>() {
             
+            
+            /**
+             *
+             */
+            private static final long serialVersionUID = -1113792986392915795L;
             
             /**
              *
@@ -101,10 +103,10 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
              */
             @Override
             public void doAction(final String arg) {
-                hardCodedTf.setText(arg);
+                SampleDualReceiverPanel.this.hardCodedTf.setText(arg);
             }
         });
-        
+
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
@@ -112,11 +114,16 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
                 
                 /**
                  *
+                 */
+                private static final long serialVersionUID = -1573235149717693641L;
+                
+                /**
+                 *
                  * {@inheritDoc}
                  */
                 @Override
                 public void doAction(final String arg) {
-                    injectedTf.setText(arg);
+                    SampleDualReceiverPanel.this.injectedTf.setText(arg);
                 }
             });
         }

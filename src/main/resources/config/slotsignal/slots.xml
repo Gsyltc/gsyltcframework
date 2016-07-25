@@ -3,6 +3,7 @@
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+    <!-- CREATE SLOT FOR THE VISUAL ELEMENTS -->
     <bean id="id-SampleInjectedReceiverPanelInjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
         <constructor-arg index="0" value="INJECTION_TOPIC" />
         <constructor-arg index="1" value="SampleInjectedReceiverPanel" />
@@ -12,14 +13,9 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
         <constructor-arg index="1" value="SampleDualReceiverPanel" />
     </bean>
 
-    <bean id="id-SampleReceiverAdapterInjectedSlot" class="fr.gsyltc.framework.slotsignals.slots.Slot">
-        <constructor-arg index="0" value="INJECTION_TOPIC" />
-        <constructor-arg index="1" value="SampleReceiverAdapter" />
-    </bean>
-
+    <!-- CREATE THE GENERIC SLOT LIST - id-Slots is the common list called in the lifecycle -->
     <util:list id="id-Slots" value-type="fr.gsyltc.framework.slotsignals.slots.Slot">
         <ref bean="id-SampleInjectedReceiverPanelInjectedSlot" />
         <ref bean="id-SampleDualReceiverPanelInjectedSlot" />
-        <ref bean="id-SampleReceiverAdapterInjectedSlot" />
     </util:list>
 </beans>

@@ -24,33 +24,34 @@ import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter
  *
  */
 public interface Bindable {
+    
+    
+    /**
+     * @param newAdapter
+     */
+    void addAdapter(IGraphicalModelAdapter<?> newAdapter);
 
     /**
-     * @param adapter
+     * @param newAdapter
      */
-    void addAdapter(IGraphicalModelAdapter<?> adapter);
-    
-    /**
-     * @param adapters
-     */
-    void setAdapters(Map<String, IGraphicalModelAdapter<?>> adapters);
-    
+    void setAdapters(Map<String, IGraphicalModelAdapter<?>> newAdapter);
+
     /**
      * @return
      */
     List<PresentationModel<?>> getPresenters();
-    
+
     /**
      * @param flInfosPresenterIndex
      * @return
      */
     PresentationModel<?> getPresenter(int flInfosPresenterIndex);
-    
+
     /**
      * @return
      */
     Map<String, IGraphicalModelAdapter<?>> getAdapters();
-    
+
     /**
      * @param key
      * @return

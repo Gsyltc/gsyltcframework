@@ -1,9 +1,9 @@
 /*
- * @(#)java
+ * @(#)AbstractCommonPanel.java
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 23 juil. 2016.
+ * Modified : 25 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -33,23 +33,23 @@ import fr.gsyltc.framework.visualelements.api.Bindable;
  *
  */
 public abstract class AbstractCommonPanel extends JPanel implements Bindable {
-
-
+    
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractCommonPanel.class);
     /** */
     private static final Object NEW_LINE = "\n";
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
-
-    /** Adapters for the visualelements */
+    
+    /** Adapters for the visual elements. */
     protected Map<String, IGraphicalModelAdapter<?>> adapters = new ConcurrentHashMap<String, IGraphicalModelAdapter<?>>();
     /** */
     protected Map<String, ? extends Object> attributeMap = new ConcurrentHashMap<String, Object>();
-
-    /** Presenters for the visual elements */
+    
+    /** Presenters for the visual elements. */
     protected final List<PresentationModel<?>> presenters = new CopyOnWriteArrayList<PresentationModel<?>>();
-
+    
     /**
      * Constructor.
      *
@@ -63,7 +63,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
             }
         }
     }
-
+    
     /**
      * Build the visual element.
      */
@@ -72,7 +72,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
             LOGGER.debug("Build the panel");
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -84,7 +84,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
         }
         this.adapters.put(adapter.getAdapterName(), adapter);
     }
-
+    
     /**
      * Get an adapter by his name.
      *
@@ -96,7 +96,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final IGraphicalModelAdapter<?> getAdapterByName(final String key) {
         return this.getAdapters().get(key);
     }
-
+    
     /**
      * @return the adapter
      */
@@ -104,9 +104,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final Map<String, IGraphicalModelAdapter<?>> getAdapters() {
         return Collections.unmodifiableMap(this.adapters);
     }
-
+    
     /**
-     * Get a Presenter by index
+     * Get a Presenter by index.
      *
      * @param flInfosPresenterIndex
      *            Index of the presenter to return.
@@ -116,7 +116,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final PresentationModel<?> getPresenter(final int flInfosPresenterIndex) {
         return this.presenters.get(flInfosPresenterIndex);
     }
-
+    
     /**
      * Get the list of presenters.
      *
@@ -126,21 +126,21 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final List<PresentationModel<?>> getPresenters() {
         return Collections.unmodifiableList(this.presenters);
     }
-
+    
     /**
      * Set the adapters for the visual element.
      *
-     * @param adapters
+     * @param newAdapters
      *            the adapters to set
      */
     @Override
-    public final void setAdapters(final Map<String, IGraphicalModelAdapter<?>> adapters) {
+    public final void setAdapters(final Map<String, IGraphicalModelAdapter<?>> newAdapters) {
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("DEBUG : Set adapters : " + adapters);
+            LOGGER.debug("DEBUG : Set adapters : " + newAdapters);
         }
-        this.adapters = adapters;
+        this.adapters = newAdapters;
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -148,9 +148,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder//
-        .append("Component  : " + this.getName()) //
-        .append("Nb adapters : " + this.adapters.size()).append(NEW_LINE) //
-        .append("Nb presenters : " + this.presenters.size()).append(NEW_LINE);
+                .append("Component  : " + this.getName()) //
+                .append("Nb adapters : " + this.adapters.size()).append(NEW_LINE) //
+                .append("Nb presenters : " + this.presenters.size()).append(NEW_LINE);
         return stringBuilder.toString();
     }
 }

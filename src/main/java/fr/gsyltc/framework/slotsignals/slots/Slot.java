@@ -23,6 +23,8 @@ import fr.gsyltc.framework.slotsignals.common.api.TopicAttached;
 import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
 
 /**
+ * A slot? It receive a signal.
+ *
  * @author Goubaud Sylvain
  *
  */
@@ -31,62 +33,60 @@ public class Slot implements SlotActionnable, TopicAttached {
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Slot.class);
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 7440550503924717386L;
-    
-    /** the slot action */
+
+    /** the slot action. */
     private SlotAction slotAction;
-    /** The topic to listen */
+    /** The topic to . */
     private final String topicName;
     /** */
     private final String receiverName;
-    /** true if slot is registered in the SlotProvider */
+    /** true if slot is registered in the SlotProvider. */
     private boolean registered = false;
-    
+
     /**
      * A slot can listen an event fire by a signal.
      *
      * @param newTopicName
      *            define the topic to listen.
-     * @param receiverName
+     * @param newReceiverName
      *            Receiver Name.
      */
-    public Slot(final String newTopicName, final String receiverName) {
+    public Slot(final String newTopicName, final String newReceiverName) {
         this.topicName = newTopicName;
-        this.receiverName = receiverName;
+        this.receiverName = newReceiverName;
         registerSlot();
     }
-    
+
     /**
-     * Return receiver *
      *
-     * @return the slotAction
+     * {@inheritDoc}.
      */
     @Override
     public SlotAction getSlotAction() {
         return this.slotAction;
     }
-    
+
     /**
-     * Return the topic name of the slotslotAction
      *
-     * @return the topic name.
+     * {@inheritDoc}.
      */
     @Override
     public String getTopicName() {
         return this.topicName;
     }
-    
+
     /**
      * @return the receiverName
      */
     public String getSlotName() {
-        return topicName + "." + receiverName;
+        return this.topicName + "." + this.receiverName;
     }
-    
+
     /**
      * Define the action for the slot.
      *
@@ -96,9 +96,9 @@ public class Slot implements SlotActionnable, TopicAttached {
     public void setSlotAction(final SlotAction newSlotAction) {
         this.slotAction = newSlotAction;
     }
-    
+
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public void update(final Observable signal, final Object toUpdate) {
@@ -108,32 +108,36 @@ public class Slot implements SlotActionnable, TopicAttached {
         }
         this.slotAction.doAction(toUpdate);
     }
-    
+
     /**
      *
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public final void registerSlot() {
-        if (!registered) {
+        if (!this.registered) {
             SlotsProvider.registerSlot(this);
             setRegistered(true);
         }
     }
-    
+
     /**
+     * Get the registration satus of the slot.
+     *
      * @return the registered
      */
     public boolean isRegistered() {
-        return registered;
+        return this.registered;
     }
-    
+
     /**
-     * @param registered
-     *            the registered to set
+     * Set if the slot is registered.
+     *
+     * @param isRregistered
+     *            is the slot registered
      */
-    private void setRegistered(final boolean registered) {
-        this.registered = registered;
+    private void setRegistered(final boolean isRregistered) {
+        this.registered = isRregistered;
     }
-    
+
 }

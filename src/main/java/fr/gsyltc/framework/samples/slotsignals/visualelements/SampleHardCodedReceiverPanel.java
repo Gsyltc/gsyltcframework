@@ -30,13 +30,15 @@ import fr.gsyltc.framework.visualelements.AbstractCommandablePanel;
  *
  */
 public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
-
-
+    
+    
     /** */
     private static final long serialVersionUID = -2157595278063874081L;
     /** */
     protected JTextField hardCodedTf;
-
+    /** */
+    private static final int COLLUMN_LENGTH = 10;
+    
     /**
      *
      */
@@ -44,14 +46,14 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public void build() {
         super.build();
-
+        
         setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("pref:grow"), //
@@ -60,15 +62,15 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-
-        hardCodedTf = new JTextField();
-        hardCodedTf.setEditable(false);
-        add(hardCodedTf, "2, 2, fill, default");
-        hardCodedTf.setColumns(10);
-
+        
+        this.hardCodedTf = new JTextField();
+        this.hardCodedTf.setEditable(false);
+        add(this.hardCodedTf, "2, 2, fill, default");
+        this.hardCodedTf.setColumns(COLLUMN_LENGTH);
+        
         setBorder(new TitledBorder("Hard coded signal panel recevier"));
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -80,15 +82,15 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
         slot.registerSlot();
         // attachSlot(TopicName.HARD_CODED_TOPIC.name());
         slot.setSlotAction(new SlotAction<String>() {
-
-
+            
+            
             /**
              *
              * {@inheritDoc}
              */
             @Override
             public void doAction(final String arg) {
-                hardCodedTf.setText(arg);
+                SampleHardCodedReceiverPanel.this.hardCodedTf.setText(arg);
             }
         });
     }

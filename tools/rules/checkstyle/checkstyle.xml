@@ -78,15 +78,10 @@
         <module name="UpperEll" />
     </module>
     <module name="JavadocPackage" />
-    <module name="NewlineAtEndOfFile" />
     <module name="Translation" />
     <module name="FileLength" />
     <module name="FileTabCharacter" />
-    <module name="RegexpSingleline">
-        <property name="format" value="\s+$" />
-        <property name="message" value="Line has trailing spaces." />
-    </module>
-    <module name="Header">
-        <property name="headerFile" value="tools/rules/checkstyle/header.checkstyle" />
-    </module>
+<!--     <module name="Header"> -->
+<!--         <property name="headerFile" value="tools/rules/checkstyle/header.checkstyle" /> -->
+<!--     </module> -->
 </module>

@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-/*
- * @(#)${file_name}
- *
- * Goubaud Sylvain - 2016.
- *
- * This code may be freely used and modified on any personal or professional
- * project.  It comes with no warranty.
- *
-=======
-/* @(#)${file}
- *
- * ${year} Goubaud Sylvain.
->>>>>>> refs/remotes/origin/dev_phase_2_Creation
- */
+^// checkstyle:$
+^// Checks Java source code for adherence to a set of rules\.$
+^// Last modification by \$Author.*\$$

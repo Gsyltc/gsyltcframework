@@ -18,7 +18,7 @@ import java.util.Observer;
 import fr.gsyltc.framework.slotsignals.action.api.SlotAction;
 
 /**
- * Implementing this interface allow component to receive slot
+ * Implementing this interface allow component to receive slot.
  *
  * @author Goubaud Sylvain
  *
@@ -36,15 +36,15 @@ public interface SlotActionnable extends Serializable, Observer {
     SlotAction<?> getSlotAction();
 
     /**
-     * Set the action attached to the slot
+     * Set the action attached to the slot.
      *
      * @param slotAction
      *            the slot action.
      */
     void setSlotAction(final SlotAction<?> slotAction);
-    
+
     /**
-     *
+     * Regsiter a slot to the Slot provider.
      */
     void registerSlot();
 }

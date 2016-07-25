@@ -37,11 +37,11 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
 
     /**
      *
-     * @param topicName
+     * @param newTopicName
      */
-    public Signal(final String topicName) {
+    public Signal(final String newTopicName) {
         super();
-        this.topicName = topicName;
+        this.topicName = newTopicName;
     }
 
     /**

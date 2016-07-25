@@ -85,7 +85,7 @@ public final class SlotsProvider {
     }
     
     /**
-     * Protected Constructor
+     * Protected Constructor.
      */
     private SlotsProvider() {
         // Nothing to do

@@ -12,6 +12,9 @@
 
 package fr.gsyltc.framework.samples.slotsignals.adapters;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import fr.gsyltc.framework.adapters.graphicaladapters.AbstractReceiverModelAdapterImpl;
 import fr.gsyltc.framework.samples.slotsignals.types.TopicName;
 import fr.gsyltc.framework.slotsignals.action.api.SlotAction;
@@ -26,18 +29,21 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
 public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M> {
     
     
+    /** The logger of this class. */
+    protected static final Log LOGGER = LogFactory.getLog(SampleReceiverAdapter.class);
+
     /**
      * @param adapterName
      */
     public SampleReceiverAdapter(final String adapterName) {
         super(adapterName);
     }
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 9062007717447227968L;
-    
+
     /**
      *
      */
@@ -45,9 +51,9 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
     public void init() {
         super.init();
     }
-    
+
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public void createSlots() {
@@ -60,18 +66,19 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
              *
              */
             private static final long serialVersionUID = 4107279115915098256L;
-            
+
             /**
              *
              * {@inheritDoc}
              */
             @Override
             public void doAction(final String arg) {
-                System.out.println("Hard coded signal received by :" + getAdapterName());
-                
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("Hard coded signal received by :" + getAdapterName());
+                }
             }
         });
-        
+
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
@@ -83,9 +90,19 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
                  */
                 @Override
                 public void doAction(final String arg) {
-                    System.out.println("Injected signal received by :" + getAdapterName());
+                    if (LOGGER.isInfoEnabled()) {
+                        LOGGER.info("Injected signal received by :" + getAdapterName());
+                    }
                 }
             });
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSlots(final Slot... slots) {
+        super.setSlots(slots);
     }
 }
