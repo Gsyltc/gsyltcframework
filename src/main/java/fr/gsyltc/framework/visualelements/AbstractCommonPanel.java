@@ -57,6 +57,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      *            Presentation Models list for the panel.
      */
     protected AbstractCommonPanel(final PresentationModel<?>... presentationModels) {
+        super();
         if (null != presentationModels) {
             for (final PresentationModel<?> presentationModel : presentationModels) {
                 this.presenters.add(presentationModel);
@@ -146,11 +147,11 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      */
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder(100);
         stringBuilder//
-                .append("Component  : " + this.getName()) //
-                .append("Nb adapters : " + this.adapters.size()).append(NEW_LINE) //
-                .append("Nb presenters : " + this.presenters.size()).append(NEW_LINE);
+                .append("Component  : ").append(getName()) //
+                .append("Nb adapters : ").append(this.adapters.size()).append(NEW_LINE) //
+                .append("Nb presenters : ").append(this.presenters.size()).append(NEW_LINE);
         return stringBuilder.toString();
     }
 }

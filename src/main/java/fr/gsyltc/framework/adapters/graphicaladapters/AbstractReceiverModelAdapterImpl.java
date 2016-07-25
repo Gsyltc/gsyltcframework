@@ -74,8 +74,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
      */
     @Override
     public final Slot attachSlot(final String topicName) {
-        final Slot slot = SlotsProvider.findSlotBySlotName(topicName + "." + getAdapterName());
-        return slot;
+        return SlotsProvider.findSlotBySlotName(topicName + "." + getAdapterName());
     }
     
     /**
@@ -114,9 +113,8 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder//
-                .append("Adapter  : " + this.getAdapterName()) //
-                .append("Nb signals : " + this.signals.size()).append(NEW_LINE); //
-        // .append("Nb slots : " + this.slots.size()).append(NEW_LINE); //
+                .append("Adapter  : ").append(this.getAdapterName()) //
+                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
 }

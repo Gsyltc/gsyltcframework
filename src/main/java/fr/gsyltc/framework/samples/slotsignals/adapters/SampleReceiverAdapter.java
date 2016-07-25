@@ -31,19 +31,19 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
     
     /** The logger of this class. */
     protected static final Log LOGGER = LogFactory.getLog(SampleReceiverAdapter.class);
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 9062007717447227968L;
-    
+
     /**
      * @param adapterName
      */
     public SampleReceiverAdapter(final String adapterName) {
         super(adapterName);
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -58,7 +58,7 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
              *
              */
             private static final long serialVersionUID = 4107279115915098256L;
-            
+
             /**
              *
              * {@inheritDoc}
@@ -70,7 +70,7 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
                 }
             }
         });
-        
+
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
@@ -80,7 +80,7 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
                  *
                  */
                 private static final long serialVersionUID = 2239594398348315192L;
-                
+
                 /**
                  *
                  * {@inheritDoc}
@@ -93,21 +93,5 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
                 }
             });
         }
-    }
-    
-    /**
-     *
-     */
-    @Override
-    public void init() {
-        super.init();
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setSlots(final Slot... slots) {
-        super.setSlots(slots);
     }
 }

@@ -33,12 +33,12 @@ public class Slot implements SlotActionnable, TopicAttached {
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Slot.class);
-
+    
     /**
      *
      */
     private static final long serialVersionUID = 7440550503924717386L;
-
+    
     /** the slot action. */
     private SlotAction slotAction;
     /** The topic to . */
@@ -46,8 +46,8 @@ public class Slot implements SlotActionnable, TopicAttached {
     /** */
     private final String receiverName;
     /** true if slot is registered in the SlotProvider. */
-    private boolean registered = false;
-
+    private boolean registered;
+    
     /**
      * A slot can listen an event fire by a signal.
      *
@@ -61,7 +61,7 @@ public class Slot implements SlotActionnable, TopicAttached {
         this.receiverName = newReceiverName;
         registerSlot();
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -70,7 +70,14 @@ public class Slot implements SlotActionnable, TopicAttached {
     public SlotAction getSlotAction() {
         return this.slotAction;
     }
-
+    
+    /**
+     * @return the receiverName
+     */
+    public String getSlotName() {
+        return this.topicName + "." + this.receiverName;
+    }
+    
     /**
      *
      * {@inheritDoc}.
@@ -79,36 +86,16 @@ public class Slot implements SlotActionnable, TopicAttached {
     public String getTopicName() {
         return this.topicName;
     }
-
+    
     /**
-     * @return the receiverName
-     */
-    public String getSlotName() {
-        return this.topicName + "." + this.receiverName;
-    }
-
-    /**
-     * Define the action for the slot.
+     * Get the registration satus of the slot.
      *
-     * @param newSlotAction
+     * @return the registered
      */
-    @Override
-    public void setSlotAction(final SlotAction newSlotAction) {
-        this.slotAction = newSlotAction;
+    public boolean isRegistered() {
+        return this.registered;
     }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public void update(final Observable signal, final Object toUpdate) {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Signal received for topic : " + signal);
-            LOGGER.debug("Object to update : " + toUpdate);
-        }
-        this.slotAction.doAction(toUpdate);
-    }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -120,16 +107,29 @@ public class Slot implements SlotActionnable, TopicAttached {
             setRegistered(true);
         }
     }
-
+    
     /**
-     * Get the registration satus of the slot.
+     * Define the action for the slot.
      *
-     * @return the registered
+     * @param newSlotAction
      */
-    public boolean isRegistered() {
-        return this.registered;
+    @Override
+    public void setSlotAction(final SlotAction newSlotAction) {
+        this.slotAction = newSlotAction;
     }
-
+    
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public void update(final Observable signal, final Object toUpdate) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Signal received for topic : " + signal);
+            LOGGER.debug("Object to update : " + toUpdate);
+        }
+        this.slotAction.doAction(toUpdate);
+    }
+    
     /**
      * Set if the slot is registered.
      *
@@ -139,5 +139,5 @@ public class Slot implements SlotActionnable, TopicAttached {
     private void setRegistered(final boolean isRregistered) {
         this.registered = isRregistered;
     }
-
+    
 }

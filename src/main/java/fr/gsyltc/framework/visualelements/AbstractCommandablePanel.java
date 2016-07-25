@@ -138,7 +138,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      */
     @Override
     public final String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder(100);
         stringBuilder//
                 .append("Component  : ").append(this.getName()) //
                 .append("Nb adapters : ").append(this.adapters.size()).append(NEW_LINE) //
