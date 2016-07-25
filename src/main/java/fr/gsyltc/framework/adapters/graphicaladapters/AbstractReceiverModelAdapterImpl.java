@@ -36,15 +36,15 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
      *
      */
     private static final long serialVersionUID = -8721921882502026575L;
-
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
-
+    
     /** */
     private static final Object NEW_LINE = "\n";
     /** Signals list. */
     private Map<String, Signal> signals;
-    
+
     // /** Slots list */
     // private List<Slot> slots;
     /**
@@ -56,7 +56,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         super(adapterName);
     }
-    
+
     /**
      * Constructor.
      *
@@ -68,7 +68,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -77,7 +77,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
         final Slot slot = SlotsProvider.findSlotBySlotName(topicName + "." + getAdapterName());
         return slot;
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -88,7 +88,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
             LOGGER.debug("Create Slots for" + this.getAdapterName());
         }
     }
-
+    
     /**
      * Build the visual element.
      */
@@ -96,7 +96,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public void init() {
         this.createSlots();
     }
-
+    
     /**
      * @param slots
      *            the slots to set
@@ -106,7 +106,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
             slot.registerSlot();
         }
     }
-
+    
     /**
      * {@inheritDoc}
      */

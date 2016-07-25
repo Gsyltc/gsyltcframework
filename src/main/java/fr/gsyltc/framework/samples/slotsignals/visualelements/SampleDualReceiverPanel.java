@@ -40,7 +40,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
     protected JTextField hardCodedTf;
     /** */
     protected JTextField injectedTf;
-
+    
     /**
      *
      */
@@ -48,14 +48,14 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public void build() {
         super.build();
-
+        
         setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("pref:grow"), //
@@ -65,20 +65,20 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-
+        
         this.hardCodedTf = new JTextField();
         this.hardCodedTf.setEditable(false);
         add(this.hardCodedTf, "2, 2, fill, default");
         this.hardCodedTf.setColumns(COLLUMN_LENGTH);
-
+        
         this.injectedTf = new JTextField();
         this.injectedTf.setEditable(false);
         add(this.injectedTf, "4, 2, fill, default");
         this.injectedTf.setColumns(COLLUMN_LENGTH);
-
+        
         setBorder(new TitledBorder("Double signal panel receiver"));
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -96,7 +96,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
              *
              */
             private static final long serialVersionUID = -1113792986392915795L;
-
+            
             /**
              *
              * {@inheritDoc}
@@ -106,7 +106,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
                 SampleDualReceiverPanel.this.hardCodedTf.setText(arg);
             }
         });
-
+        
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
@@ -116,7 +116,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
                  *
                  */
                 private static final long serialVersionUID = -1573235149717693641L;
-
+                
                 /**
                  *
                  * {@inheritDoc}

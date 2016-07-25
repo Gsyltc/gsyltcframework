@@ -1,9 +1,9 @@
 /*
- * @(#)java
+ * @(#)AbstractCommandablePanel.java
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 23 juil. 2016.
+ * Modified : 25 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -95,7 +95,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     }
 
     /**
-     * {@inheritDoc}.
+     * {@inheritDoc} >>>>>>> refs/remotes/origin/master
      */
     @Override
     public void createSignals() {
@@ -115,6 +115,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     }
 
     /**
+     *
      * {@inheritDoc}.
      */
     @Override

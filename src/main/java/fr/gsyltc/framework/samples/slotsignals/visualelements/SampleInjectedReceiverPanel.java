@@ -38,7 +38,7 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
     private static final int COLLUMN_LENGTH = 10;
     /** */
     protected JTextField injectTf;
-
+    
     /**
      *
      */
@@ -46,14 +46,14 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public void build() {
         super.build();
-
+        
         setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("pref:grow"), //
@@ -62,15 +62,15 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-
+        
         this.injectTf = new JTextField();
         this.injectTf.setEditable(false);
         add(this.injectTf, "2, 2, fill, default");
         this.injectTf.setColumns(COLLUMN_LENGTH);
-
+        
         setBorder(new TitledBorder("Injected signal panel receiver"));
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -87,7 +87,7 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
                  *
                  */
                 private static final long serialVersionUID = 2454864175932745043L;
-                
+
                 /**
                  *
                  * {@inheritDoc}.

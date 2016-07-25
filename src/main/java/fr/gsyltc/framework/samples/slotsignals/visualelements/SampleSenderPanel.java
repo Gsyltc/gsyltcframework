@@ -39,12 +39,12 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SampleSenderPanel.class);
-
+    
     /**
      *
      */
     private static final long serialVersionUID = 5305653932218673701L;
-
+    
     /**
      * Get the logger.
      *
@@ -53,7 +53,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
     protected static final Log getLogger() {
         return LOGGER;
     }
-
+    
     /**
      *
      */
@@ -61,16 +61,16 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-
+    
     /**
      * {@inheritDoc}.
      */
     @Override
     public void build() {
         super.build();
-
+        
         setBorder(new TitledBorder("Sender signal panel"));
-
+        
         this.setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.UNRELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("97px"), //
@@ -79,7 +79,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
                 new RowSpec[] { //
                         FormSpecs.UNRELATED_GAP_ROWSPEC, //
                         RowSpec.decode("25px"), }));
-
+        
         final JButton hardCodedButton = new JButton("Hard coded signal sender");
         this.add(hardCodedButton, "2, 2, left, top");
         hardCodedButton.addActionListener(new ActionListener() {
@@ -97,7 +97,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
                 }
             }
         });
-
+        
         final JButton injectionButton = new JButton("Injected signal sender");
         this.add(injectionButton, "4, 2, left, top");
         injectionButton.addActionListener(new ActionListener() {
@@ -115,9 +115,9 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
                 }
             }
         });
-
+        
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -127,7 +127,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
         super.createSignals();
         final Signal hardCodedSignal = new Signal(TopicName.HARD_CODED_TOPIC.name());
         registerSignal(hardCodedSignal);
-
+        
         // attach an injected signal
         attachSignal(TopicName.INJECTION_TOPIC.name());
     }
