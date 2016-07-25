@@ -65,7 +65,7 @@ public final class LifeCycleManager {
     }
 
     /**
-     *
+     * Register beans in the providers.
      */
     public static void registerBeans() {
         final Map<String, Slot> slots = SlotsProvider.getSlots();
