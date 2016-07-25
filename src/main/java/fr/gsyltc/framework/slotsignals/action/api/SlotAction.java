@@ -25,7 +25,7 @@ public interface SlotAction<E extends Object> extends Serializable {
 
 
     /**
-     * Execute the action
+     * Execute the action.
      *
      * @param arg
      *            an object.
@@ -33,3 +33,4 @@ public interface SlotAction<E extends Object> extends Serializable {
     void doAction(E arg);
 
 }
+

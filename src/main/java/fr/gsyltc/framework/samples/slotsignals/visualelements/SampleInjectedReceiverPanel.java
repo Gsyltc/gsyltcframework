@@ -15,9 +15,6 @@ package fr.gsyltc.framework.samples.slotsignals.visualelements;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
@@ -33,12 +30,12 @@ import fr.gsyltc.framework.visualelements.AbstractCommandablePanel;
  *
  */
 public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
-
-
-    /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SampleInjectedReceiverPanel.class);
+    
+    
     /** */
     private static final long serialVersionUID = -2157595278063874081L;
+    /** */
+    private static final int COLLUMN_LENGTH = 10;
     /** */
     protected JTextField injectTf;
 
@@ -66,10 +63,10 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
 
-        injectTf = new JTextField();
-        injectTf.setEditable(false);
-        add(injectTf, "2, 2, fill, default");
-        injectTf.setColumns(10);
+        this.injectTf = new JTextField();
+        this.injectTf.setEditable(false);
+        add(this.injectTf, "2, 2, fill, default");
+        this.injectTf.setColumns(COLLUMN_LENGTH);
 
         setBorder(new TitledBorder("Injected signal panel receiver"));
     }
@@ -84,15 +81,15 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
-
-
+                
+                
                 /**
                  *
                  * {@inheritDoc}
                  */
                 @Override
                 public void doAction(final String arg) {
-                    injectTf.setText(arg);
+                    SampleInjectedReceiverPanel.this.injectTf.setText(arg);
                 }
             });
         }

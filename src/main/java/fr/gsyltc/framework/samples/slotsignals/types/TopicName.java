@@ -17,5 +17,8 @@ package fr.gsyltc.framework.samples.slotsignals.types;
  *
  */
 public enum TopicName {
-    HARD_CODED_TOPIC, INJECTION_TOPIC
+    /** Hard coded topic name. */
+    HARD_CODED_TOPIC,
+    /** Injected topic name. */
+    INJECTION_TOPIC
 }

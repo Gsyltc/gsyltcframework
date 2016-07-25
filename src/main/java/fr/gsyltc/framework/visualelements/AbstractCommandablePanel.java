@@ -32,8 +32,8 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public abstract class AbstractCommandablePanel extends AbstractCommonPanel implements SlotCommandable {
-    
-    
+
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractCommandablePanel.class);
     /** */
@@ -42,9 +42,9 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private static final long serialVersionUID = 2794578279603616940L;
     /** Signals list. */
     private Map<String, Signal> signals;
-    //    /** Slots list */
-    //    private Map<String, Slot> slots;
-    
+    // /** Slots list */
+    // private Map<String, Slot> slots;
+
     /**
      * Constructor.
      *
@@ -58,7 +58,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             }
         }
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -77,7 +77,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         }
         this.signals.put(topicName, signal);
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -87,7 +87,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         SignalProvider.registerSignal(newSignal);
         attachSignal(newSignal.getTopicName());
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -96,7 +96,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         final Slot slot = SlotsProvider.findSlotBySlotName(topicName + "." + getName());
         return slot;
     }
-    
+
     /**
      * Build the visual element.
      */
@@ -105,9 +105,9 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         super.build();
         this.createSignals();
         this.createSlots();
-        //        registerSlots();
+        // registerSlots();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -115,7 +115,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public Signal findSignal(final String topicName) {
         return signals.get(topicName);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -125,7 +125,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Signals for" + this.getName());
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -135,7 +135,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Slots for" + this.getName());
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */

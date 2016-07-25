@@ -17,13 +17,13 @@ import java.io.Serializable;
 import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter;
 
 /**
- * @author Goubaud Sylvain Provide methods to update the graphical model for
- *         presenters
+ * @author Goubaud Sylvain Provide methods to update the graphical model for presenters
  * @param <M>
+ *            the model.
  */
 public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdapter<M>, Serializable {
-
-
+    
+    
     /**
      *
      */
@@ -40,28 +40,28 @@ public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdap
     /**
      * Constructor.
      *
-     * @param adapterName
+     * @param newAdapterName
      *            the adapter name.
-     * @param model
+     * @param newModel
      *            The model of the adapter.
      */
-    public AbstractModelAdapterImpl(final String adapterName, final M model) {
-        this.model = model;
-        this.adapterName = adapterName;
+    public AbstractModelAdapterImpl(final String newAdapterName, final M newModel) {
+        this.model = newModel;
+        this.adapterName = newAdapterName;
     }
 
     /**
      * Constructor.
      *
-     * @param adapterName
+     * @param newAdapterName
      *            the adapter name.
      */
-    public AbstractModelAdapterImpl(final String adapterName) {
-        this(adapterName, null);
+    public AbstractModelAdapterImpl(final String newAdapterName) {
+        this(newAdapterName, null);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public final String getAdapterName() {
@@ -69,7 +69,7 @@ public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdap
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public final M getModel() {
@@ -77,15 +77,15 @@ public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdap
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
-    public final void setModel(final M model) {
-        this.model = model;
+    public final void setModel(final M newModel) {
+        this.model = newModel;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public abstract void init();

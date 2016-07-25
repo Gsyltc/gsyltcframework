@@ -80,7 +80,7 @@ public final class SignalProvider {
     public static Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
     }
-
+    
     /**
      * @return the slots
      */
@@ -89,7 +89,7 @@ public final class SignalProvider {
     }
     
     /**
-     * Protected Constructor
+     * Protected Constructor.
      */
     private SignalProvider() {
         // Nothing to do.

@@ -47,7 +47,7 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
     }
     
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public void createSlots() {
@@ -87,5 +87,13 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
                 }
             });
         }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSlots(final Slot... slots) {
+        super.setSlots(slots);
     }
 }

@@ -3,10 +3,18 @@
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+    <!-- CREATE AN ADAPTER AND A SPECIFIC SLOT FOR THIS ADAPTER -->
     <bean id="id-SampleReceiverAdapter" class="fr.gsyltc.framework.samples.slotsignals.adapters.SampleReceiverAdapter" init-method="init">
         <constructor-arg value="SampleReceiverAdapter" />
+        <property name="slots">
+            <bean class="fr.gsyltc.framework.slotsignals.slots.Slot">
+                <constructor-arg index="0" value="INJECTION_TOPIC" />
+                <constructor-arg index="1" value="SampleReceiverAdapter" />
+            </bean>
+        </property>
     </bean>
 
+    <!-- CREATE THE GENERIC ADAPTER LIST - id-Adapters is the common list called in the lifecycle -->
     <util:list id="id-Adapters" value-type="fr.gsyltc.framework.slotsignals.signals.Signal">
         <ref bean="id-SampleReceiverAdapter" />
     </util:list>

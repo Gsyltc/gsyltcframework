@@ -28,8 +28,15 @@ import fr.gsyltc.framework.lifecycle.LifeCycleManager;
  * @author Goubaud Sylvain
  *
  */
-public class Starter {
+public final class Starter {
     
+    
+    /**
+     * Protected constructor.
+     */
+    private Starter() {
+        // Nothing to do
+    }
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Starter.class);
@@ -50,6 +57,7 @@ public class Starter {
         
         EventQueue.invokeLater(new Runnable() {
             
+            
             /**
              *
              * {@inheritDoc}
@@ -62,15 +70,14 @@ public class Starter {
                     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     mainFrame.getContentPane().add(new MainPanel(), BorderLayout.CENTER);
                     mainFrame.pack();
-                    // mainFrame.setMinimumSize(mainFrame.getPreferredSize());
                     mainFrame.setVisible(true);
                     
                     // LiveCycle attach register slots to signals
                     LifeCycleManager.registerBeans();
                 } catch (final UnsupportedLookAndFeelException | //
-                        ClassNotFoundException | //
-                        InstantiationException | //
-                        IllegalAccessException e) {
+                ClassNotFoundException | //
+                InstantiationException | //
+                IllegalAccessException e) {
                     if (getLogger().isErrorEnabled()) {
                         getLogger().error("Look and feel error : ", e);
                     }

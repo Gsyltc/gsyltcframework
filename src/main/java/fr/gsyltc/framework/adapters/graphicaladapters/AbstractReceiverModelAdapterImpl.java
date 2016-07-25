@@ -64,8 +64,8 @@ implements SlotReceiver {
     private static final Object NEW_LINE = "\n";
     /** Signals list. */
     private Map<String, Signal> signals;
-    /** Slots list */
-    private Map<String, Slot> slots;
+    // /** Slots list */
+    // private List<Slot> slots;
 
     /**
      * Build the visual element.
@@ -96,6 +96,16 @@ implements SlotReceiver {
     }
 
     /**
+     * @param slots
+     *            the slots to set
+     */
+    public void setSlots(final Slot... slots) {
+        for (final Slot slot : slots) {
+            slot.registerSlot();
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -103,8 +113,8 @@ implements SlotReceiver {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder//
         .append("Adapter  : " + this.getAdapterName()) //
-        .append("Nb signals : " + this.signals.size()).append(NEW_LINE) //
-        .append("Nb slots : " + this.slots.size()).append(NEW_LINE); //
+        .append("Nb signals : " + this.signals.size()).append(NEW_LINE); //
+        // .append("Nb slots : " + this.slots.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
 }

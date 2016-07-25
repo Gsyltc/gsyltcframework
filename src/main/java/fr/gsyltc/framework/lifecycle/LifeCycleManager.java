@@ -1,16 +1,6 @@
 /*
  * @(#)LifeCycleManager.java
  *
- * Goubaud Sylvain - 2016.
- *
- * This code may be freely used and modified on any personal or professional
- * project.  It comes with no warranty.
- *
- */
-
-/*
- * @(#)LifeCycleManager.java
- *
  * Goubaud Sylvain
  * Created : 2016
  * Modified : 24 juil. 2016.
@@ -29,7 +19,7 @@ import java.util.Map.Entry;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.gsyltc.framework.adapters.AdaptersProvider;
-import fr.gsyltc.framework.adapters.api.AbstractCommonAdapter;
+import fr.gsyltc.framework.adapters.api.CommonAdapter;
 import fr.gsyltc.framework.slotsignals.common.SignalProvider;
 import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 import fr.gsyltc.framework.slotsignals.signals.Signal;
@@ -39,13 +29,15 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  * @author Goubaud Sylvain
  *
  */
+public final class LifeCycleManager {
 
-/**
- * @author Goubaud Sylvain
- *
- */
-public class LifeCycleManager {
 
+    /**
+     * Protected constructor.
+     */
+    private LifeCycleManager() {
+        // Noting to do
+    }
 
     /** */
     public static final String SIGNALS_BEAN = "id-Signals";
@@ -55,7 +47,7 @@ public class LifeCycleManager {
     public static final String ADAPTERS_BEAN = "id-Adapters";
 
     /** */
-    protected final static ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
+    protected static final ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
 
     /**
      *
@@ -68,7 +60,7 @@ public class LifeCycleManager {
         final List<Slot> slots = (List<Slot>) CONTEXT.getBean(SLOTS_BEAN);
         SlotsProvider.regsiterSlots(slots);
 
-        final List<AbstractCommonAdapter> adapters = (List<AbstractCommonAdapter>) CONTEXT.getBean(ADAPTERS_BEAN);
+        final List<CommonAdapter> adapters = (List<CommonAdapter>) CONTEXT.getBean(ADAPTERS_BEAN);
         AdaptersProvider.registerAdapters(adapters);
     }
 
