@@ -41,15 +41,15 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     private static final Object NEW_LINE = "\n";
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
-    
+
     /** Adapters for the visual elements. */
     protected Map<String, IGraphicalModelAdapter<?>> adapters = new ConcurrentHashMap<String, IGraphicalModelAdapter<?>>();
     /** */
     protected Map<String, ? extends Object> attributeMap = new ConcurrentHashMap<String, Object>();
-    
+
     /** Presenters for the visual elements. */
     protected final List<PresentationModel<?>> presenters = new CopyOnWriteArrayList<PresentationModel<?>>();
-    
+
     /**
      * Constructor.
      *
@@ -63,16 +63,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
             }
         }
     }
-    
-    /**
-     * Build the visual element.
-     */
-    public void build() {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Build the panel");
-        }
-    }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -84,7 +75,16 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
         }
         this.adapters.put(adapter.getAdapterName(), adapter);
     }
-    
+
+    /**
+     * Build the visual element.
+     */
+    public void build() {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Build the panel");
+        }
+    }
+
     /**
      * Get an adapter by his name.
      *
@@ -96,7 +96,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final IGraphicalModelAdapter<?> getAdapterByName(final String key) {
         return this.getAdapters().get(key);
     }
-    
+
     /**
      * @return the adapter
      */
@@ -104,7 +104,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final Map<String, IGraphicalModelAdapter<?>> getAdapters() {
         return Collections.unmodifiableMap(this.adapters);
     }
-    
+
     /**
      * Get a Presenter by index.
      *
@@ -116,7 +116,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final PresentationModel<?> getPresenter(final int flInfosPresenterIndex) {
         return this.presenters.get(flInfosPresenterIndex);
     }
-    
+
     /**
      * Get the list of presenters.
      *
@@ -126,7 +126,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     public final List<PresentationModel<?>> getPresenters() {
         return Collections.unmodifiableList(this.presenters);
     }
-    
+
     /**
      * Set the adapters for the visual element.
      *
@@ -140,7 +140,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
         }
         this.adapters = newAdapters;
     }
-    
+
     /**
      * {@inheritDoc}
      */

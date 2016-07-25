@@ -22,14 +22,14 @@ public interface CommonAdapter {
     
     
     /**
-     * Initialize the adapter.
-     */
-    void init();
-
-    /**
      * Get the Adapter Name.
      *
      * @return the Adapter Name.
      */
     String getAdapterName();
+
+    /**
+     * Initialize the adapter.
+     */
+    void init();
 }

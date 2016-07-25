@@ -35,11 +35,11 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
     /** */
     private static final long serialVersionUID = -2157595278063874081L;
     /** */
+    private static final int COLLUMN_LENGTH = 10;
+    /** */
     protected JTextField hardCodedTf;
     /** */
     protected JTextField injectedTf;
-    /** */
-    private static final int COLLUMN_LENGTH = 10;
 
     /**
      *
@@ -96,7 +96,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
              *
              */
             private static final long serialVersionUID = -1113792986392915795L;
-            
+
             /**
              *
              * {@inheritDoc}
@@ -116,7 +116,7 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
                  *
                  */
                 private static final long serialVersionUID = -1573235149717693641L;
-                
+
                 /**
                  *
                  * {@inheritDoc}

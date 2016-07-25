@@ -19,8 +19,8 @@ package fr.gsyltc.framework.slotsignals.common.api;
  *
  */
 public interface TopicAttached {
-
-
+    
+    
     /**
      * Get the topic name.
      *

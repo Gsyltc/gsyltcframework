@@ -21,7 +21,8 @@ import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
  *
  */
 public interface SlotCommandable extends SlotReceiver, SignalSender, SlotRegister {
-
+    
+    
     /**
      * Get a signal by his topic name.
      *

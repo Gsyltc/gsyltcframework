@@ -35,10 +35,10 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
     /** */
     private static final long serialVersionUID = -2157595278063874081L;
     /** */
-    protected JTextField hardCodedTf;
-    /** */
     private static final int COLLUMN_LENGTH = 10;
-    
+    /** */
+    protected JTextField hardCodedTf;
+
     /**
      *
      */
@@ -46,14 +46,14 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void build() {
         super.build();
-        
+
         setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("pref:grow"), //
@@ -62,17 +62,17 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-        
+
         this.hardCodedTf = new JTextField();
         this.hardCodedTf.setEditable(false);
         add(this.hardCodedTf, "2, 2, fill, default");
         this.hardCodedTf.setColumns(COLLUMN_LENGTH);
-        
+
         setBorder(new TitledBorder("Hard coded signal panel recevier"));
     }
-    
+
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public void createSlots() {
@@ -86,7 +86,12 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
             
             /**
              *
-             * {@inheritDoc}
+             */
+            private static final long serialVersionUID = 4457096226311069630L;
+            
+            /**
+             *
+             * {@inheritDoc}.
              */
             @Override
             public void doAction(final String arg) {

@@ -22,8 +22,8 @@ import java.io.Serializable;
  *            type of sended object.
  */
 public interface SlotAction<E extends Object> extends Serializable {
-
-
+    
+    
     /**
      * Execute the action.
      *
@@ -33,4 +33,3 @@ public interface SlotAction<E extends Object> extends Serializable {
     void doAction(E arg);
 
 }
-

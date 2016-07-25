@@ -25,8 +25,8 @@ import fr.gsyltc.framework.slotsignals.action.api.SlotAction;
  *
  */
 public interface SlotActionnable extends Serializable, Observer {
-
-
+    
+    
     /**
      * Get the action attached to the slot.
      *
@@ -36,15 +36,15 @@ public interface SlotActionnable extends Serializable, Observer {
     SlotAction<?> getSlotAction();
 
     /**
+     * Regsiter a slot to the Slot provider.
+     */
+    void registerSlot();
+
+    /**
      * Set the action attached to the slot.
      *
      * @param slotAction
      *            the slot action.
      */
     void setSlotAction(final SlotAction<?> slotAction);
-
-    /**
-     * Regsiter a slot to the Slot provider.
-     */
-    void registerSlot();
 }

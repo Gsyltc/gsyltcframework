@@ -29,7 +29,7 @@ public interface IGraphicalModelAdapter<M> extends CommonAdapter {
      * @return The model.
      */
     M getModel();
-    
+
     /**
      * Set the Model Adapter.
      *
@@ -37,5 +37,5 @@ public interface IGraphicalModelAdapter<M> extends CommonAdapter {
      *            Model to set.
      */
     void setModel(M model);
-    
+
 }

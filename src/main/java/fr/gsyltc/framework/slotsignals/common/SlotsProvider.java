@@ -35,7 +35,27 @@ public final class SlotsProvider {
     private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
     /** List of slots registered. */
     private static final Map<String, Slot> SLOTS = new ConcurrentHashMap<String, Slot>();
-    
+
+    /**
+     * Find a registered slot by his topic name.
+     *
+     * @param topicName
+     *            the topic of the slot
+     * @return the registered slot.
+     */
+    public static Slot findSlotBySlotName(final String topicName) {
+        return SLOTS.get(topicName);
+    }
+
+    /**
+     * Get the slots map.
+     *
+     * @return the slots
+     */
+    public static Map<String, Slot> getSlots() {
+        return Collections.unmodifiableMap(SLOTS);
+    }
+
     /**
      * Register a slot.
      *
@@ -53,7 +73,7 @@ public final class SlotsProvider {
             }
         }
     }
-    
+
     /**
      * Register multiple slot.
      *
@@ -65,25 +85,7 @@ public final class SlotsProvider {
             registerSlot(slot);
         }
     }
-    
-    /**
-     * Find a registered slot by his topic name.
-     *
-     * @param topicName
-     *            the topic of the slot
-     * @return the registered slot.
-     */
-    public static Slot findSlotBySlotName(final String topicName) {
-        return SLOTS.get(topicName);
-    }
-    
-    /**
-     * @return the slots
-     */
-    public static Map<String, Slot> getSlots() {
-        return Collections.unmodifiableMap(SLOTS);
-    }
-    
+
     /**
      * Protected Constructor.
      */

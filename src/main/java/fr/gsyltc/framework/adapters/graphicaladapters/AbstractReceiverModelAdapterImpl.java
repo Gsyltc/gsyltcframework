@@ -29,9 +29,24 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelAdapterImpl<M> //
-implements SlotReceiver {
+        implements SlotReceiver {
+    
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8721921882502026575L;
 
+    /** The logger of this class. */
+    private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
 
+    /** */
+    private static final Object NEW_LINE = "\n";
+    /** Signals list. */
+    private Map<String, Signal> signals;
+    
+    // /** Slots list */
+    // private List<Slot> slots;
     /**
      * Constructor.
      *
@@ -41,7 +56,7 @@ implements SlotReceiver {
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         super(adapterName);
     }
-
+    
     /**
      * Constructor.
      *
@@ -52,27 +67,6 @@ implements SlotReceiver {
      */
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
-    }
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -8721921882502026575L;
-    /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
-    /** */
-    private static final Object NEW_LINE = "\n";
-    /** Signals list. */
-    private Map<String, Signal> signals;
-    // /** Slots list */
-    // private List<Slot> slots;
-
-    /**
-     * Build the visual element.
-     */
-    @Override
-    public void init() {
-        this.createSlots();
     }
 
     /**
@@ -96,6 +90,14 @@ implements SlotReceiver {
     }
 
     /**
+     * Build the visual element.
+     */
+    @Override
+    public void init() {
+        this.createSlots();
+    }
+
+    /**
      * @param slots
      *            the slots to set
      */
@@ -112,8 +114,8 @@ implements SlotReceiver {
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder//
-        .append("Adapter  : " + this.getAdapterName()) //
-        .append("Nb signals : " + this.signals.size()).append(NEW_LINE); //
+                .append("Adapter  : " + this.getAdapterName()) //
+                .append("Nb signals : " + this.signals.size()).append(NEW_LINE); //
         // .append("Nb slots : " + this.slots.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }

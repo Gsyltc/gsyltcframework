@@ -19,14 +19,8 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public interface SlotReceiver {
-
-
-    /**
-     * Create a slot to the visual elements. With this method, the visual
-     * elements can receive a signal event over a topic.
-     */
-    void createSlots();
-
+    
+    
     /**
      * Attach an existing (injected by spring) signal to a component. With this
      * method, the visual elements can receive a signal event over a topic.
@@ -36,4 +30,10 @@ public interface SlotReceiver {
      * @return the slot.
      */
     Slot attachSlot(String topicName);
+    
+    /**
+     * Create a slot to the visual elements. With this method, the visual
+     * elements can receive a signal event over a topic.
+     */
+    void createSlots();
 }

@@ -42,12 +42,9 @@ public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdap
      *
      * @param newAdapterName
      *            the adapter name.
-     * @param newModel
-     *            The model of the adapter.
      */
-    public AbstractModelAdapterImpl(final String newAdapterName, final M newModel) {
-        this.model = newModel;
-        this.adapterName = newAdapterName;
+    public AbstractModelAdapterImpl(final String newAdapterName) {
+        this(newAdapterName, null);
     }
 
     /**
@@ -55,9 +52,12 @@ public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdap
      *
      * @param newAdapterName
      *            the adapter name.
+     * @param newModel
+     *            The model of the adapter.
      */
-    public AbstractModelAdapterImpl(final String newAdapterName) {
-        this(newAdapterName, null);
+    public AbstractModelAdapterImpl(final String newAdapterName, final M newModel) {
+        this.model = newModel;
+        this.adapterName = newAdapterName;
     }
 
     /**
@@ -80,13 +80,13 @@ public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdap
      * {@inheritDoc}.
      */
     @Override
-    public final void setModel(final M newModel) {
-        this.model = newModel;
-    }
+    public abstract void init();
 
     /**
      * {@inheritDoc}.
      */
     @Override
-    public abstract void init();
+    public final void setModel(final M newModel) {
+        this.model = newModel;
+    }
 }

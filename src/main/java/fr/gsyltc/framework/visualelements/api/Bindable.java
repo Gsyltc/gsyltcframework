@@ -32,14 +32,15 @@ public interface Bindable {
     void addAdapter(IGraphicalModelAdapter<?> newAdapter);
 
     /**
-     * @param newAdapter
+     * @param key
+     * @return
      */
-    void setAdapters(Map<String, IGraphicalModelAdapter<?>> newAdapter);
+    IGraphicalModelAdapter<?> getAdapterByName(String key);
 
     /**
      * @return
      */
-    List<PresentationModel<?>> getPresenters();
+    Map<String, IGraphicalModelAdapter<?>> getAdapters();
 
     /**
      * @param flInfosPresenterIndex
@@ -50,12 +51,11 @@ public interface Bindable {
     /**
      * @return
      */
-    Map<String, IGraphicalModelAdapter<?>> getAdapters();
+    List<PresentationModel<?>> getPresenters();
 
     /**
-     * @param key
-     * @return
+     * @param newAdapter
      */
-    IGraphicalModelAdapter<?> getAdapterByName(String key);
+    void setAdapters(Map<String, IGraphicalModelAdapter<?>> newAdapter);
 
 }

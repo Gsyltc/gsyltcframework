@@ -22,8 +22,8 @@ import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
  *
  */
 public interface SignalActionner extends Serializable {
-
-
+    
+    
     /**
      * Create a new signal and attach a receiver.
      *
@@ -31,7 +31,7 @@ public interface SignalActionner extends Serializable {
      *            The first receiver.
      */
     void attachSlotReceiver(SlotActionnable receiver);
-
+    
     /**
      * Send signal.
      *

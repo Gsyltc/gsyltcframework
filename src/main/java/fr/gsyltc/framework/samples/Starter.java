@@ -31,13 +31,6 @@ import fr.gsyltc.framework.lifecycle.LifeCycleManager;
 public final class Starter {
     
     
-    /**
-     * Protected constructor.
-     */
-    private Starter() {
-        // Nothing to do
-    }
-    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Starter.class);
     
@@ -60,7 +53,7 @@ public final class Starter {
             
             /**
              *
-             * {@inheritDoc}
+             * {@inheritDoc}.
              */
             @Override
             public void run() {
@@ -85,6 +78,13 @@ public final class Starter {
             }
         });
         
+    }
+    
+    /**
+     * Protected constructor.
+     */
+    private Starter() {
+        // Nothing to do
     }
     
 }

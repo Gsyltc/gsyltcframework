@@ -35,7 +35,7 @@ public class MainPanel extends JPanel {
      *
      */
     private static final long serialVersionUID = 2385349410839507600L;
-    
+
     /**
      *
      */
@@ -57,22 +57,22 @@ public class MainPanel extends JPanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         RowSpec.decode("pref:grow"), //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-        
+
         final SampleSenderPanel sender = new SampleSenderPanel();
         sender.build();
         this.add(sender, "2,2");
-        
+
         final SampleDualReceiverPanel dualReceiver = new SampleDualReceiverPanel();
         dualReceiver.build();
         this.add(dualReceiver, "2,4,3,1");
-        
+
         final SampleInjectedReceiverPanel injectedReceiver = new SampleInjectedReceiverPanel();
         injectedReceiver.build();
         this.add(injectedReceiver, "2,6,3,1");
-        
+
         final SampleHardCodedReceiverPanel hardCodedReceiver = new SampleHardCodedReceiverPanel();
         hardCodedReceiver.build();
         this.add(hardCodedReceiver, "2,8,3,1");
     }
-    
+
 }

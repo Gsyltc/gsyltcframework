@@ -72,7 +72,7 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public void createSlots() {
@@ -85,7 +85,12 @@ public class SampleInjectedReceiverPanel extends AbstractCommandablePanel {
                 
                 /**
                  *
-                 * {@inheritDoc}
+                 */
+                private static final long serialVersionUID = 2454864175932745043L;
+                
+                /**
+                 *
+                 * {@inheritDoc}.
                  */
                 @Override
                 public void doAction(final String arg) {
