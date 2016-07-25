@@ -12,6 +12,7 @@
 
 package fr.gsyltc.framework.visualelements;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -32,8 +33,8 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public abstract class AbstractCommandablePanel extends AbstractCommonPanel implements SlotCommandable {
-
-
+    
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractCommandablePanel.class);
     /** */
@@ -41,9 +42,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
     /** Signals list. */
-    private Map<String, Signal> signals;
-    // /** Slots list */
-    // private Map<String, Slot> slots;
+    private final Map<String, Signal> signals = new ConcurrentHashMap<String, Signal>();
 
     /**
      * Constructor.
@@ -52,6 +51,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      *            Presentation Models list for the panel.
      */
     protected AbstractCommandablePanel(final PresentationModel<?>... presentationModels) {
+        super();
         if (null != presentationModels) {
             for (final PresentationModel<?> presentationModel : presentationModels) {
                 this.presenters.add(presentationModel);
@@ -66,13 +66,10 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     @Override
     public final void attachSignal(final String topicName) {
         final Signal signal = SignalProvider.findSignalByTopicName(topicName);
-        if (null == this.signals) {
-            this.signals = new ConcurrentHashMap<String, Signal>();
-        }
         if (null == signal) {
             throw new NotImplementedException("No signal to regsiter");
         }
-        if (signals.containsKey(topicName)) {
+        if (getSignals().containsKey(topicName)) {
             throw new NotImplementedException("Signal Already attached for " + getName());
         }
         this.signals.put(topicName, signal);
@@ -93,8 +90,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      */
     @Override
     public final Slot attachSlot(final String topicName) {
-        final Slot slot = SlotsProvider.findSlotBySlotName(topicName + "." + getName());
-        return slot;
+        return SlotsProvider.findSlotBySlotName(topicName + "." + getName());
     }
 
     /**
@@ -113,7 +109,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      */
     @Override
     public Signal findSignal(final String topicName) {
-        return signals.get(topicName);
+        return getSignals().get(topicName);
     }
 
     /**
@@ -143,13 +139,20 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public final String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder//
-        .append("Component  : " + this.getName()) //
-        .append("Nb adapters : " + this.adapters.size()).append(NEW_LINE) //
-        .append("Nb presenters : " + this.presenters.size()).append(NEW_LINE) //
-        .append("Nb signals : " + this.signals.size()).append(NEW_LINE) //
-        .append("Nb signals : " + this.signals.size()).append(NEW_LINE) //
-        .append("Nb signals : " + this.signals.size()).append(NEW_LINE) //
-        .append("Nb signals : " + this.signals.size()).append(NEW_LINE);
+                .append("Component  : ").append(this.getName()) //
+                .append("Nb adapters : ").append(this.adapters.size()).append(NEW_LINE) //
+                .append("Nb presenters : ").append(this.presenters.size()).append(NEW_LINE) //
+                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE) //
+                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE) //
+                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE) //
+                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE);
         return stringBuilder.toString();
+    }
+
+    /**
+     * @return the signals
+     */
+    private Map<String, Signal> getSignals() {
+        return Collections.unmodifiableMap(this.signals);
     }
 }
