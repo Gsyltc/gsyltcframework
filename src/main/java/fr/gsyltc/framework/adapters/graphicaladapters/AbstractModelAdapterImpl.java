@@ -17,7 +17,9 @@ import java.io.Serializable;
 import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter;
 
 /**
- * @author Goubaud Sylvain Provide methods to update the graphical model for presenters
+ * Provide methods to update the graphical model for presenters.
+ *
+ * @author Goubaud Sylvain
  * @param <M>
  *            the model.
  */
