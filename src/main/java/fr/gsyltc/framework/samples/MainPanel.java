@@ -23,6 +23,7 @@ import fr.gsyltc.framework.samples.slotsignals.visualelements.SampleDualReceiver
 import fr.gsyltc.framework.samples.slotsignals.visualelements.SampleHardCodedReceiverPanel;
 import fr.gsyltc.framework.samples.slotsignals.visualelements.SampleInjectedReceiverPanel;
 import fr.gsyltc.framework.samples.slotsignals.visualelements.SampleSenderPanel;
+import fr.gsyltc.framework.visualelements.types.LayoutSpecs;
 
 /**
  * @author Goubaud Sylvain
@@ -35,7 +36,7 @@ public class MainPanel extends JPanel {
      *
      */
     private static final long serialVersionUID = 2385349410839507600L;
-
+    
     /**
      *
      */
@@ -43,36 +44,36 @@ public class MainPanel extends JPanel {
         super();
         this.setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
-                ColumnSpec.decode("pref:grow"), //
+                ColumnSpec.decode(LayoutSpecs.PREF_GROW), //
                 FormSpecs.RELATED_GAP_COLSPEC, //
-                ColumnSpec.decode("pref:grow"), //
+                ColumnSpec.decode(LayoutSpecs.PREF_GROW), //
                 FormSpecs.RELATED_GAP_COLSPEC, }, //
                 new RowSpec[] { //
                         FormSpecs.RELATED_GAP_ROWSPEC, //
-                        RowSpec.decode("pref:grow"), //
+                        RowSpec.decode(LayoutSpecs.PREF_GROW), //
                         FormSpecs.RELATED_GAP_ROWSPEC, //
-                        RowSpec.decode("pref:grow"), //
+                        RowSpec.decode(LayoutSpecs.PREF_GROW), //
                         FormSpecs.RELATED_GAP_ROWSPEC, //
-                        RowSpec.decode("pref:grow"), //
+                        RowSpec.decode(LayoutSpecs.PREF_GROW), //
                         FormSpecs.RELATED_GAP_ROWSPEC, //
-                        RowSpec.decode("pref:grow"), //
+                        RowSpec.decode(LayoutSpecs.PREF_GROW), //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-
+        
         final SampleSenderPanel sender = new SampleSenderPanel();
         sender.build();
         this.add(sender, "2,2");
-
+        
         final SampleDualReceiverPanel dualReceiver = new SampleDualReceiverPanel();
         dualReceiver.build();
         this.add(dualReceiver, "2,4,3,1");
-
+        
         final SampleInjectedReceiverPanel injectedReceiver = new SampleInjectedReceiverPanel();
         injectedReceiver.build();
         this.add(injectedReceiver, "2,6,3,1");
-
+        
         final SampleHardCodedReceiverPanel hardCodedReceiver = new SampleHardCodedReceiverPanel();
         hardCodedReceiver.build();
         this.add(hardCodedReceiver, "2,8,3,1");
     }
-
+    
 }
