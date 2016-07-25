@@ -34,14 +34,14 @@ public final class LifeCycleManager {
     
     /** */
     public static final String SIGNALS_BEAN = "id-Signals";
-    
+
     /** */
     public static final String SLOTS_BEAN = "id-Slots";
     /** */
     public static final String ADAPTERS_BEAN = "id-Adapters";
     /** */
-    protected static final ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
-    
+    private static final ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
+
     /**
      *
      */
@@ -49,27 +49,27 @@ public final class LifeCycleManager {
         
         final List<Signal> signals = (List<Signal>) CONTEXT.getBean(SIGNALS_BEAN);
         SignalProvider.registerSignals(signals);
-        
+
         final List<Slot> slots = (List<Slot>) CONTEXT.getBean(SLOTS_BEAN);
         SlotsProvider.regsiterSlots(slots);
-        
+
         final List<CommonAdapter> adapters = (List<CommonAdapter>) CONTEXT.getBean(ADAPTERS_BEAN);
         AdaptersProvider.registerAdapters(adapters);
     }
-    
+
     /**
      * Register beans in the providers.
      */
     public static void registerBeans() {
         final Map<String, Slot> slots = SlotsProvider.getSlots();
-        
+
         for (final Entry<String, Slot> entry : slots.entrySet()) {
             final Slot slot = entry.getValue();
             final Signal signal = SignalProvider.findSignalByTopicName(slot.getTopicName());
             signal.attachSlotReceiver(slot);
         }
     }
-    
+
     /**
      * Protected constructor.
      */

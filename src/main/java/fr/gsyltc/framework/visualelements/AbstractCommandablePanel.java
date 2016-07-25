@@ -143,10 +143,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
                 .append("Component  : ").append(this.getName()) //
                 .append("Nb adapters : ").append(this.adapters.size()).append(NEW_LINE) //
                 .append("Nb presenters : ").append(this.presenters.size()).append(NEW_LINE) //
-                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE) //
-                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE) //
-                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE) //
-                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE);
+                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
 
