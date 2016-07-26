@@ -38,9 +38,9 @@ public class SampleDualReceiverPanel extends AbstractCommandablePanel {
     /** */
     private static final int COLLUMN_LENGTH = 10;
     /** */
-    protected JTextField hardCodedTf;
+    protected transient JTextField hardCodedTf;
     /** */
-    protected JTextField injectedTf;
+    protected transient JTextField injectedTf;
 
     /**
      *

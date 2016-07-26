@@ -33,12 +33,12 @@ public class Slot implements SlotActionnable, TopicAttached {
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Slot.class);
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 7440550503924717386L;
-    
+
     /** the slot action. */
     private SlotAction slotAction;
     /** The topic to . */
@@ -47,7 +47,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     private final String receiverName;
     /** true if slot is registered in the SlotProvider. */
     private boolean registered;
-    
+
     /**
      * A slot can listen an event fire by a signal.
      *
@@ -61,7 +61,14 @@ public class Slot implements SlotActionnable, TopicAttached {
         this.receiverName = newReceiverName;
         registerSlot();
     }
-    
+
+    /**
+     * @return the receiverName
+     */
+    public String getReceiverName() {
+        return this.receiverName;
+    }
+
     /**
      *
      * {@inheritDoc}.
@@ -70,14 +77,14 @@ public class Slot implements SlotActionnable, TopicAttached {
     public SlotAction getSlotAction() {
         return this.slotAction;
     }
-    
+
     /**
      * @return the receiverName
      */
     public String getSlotName() {
         return this.topicName + "." + this.receiverName;
     }
-    
+
     /**
      *
      * {@inheritDoc}.
@@ -86,7 +93,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public String getTopicName() {
         return this.topicName;
     }
-    
+
     /**
      * Get the registration satus of the slot.
      *
@@ -95,7 +102,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public boolean isRegistered() {
         return this.registered;
     }
-    
+
     /**
      *
      * {@inheritDoc}.
@@ -107,7 +114,7 @@ public class Slot implements SlotActionnable, TopicAttached {
             setRegistered(true);
         }
     }
-    
+
     /**
      * Define the action for the slot.
      *
@@ -117,7 +124,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public void setSlotAction(final SlotAction newSlotAction) {
         this.slotAction = newSlotAction;
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -129,7 +136,7 @@ public class Slot implements SlotActionnable, TopicAttached {
         }
         this.slotAction.doAction(toUpdate);
     }
-    
+
     /**
      * Set if the slot is registered.
      *
@@ -139,5 +146,5 @@ public class Slot implements SlotActionnable, TopicAttached {
     private void setRegistered(final boolean isRregistered) {
         this.registered = isRregistered;
     }
-    
+
 }

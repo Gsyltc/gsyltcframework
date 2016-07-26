@@ -28,6 +28,13 @@ public interface SlotActionnable extends Serializable, Observer {
     
     
     /**
+     * Get the name of the object who attached to the slot.
+     *
+     * @return the receiver name.
+     */
+    String getReceiverName();
+
+    /**
      * Get the action attached to the slot.
      *
      * @return a slot action.

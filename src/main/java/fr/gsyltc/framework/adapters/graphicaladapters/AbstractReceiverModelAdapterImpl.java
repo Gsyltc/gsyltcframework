@@ -1,9 +1,9 @@
 /*
- * @(#)AbstractCommandableAdapterImpl.java
+ * @(#)AbstractReceiverModelAdapterImpl.java
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 26 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -12,13 +12,10 @@
 
 package fr.gsyltc.framework.adapters.graphicaladapters;
 
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
-import fr.gsyltc.framework.slotsignals.signals.Signal;
 import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
 import fr.gsyltc.framework.slotsignals.slots.Slot;
 
@@ -32,9 +29,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
         implements SlotReceiver {
     
     
-    /**
-     *
-     */
+    /** */
     private static final long serialVersionUID = -8721921882502026575L;
 
     /** The logger of this class. */
@@ -42,11 +37,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
 
     /** */
     private static final Object NEW_LINE = "\n";
-    /** Signals list. */
-    private Map<String, Signal> signals;
-    
-    // /** Slots list */
-    // private List<Slot> slots;
+
     /**
      * Constructor.
      *
@@ -56,7 +47,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         super(adapterName);
     }
-    
+
     /**
      * Constructor.
      *
@@ -113,8 +104,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder(30);
         stringBuilder//
-                .append("Adapter  : ").append(this.getAdapterName()) //
-                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE); //
+                .append("Adapter  : ").append(this.getAdapterName()); //
         return stringBuilder.toString();
     }
 }

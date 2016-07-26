@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 26 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -37,8 +37,8 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
     /** */
     private static final int COLLUMN_LENGTH = 10;
     /** */
-    protected JTextField hardCodedTf;
-    
+    protected transient JTextField hardCodedTf;
+
     /**
      *
      */
@@ -46,14 +46,14 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
         super();
         setName(getClass().getSimpleName());
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void build() {
         super.build();
-        
+
         setLayout(new FormLayout(new ColumnSpec[] { //
                 FormSpecs.RELATED_GAP_COLSPEC, //
                 ColumnSpec.decode("pref:grow"), //
@@ -62,15 +62,15 @@ public class SampleHardCodedReceiverPanel extends AbstractCommandablePanel {
                         FormSpecs.RELATED_GAP_ROWSPEC, //
                         FormSpecs.PREF_ROWSPEC, //
                         FormSpecs.RELATED_GAP_ROWSPEC, }));
-        
+
         this.hardCodedTf = new JTextField();
         this.hardCodedTf.setEditable(false);
         add(this.hardCodedTf, "2, 2, fill, default");
         this.hardCodedTf.setColumns(COLLUMN_LENGTH);
-        
+
         setBorder(new TitledBorder("Hard coded signal panel recevier"));
     }
-    
+
     /**
      * {@inheritDoc}.
      */
