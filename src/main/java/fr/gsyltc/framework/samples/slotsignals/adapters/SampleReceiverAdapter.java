@@ -31,19 +31,19 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
     
     /** The logger of this class. */
     protected static final Log LOGGER = LogFactory.getLog(SampleReceiverAdapter.class);
-
+    
     /**
      *
      */
     private static final long serialVersionUID = 9062007717447227968L;
-
+    
     /**
      * @param adapterName
      */
     public SampleReceiverAdapter(final String adapterName) {
         super(adapterName);
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -58,19 +58,19 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
              *
              */
             private static final long serialVersionUID = 4107279115915098256L;
-
+            
             /**
              *
              * {@inheritDoc}
              */
             @Override
             public void doAction(final String arg) {
-                if (LOGGER.isErrorEnabled()) {
-                    LOGGER.info("Hard coded signal received by :" + getAdapterName());
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Hard coded signal received by :" + getAdapterName());
                 }
             }
         });
-
+        
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
@@ -80,15 +80,15 @@ public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M
                  *
                  */
                 private static final long serialVersionUID = 2239594398348315192L;
-
+                
                 /**
                  *
                  * {@inheritDoc}
                  */
                 @Override
                 public void doAction(final String arg) {
-                    if (LOGGER.isErrorEnabled()) {
-                        LOGGER.info("Injected signal received by :" + getAdapterName());
+                    if (LOGGER.isDebugEnabled()) {
+                        LOGGER.debug("Injected signal received by :" + getAdapterName());
                     }
                 }
             });
