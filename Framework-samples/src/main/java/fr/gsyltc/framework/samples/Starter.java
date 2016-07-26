@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 26 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -24,7 +24,8 @@ import org.apache.commons.logging.LogFactory;
 
 import fr.gsyltc.framework.lifecycle.LifeCycleManager;
 
-/**
+/***
+ *
  * @author Goubaud Sylvain
  *
  */
@@ -33,21 +34,21 @@ public final class Starter {
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(Starter.class);
-    
+
     /**
      * @return the logger
      */
     public static Log getLogger() {
         return LOGGER;
     }
-    
+
     /**
      * @param args
      */
     public static void main(final String... args) {
         // Load spring configuration
         LifeCycleManager.initApplication();
-        
+
         EventQueue.invokeLater(new Runnable() {
             
             
@@ -64,7 +65,7 @@ public final class Starter {
                     mainFrame.getContentPane().add(new MainPanel(), BorderLayout.CENTER);
                     mainFrame.pack();
                     mainFrame.setVisible(true);
-                    
+
                     // LiveCycle attach register slots to signals
                     LifeCycleManager.registerBeans();
                 } catch (final UnsupportedLookAndFeelException | //
@@ -77,14 +78,14 @@ public final class Starter {
                 }
             }
         });
-        
+
     }
-    
+
     /**
      * Protected constructor.
      */
     private Starter() {
         // Nothing to do
     }
-    
+
 }
