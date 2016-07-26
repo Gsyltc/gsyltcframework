@@ -12,6 +12,11 @@
             <property name="minimum" value="25" />
         </properties>
     </rule>
+    <rule ref="rulesets/java/naming.xml/ShortClassName">
+        <properties>
+            <property name="minimum" value="4" />
+        </properties>
+    </rule>
 
     <rule ref="rulesets/java/basic.xml" />
 
@@ -58,6 +63,7 @@
 
     <rule ref="rulesets/java/coupling.xml">
         <exclude name="LawOfDemeter" />
+        <exclude name="LoosePackageCoupling" />
     </rule>
 
 </ruleset>

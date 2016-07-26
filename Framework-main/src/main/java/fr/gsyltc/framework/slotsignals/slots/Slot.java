@@ -23,7 +23,7 @@ import fr.gsyltc.framework.slotsignals.common.api.TopicAttached;
 import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
 
 /**
- * A slot? It receive a signal.
+ * A slot. It receive a signal.
  *
  * @author Goubaud Sylvain
  *
@@ -65,6 +65,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     /**
      * @return the receiverName
      */
+    @Override
     public String getReceiverName() {
         return this.receiverName;
     }
