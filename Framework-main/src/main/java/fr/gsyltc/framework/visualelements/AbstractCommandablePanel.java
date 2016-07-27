@@ -70,7 +70,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             throw new NotImplementedException("No signal to regsiter");
         }
         if (getSignals().containsKey(topicName)) {
-            throw new NotImplementedException("Signal Already attached for " + getName());
+            // throw new NotImplementedException("Signal Already attached for "
+            // + getName());
         }
         this.signals.put(topicName, signal);
     }
@@ -141,7 +142,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         final StringBuilder stringBuilder = new StringBuilder(100);
         stringBuilder//
                 .append("Component  : ").append(this.getName()) //
-                .append("Nb adapters : ").append(this.adapters.size()).append(NEW_LINE) //
+                // .append("Nb adapters :
+                // ").append(this.adapters.size()).append(NEW_LINE) //
                 .append("Nb presenters : ").append(this.presenters.size()).append(NEW_LINE) //
                 .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();

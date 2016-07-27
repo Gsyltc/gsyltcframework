@@ -13,11 +13,8 @@
 package fr.gsyltc.framework.visualelements.api;
 
 import java.util.List;
-import java.util.Map;
 
 import com.jgoodies.binding.PresentationModel;
-
-import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
 
 /**
  * @author Goubaud Sylvain
@@ -25,37 +22,36 @@ import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
  */
 public interface Bindable {
     
+    // /**
+    // * @param newAdapter
+    // */
+    // void addAdapter(DomainModelAdapter<?> newAdapter);
     
-    /**
-     * @param newAdapter
-     */
-    void addAdapter(DomainModelAdapter<?> newAdapter);
-
-    /**
-     * @param key
-     * @return
-     */
-    DomainModelAdapter<?> getAdapterByName(String key);
-
-    /**
-     * @return
-     */
-    Map<String, DomainModelAdapter<?>> getAdapters();
-
+    // /**
+    // * @param key
+    // * @return
+    // */
+    // DomainModelAdapter<?> getAdapterByName(String key);
+    
+    // /**
+    // * @return
+    // */
+    // Map<String, DomainModelAdapter<?>> getAdapters();
+    
     /**
      * @param flInfosPresenterIndex
      * @return
      */
     PresentationModel<?> getPresenter(int flInfosPresenterIndex);
-
+    
     /**
      * @return
      */
     List<PresentationModel<?>> getPresenters();
-
-    /**
-     * @param newAdapter
-     */
-    void setAdapters(Map<String, DomainModelAdapter<?>> newAdapter);
-
+    
+    // /**
+    // * @param newAdapter
+    // */
+    // void setAdapters(Map<String, DomainModelAdapter<?>> newAdapter);
+    
 }

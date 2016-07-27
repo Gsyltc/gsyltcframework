@@ -46,15 +46,20 @@ public final class LifeCycleManager {
      *
      */
     public static void initApplication() {
-        
-        final List<Signal> signals = (List<Signal>) CONTEXT.getBean(SIGNALS_BEAN);
-        SignalProvider.registerSignals(signals);
+        if (CONTEXT.containsBean(SIGNALS_BEAN)) {
+            final List<Signal> signals = (List<Signal>) CONTEXT.getBean(SIGNALS_BEAN);
+            SignalProvider.registerSignals(signals);
+        }
 
-        final List<Slot> slots = (List<Slot>) CONTEXT.getBean(SLOTS_BEAN);
-        SlotsProvider.regsiterSlots(slots);
+        if (CONTEXT.containsBean(SLOTS_BEAN)) {
+            final List<Slot> slots = (List<Slot>) CONTEXT.getBean(SLOTS_BEAN);
+            SlotsProvider.regsiterSlots(slots);
+        }
 
-        final List<CommonAdapter> adapters = (List<CommonAdapter>) CONTEXT.getBean(ADAPTERS_BEAN);
-        AdaptersProvider.registerAdapters(adapters);
+        if (CONTEXT.containsBean(ADAPTERS_BEAN)) {
+            final List<CommonAdapter> adapters = (List<CommonAdapter>) CONTEXT.getBean(ADAPTERS_BEAN);
+            AdaptersProvider.registerAdapters(adapters);
+        }
     }
 
     /**
