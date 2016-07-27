@@ -47,8 +47,7 @@ public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl im
      *            the adapter name.
      */
     public AbstractModelAdapterImpl(final String newAdapterName) {
-        super(newAdapterName);
-        this.model = null;
+        super(newAdapterName, null);
     }
 
     /**
