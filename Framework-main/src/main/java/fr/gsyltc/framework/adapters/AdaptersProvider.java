@@ -34,7 +34,7 @@ public final class AdaptersProvider {
     private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
     /** List of slots registered. */
     private static final Map<String, CommonAdapter> ADAPTERS = new ConcurrentHashMap<String, CommonAdapter>();
-    
+
     /**
      * Find a registered adapter by his name.
      *
@@ -45,14 +45,14 @@ public final class AdaptersProvider {
     public static CommonAdapter findAdapterByName(final String name) {
         return ADAPTERS.get(name);
     }
-    
+
     /**
      * @return the slots
      */
-    public static Map<String, CommonAdapter> getSlots() {
+    public static Map<String, CommonAdapter> getAdapters() {
         return Collections.unmodifiableMap(ADAPTERS);
     }
-    
+
     /**
      * Register a slot.
      *
@@ -70,7 +70,7 @@ public final class AdaptersProvider {
             }
         }
     }
-    
+
     /**
      * Register multiple adapters.
      *
@@ -82,7 +82,7 @@ public final class AdaptersProvider {
             registerAdapter(adapter);
         }
     }
-    
+
     /**
      * Protected Constructor.
      */

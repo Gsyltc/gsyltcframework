@@ -12,8 +12,6 @@
 
 package fr.gsyltc.framework.adapters;
 
-import java.io.Serializable;
-
 import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
 
 /**
@@ -23,7 +21,7 @@ import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
  * @param <M>
  *            the model.
  */
-public abstract class AbstractModelAdapterImpl<M> implements DomainModelAdapter<M>, Serializable {
+public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl implements DomainModelAdapter<M> {
     
     
     /**
@@ -34,10 +32,13 @@ public abstract class AbstractModelAdapterImpl<M> implements DomainModelAdapter<
      * The model.
      */
     private M model;
+
     /**
-     * Name of the model.
+     *
      */
-    private final String adapterName;
+    public AbstractModelAdapterImpl() {
+        super();
+    }
 
     /**
      * Constructor.
@@ -46,7 +47,8 @@ public abstract class AbstractModelAdapterImpl<M> implements DomainModelAdapter<
      *            the adapter name.
      */
     public AbstractModelAdapterImpl(final String newAdapterName) {
-        this(newAdapterName, null);
+        super(newAdapterName);
+        this.model = null;
     }
 
     /**
@@ -58,16 +60,8 @@ public abstract class AbstractModelAdapterImpl<M> implements DomainModelAdapter<
      *            The model of the adapter.
      */
     public AbstractModelAdapterImpl(final String newAdapterName, final M newModel) {
+        super(newAdapterName);
         this.model = newModel;
-        this.adapterName = newAdapterName;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public final String getAdapterName() {
-        return this.adapterName;
     }
 
     /**
