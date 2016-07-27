@@ -32,14 +32,14 @@ public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl im
      * The model.
      */
     private M model;
-
+    
     /**
-     *
-     */
+    *
+    */
     public AbstractModelAdapterImpl() {
-        super();
+        this(null);
     }
-
+    
     /**
      * Constructor.
      *
@@ -47,9 +47,9 @@ public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl im
      *            the adapter name.
      */
     public AbstractModelAdapterImpl(final String newAdapterName) {
-        super(newAdapterName, null);
+        this(newAdapterName, null);
     }
-
+    
     /**
      * Constructor.
      *
@@ -62,7 +62,7 @@ public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl im
         super(newAdapterName);
         this.model = newModel;
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -70,13 +70,13 @@ public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl im
     public final M getModel() {
         return this.model;
     }
-
+    
     /**
      * {@inheritDoc}.
      */
     @Override
     public abstract void init();
-
+    
     /**
      * {@inheritDoc}.
      */

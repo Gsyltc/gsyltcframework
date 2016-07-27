@@ -26,20 +26,20 @@ public abstract class AbstractAdapterImpl implements CommonAdapter, Serializable
     
     /** */
     private static final long serialVersionUID = -8284760937318141343L;
-
+    
     /**
      * Name of the model.
      */
     protected String adapterName;
-
+    
     /**
      * Constructor.
      *
      */
     public AbstractAdapterImpl() {
-        this(null);
+        this("");
     }
-
+    
     /**
      * Constructor.
      *
@@ -49,7 +49,7 @@ public abstract class AbstractAdapterImpl implements CommonAdapter, Serializable
     public AbstractAdapterImpl(final String newAdapterName) {
         this.adapterName = newAdapterName;
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -57,13 +57,13 @@ public abstract class AbstractAdapterImpl implements CommonAdapter, Serializable
     public final String getAdapterName() {
         return this.adapterName;
     }
-
+    
     /**
      * {@inheritDoc}.
      */
     @Override
     public abstract void init();
-
+    
     /**
      * {@inheritDoc}.
      */
