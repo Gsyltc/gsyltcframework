@@ -38,11 +38,19 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     /**
      * Constructor.
      *
+     */
+    public AbstractReceiverModelAdapterImpl() {
+        super(null);
+    }
+
+    /**
+     * Constructor.
+     *
      * @param adapterName
      *            the adapter name.
      */
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
-        super(adapterName);
+        super(adapterName, null);
     }
 
     /**

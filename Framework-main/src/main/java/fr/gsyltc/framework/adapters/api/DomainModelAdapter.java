@@ -28,7 +28,7 @@ public interface DomainModelAdapter<M> extends CommonAdapter {
      * @return The model.
      */
     M getModel();
-
+    
     /**
      * Set the Model Adapter.
      *
@@ -36,5 +36,5 @@ public interface DomainModelAdapter<M> extends CommonAdapter {
      *            Model to set.
      */
     void setModel(M model);
-
+    
 }
