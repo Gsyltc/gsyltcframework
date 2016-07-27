@@ -3,14 +3,14 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 26 juil. 2016.
+ * Modified : 27 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
  *
  */
 
-package fr.gsyltc.framework.adapters.graphicaladapters;
+package fr.gsyltc.framework.adapters;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,10 +31,10 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     
     /** */
     private static final long serialVersionUID = -8721921882502026575L;
-    
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
-    
+
     /**
      * Constructor.
      *
@@ -44,7 +44,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         super(adapterName);
     }
-    
+
     /**
      * Constructor.
      *
@@ -56,7 +56,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -64,7 +64,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public final Slot attachSlot(final String topicName) {
         return SlotsProvider.findSlotBySlotName(topicName + "." + getAdapterName());
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -75,7 +75,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
             LOGGER.debug("Create Slots for" + this.getAdapterName());
         }
     }
-    
+
     /**
      * Build the visual element.
      */
@@ -83,7 +83,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public void init() {
         this.createSlots();
     }
-    
+
     /**
      * @param slots
      *            the slots to set
@@ -93,7 +93,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
             slot.registerSlot();
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */

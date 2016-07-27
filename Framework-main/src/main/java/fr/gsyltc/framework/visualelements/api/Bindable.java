@@ -17,7 +17,7 @@ import java.util.Map;
 
 import com.jgoodies.binding.PresentationModel;
 
-import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter;
+import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
 
 /**
  * @author Goubaud Sylvain
@@ -29,18 +29,18 @@ public interface Bindable {
     /**
      * @param newAdapter
      */
-    void addAdapter(IGraphicalModelAdapter<?> newAdapter);
+    void addAdapter(DomainModelAdapter<?> newAdapter);
 
     /**
      * @param key
      * @return
      */
-    IGraphicalModelAdapter<?> getAdapterByName(String key);
+    DomainModelAdapter<?> getAdapterByName(String key);
 
     /**
      * @return
      */
-    Map<String, IGraphicalModelAdapter<?>> getAdapters();
+    Map<String, DomainModelAdapter<?>> getAdapters();
 
     /**
      * @param flInfosPresenterIndex
@@ -56,6 +56,6 @@ public interface Bindable {
     /**
      * @param newAdapter
      */
-    void setAdapters(Map<String, IGraphicalModelAdapter<?>> newAdapter);
+    void setAdapters(Map<String, DomainModelAdapter<?>> newAdapter);
 
 }

@@ -15,7 +15,7 @@ package fr.gsyltc.framework.samples.slotsignals.adapters;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.gsyltc.framework.adapters.graphicaladapters.AbstractReceiverModelAdapterImpl;
+import fr.gsyltc.framework.adapters.AbstractReceiverModelAdapterImpl;
 import fr.gsyltc.framework.samples.slotsignals.types.TopicName;
 import fr.gsyltc.framework.slotsignals.action.api.SlotAction;
 import fr.gsyltc.framework.slotsignals.slots.Slot;

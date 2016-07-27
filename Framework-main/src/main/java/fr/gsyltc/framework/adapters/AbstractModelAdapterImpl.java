@@ -1,20 +1,20 @@
 /*
- * @(#)GraphicalModelAdapterImpl.java
+ * @(#)AbstractModelAdapterImpl.java
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 23 juil. 2016.
+ * Modified : 27 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
  *
  */
 
-package fr.gsyltc.framework.adapters.graphicaladapters;
+package fr.gsyltc.framework.adapters;
 
 import java.io.Serializable;
 
-import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter;
+import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
 
 /**
  * Provide methods to update the graphical model for presenters.
@@ -23,7 +23,7 @@ import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter
  * @param <M>
  *            the model.
  */
-public abstract class AbstractModelAdapterImpl<M> implements IGraphicalModelAdapter<M>, Serializable {
+public abstract class AbstractModelAdapterImpl<M> implements DomainModelAdapter<M>, Serializable {
     
     
     /**

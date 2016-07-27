@@ -10,9 +10,7 @@
  *
  */
 
-package fr.gsyltc.framework.adapters.graphicaladapters.api;
-
-import fr.gsyltc.framework.adapters.api.CommonAdapter;
+package fr.gsyltc.framework.adapters.api;
 
 /**
  * This interface is used to provide method for the GraphicalModelAdapter.
@@ -21,7 +19,7 @@ import fr.gsyltc.framework.adapters.api.CommonAdapter;
  * @param <M>
  *
  */
-public interface IGraphicalModelAdapter<M> extends CommonAdapter {
+public interface DomainModelAdapter<M> extends CommonAdapter {
     
     
     /**

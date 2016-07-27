@@ -25,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.jgoodies.binding.PresentationModel;
 
-import fr.gsyltc.framework.adapters.graphicaladapters.api.IGraphicalModelAdapter;
+import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
 import fr.gsyltc.framework.visualelements.api.Bindable;
 
 /**
@@ -43,7 +43,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     private static final long serialVersionUID = 2794578279603616940L;
 
     /** Adapters for the visual elements. */
-    protected Map<String, IGraphicalModelAdapter<?>> adapters = new ConcurrentHashMap<String, IGraphicalModelAdapter<?>>();
+    protected Map<String, DomainModelAdapter<?>> adapters = new ConcurrentHashMap<String, DomainModelAdapter<?>>();
     /** */
     protected Map<String, ? extends Object> attributeMap = new ConcurrentHashMap<String, Object>();
 
@@ -70,7 +70,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      * {@inheritDoc}
      */
     @Override
-    public final void addAdapter(final IGraphicalModelAdapter<?> adapter) {
+    public final void addAdapter(final DomainModelAdapter<?> adapter) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("DEBUG : set Adapter :" + adapter.getAdapterName());
         }
@@ -94,7 +94,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      * @return A graphical adapter.
      */
     @Override
-    public final IGraphicalModelAdapter<?> getAdapterByName(final String key) {
+    public final DomainModelAdapter<?> getAdapterByName(final String key) {
         return this.getAdapters().get(key);
     }
 
@@ -102,7 +102,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      * @return the adapter
      */
     @Override
-    public final Map<String, IGraphicalModelAdapter<?>> getAdapters() {
+    public final Map<String, DomainModelAdapter<?>> getAdapters() {
         return Collections.unmodifiableMap(this.adapters);
     }
 
@@ -135,7 +135,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      *            the adapters to set
      */
     @Override
-    public final void setAdapters(final Map<String, IGraphicalModelAdapter<?>> newAdapters) {
+    public final void setAdapters(final Map<String, DomainModelAdapter<?>> newAdapters) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("DEBUG : Set adapters : " + newAdapters);
         }
