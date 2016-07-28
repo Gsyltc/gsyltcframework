@@ -30,7 +30,7 @@ public interface SlotReceiver {
      * @return the slot.
      */
     Slot attachSlot(String topicName);
-    
+
     /**
      * Create a slot to the visual elements. With this method, the visual
      * elements can receive a signal event over a topic.

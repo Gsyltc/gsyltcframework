@@ -135,7 +135,13 @@ public class Slot implements SlotActionnable, TopicAttached {
             LOGGER.debug("Signal received for topic : " + signal);
             LOGGER.debug("Object to update : " + toUpdate);
         }
-        this.slotAction.doAction(toUpdate);
+        if (null == this.slotAction) {
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error("Slot " + getSlotName() + " has no slot action");
+            }
+        } else {
+            this.slotAction.doAction(toUpdate);
+        }
     }
 
     /**
