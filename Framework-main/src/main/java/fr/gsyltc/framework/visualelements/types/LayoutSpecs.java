@@ -21,7 +21,9 @@ public final class LayoutSpecs {
     
     /** Spec pref:grow. */
     public static final String PREF_GROW = "pref:grow";
-    
+    /** */
+    public static final String CENTER_DEFAULT_GROW = "center:default:grow";
+
     /**
      * Protected constructor.
      */

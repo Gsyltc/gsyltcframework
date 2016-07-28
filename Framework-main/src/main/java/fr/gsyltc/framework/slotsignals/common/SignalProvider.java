@@ -33,10 +33,10 @@ public final class SignalProvider {
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SignalProvider.class);
-
+    
     /** List of signals registered. */
     private static final Map<String, Signal> SIGNALS = new ConcurrentHashMap<String, Signal>();
-
+    
     /**
      * Find a registered signal by his topic name.
      *
@@ -47,14 +47,14 @@ public final class SignalProvider {
     public static Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
     }
-
+    
     /**
      * @return the slots
      */
     public static Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(SIGNALS);
     }
-
+    
     /**
      * Register a signal.
      *
@@ -75,7 +75,7 @@ public final class SignalProvider {
         }
         return signal;
     }
-
+    
     /**
      * Register multiple signals.
      *
@@ -87,7 +87,7 @@ public final class SignalProvider {
             SIGNALS.put(signal.getTopicName(), signal);
         }
     }
-
+    
     /**
      * Protected Constructor.
      */

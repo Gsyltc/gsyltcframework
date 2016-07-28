@@ -67,7 +67,7 @@ public final class Starter {
                     mainFrame.setVisible(true);
 
                     // LiveCycle attach register slots to signals
-                    LifeCycleManager.registerBeans();
+                    LifeCycleManager.registerSlots();
                 } catch (final UnsupportedLookAndFeelException | //
                 ClassNotFoundException | //
                 InstantiationException | //
