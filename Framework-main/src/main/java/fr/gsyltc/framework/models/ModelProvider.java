@@ -27,7 +27,7 @@ import fr.gsyltc.framework.slotsignals.common.SignalProvider;
  * @author Goubaud Sylvain
  *
  */
-public class ModelProvider {
+public final class ModelProvider {
     
     
     /** The logger of this class. */
