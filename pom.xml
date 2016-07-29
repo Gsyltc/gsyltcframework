@@ -101,9 +101,8 @@
     <scm>
         <url>https://github.com/Gsyltc/gsyltcframework</url>
         <connection>scm:git:ssh://https://github.com/Gsyltc/gsyltcframework.git</connection>
-        <developerConnection>scm:git:ssh://https://github.com/Gsyltc/gsyltcframework.git</developerConnection>
+        <developerConnection>scm:git:git://https://github.com/Gsyltc/gsyltcframework.git</developerConnection>
     </scm>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
