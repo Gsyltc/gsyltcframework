@@ -111,6 +111,11 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
@@ -121,10 +126,10 @@
         </plugins>
     </build>
     <distributionManagement>
-    <site>
-      <id>www.gsyltc.fr</id>
-      <url>scp://www.gsyltc.fr/framework/</url>
-    </site>
+        <site>
+            <id>www.gsyltc.fr</id>
+            <url>scp://www.gsyltc.fr/framework/</url>
+        </site>
     </distributionManagement>
     <packaging>pom</packaging>
     <modules>

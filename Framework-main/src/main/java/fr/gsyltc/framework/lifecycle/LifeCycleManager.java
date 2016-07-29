@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 29 juil. 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -85,7 +85,7 @@ public final class LifeCycleManager {
         for (final Entry<String, Slot> entry : slots.entrySet()) {
             final Slot slot = entry.getValue();
             final Signal signal = SignalProvider.findSignalByTopicName(slot.getTopicName());
-            if ((null == signal)) {
+            if (null == signal) {
                 if (LOGGER.isErrorEnabled()) {
                     LOGGER.error("Slot " + slot.getSlotName() + " cannot be registered. Signal not exist");
                 }
