@@ -3,7 +3,7 @@
 
     <groupId>fr.gsyltc</groupId>
     <artifactId>framework</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.2</version>
 
     <name>Framework</name>
     <url>http://maven.apache.org</url>
@@ -102,7 +102,7 @@
         <url>https://github.com/Gsyltc/gsyltcframework</url>
         <connection>scm:git:git://github.com/Gsyltc/gsyltcframework.git</connection>
         <developerConnection>scm:git:git://github.com/Gsyltc/gsyltcframework.git</developerConnection>
-        <tag>framework-1.1.0</tag>
+        <tag>framework-1.1.1</tag>
     </scm>
     <dependencyManagement>
         <dependencies>
@@ -140,7 +140,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Framework-main</module>
-        <!-- <module>Framework-samples</module> -->
+        <module>Framework-samples</module>
     </modules>
     <issueManagement>
         <url>https://github.com/Gsyltc/gsyltcframework/issues</url>
