@@ -3,7 +3,7 @@
 
     <groupId>fr.gsyltc</groupId>
     <artifactId>framework</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.7-SNAPSHOT</version>
 
     <name>Framework</name>
     <url>http://maven.apache.org</url>
@@ -100,9 +100,9 @@
     </dependencies>
     <scm>
         <url>https://github.com/Gsyltc/gsyltcframework</url>
-        <connection>scm:git:git://github.com/Gsyltc/gsyltcframework.git</connection>
-        <developerConnection>scm:git:git://github.com/Gsyltc/gsyltcframework.git</developerConnection>
-        <tag>framework-1.1.1</tag>
+        <connection>scm:git:ssh://git@github.com:Gsyltc/gsyltcframework.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:Gsyltc/gsyltcframework.git</developerConnection>
+        <tag>framework-1.1.8</tag>
     </scm>
     <dependencyManagement>
         <dependencies>
@@ -126,11 +126,11 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.3</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
                 <configuration>
-                <nextSnapshot>true</nextSnapshot>
+                    <mavenHome>D:\Logiciels\Dev\apache-maven-3.3.9</mavenHome>
                 </configuration>
             </plugin>
             <plugin>
