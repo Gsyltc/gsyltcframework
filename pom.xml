@@ -3,7 +3,7 @@
 
     <groupId>fr.gsyltc</groupId>
     <artifactId>framework</artifactId>
-    <version>1.1.13-SNAPSHOT</version>
+    <version>1.1.14-SNAPSHOT</version>
 
     <name>Framework</name>
 
@@ -101,20 +101,10 @@
         <url>https://github.com/Gsyltc/gsyltcframework</url>
         <connection>scm:git:https://github.com/Gsyltc/gsyltcframework.git</connection>
         <developerConnection>scm:git:https://github.com/Gsyltc/gsyltcframework.git</developerConnection>
-    <tag>1.1.13-SNAPSHOT</tag>
+      <tag>framework-1.1.13</tag>
   </scm>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>fr.gsyltc</groupId>
-                <artifactId>framework-main</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fr.gsyltc</groupId>
-                <artifactId>framework-samples</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
@@ -130,10 +120,10 @@
                 <version>2.5.3</version>
                 <configuration>
                     <mavenHome>D:\Logiciels\Dev\apache-maven-3.3.9</mavenHome>
-<!--                     <pushChanges>false</pushChanges> -->
                     <localCheckout>true</localCheckout>
                     <branchName>${project.version}</branchName>
                     <remoteTagging>false</remoteTagging>
+                    <goals>install</goals>
                 </configuration>
             </plugin>
             <plugin>
@@ -145,12 +135,24 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.5.1</version>
+                <dependencies>
+                    <dependency><!-- add support for ssh/scp -->
+                        <groupId>org.apache.maven.wagon</groupId>
+                        <artifactId>wagon-ssh</artifactId>
+                        <version>1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <distributionManagement>
         <site>
             <id>www.gsyltc.fr</id>
-            <url>scp://www.gsyltc.fr/framework/</url>
+            <url>scp://localhost:8080/framework</url>
         </site>
     </distributionManagement>
     <packaging>pom</packaging>
