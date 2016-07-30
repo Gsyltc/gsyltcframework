@@ -3,10 +3,9 @@
 
     <groupId>fr.gsyltc</groupId>
     <artifactId>framework</artifactId>
-    <version>1.1.7-SNAPSHOT</version>
+    <version>1.1.13-SNAPSHOT</version>
 
     <name>Framework</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -100,10 +99,10 @@
     </dependencies>
     <scm>
         <url>https://github.com/Gsyltc/gsyltcframework</url>
-        <connection>scm:git:ssh://git@github.com:Gsyltc/gsyltcframework.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:Gsyltc/gsyltcframework.git</developerConnection>
-        <tag>framework-1.1.8</tag>
-    </scm>
+        <connection>scm:git:https://github.com/Gsyltc/gsyltcframework.git</connection>
+        <developerConnection>scm:git:https://github.com/Gsyltc/gsyltcframework.git</developerConnection>
+    <tag>1.1.13-SNAPSHOT</tag>
+  </scm>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -131,6 +130,10 @@
                 <version>2.5.3</version>
                 <configuration>
                     <mavenHome>D:\Logiciels\Dev\apache-maven-3.3.9</mavenHome>
+<!--                     <pushChanges>false</pushChanges> -->
+                    <localCheckout>true</localCheckout>
+                    <branchName>${project.version}</branchName>
+                    <remoteTagging>false</remoteTagging>
                 </configuration>
             </plugin>
             <plugin>
