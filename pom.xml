@@ -3,7 +3,7 @@
 
     <groupId>fr.gsyltc</groupId>
     <artifactId>framework</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.2.2-SNAPSHOT</version>
 
     <name>Framework</name>
 
@@ -128,7 +128,7 @@
                     <branchName>${project.version}</branchName>
                     <detail>true</detail>
                     <!-- <remoteTagging>false</remoteTagging> -->
-                    <goals>site</goals>
+<!--                     <goals>site</goals> -->
                 </configuration>
             </plugin>
             <plugin>
@@ -157,7 +157,6 @@
     <distributionManagement>
         <repository>
             <url>${user.home}/.m2/</url>
-            
         </repository>
         <site>
             <id>www.gsyltc.fr</id>
