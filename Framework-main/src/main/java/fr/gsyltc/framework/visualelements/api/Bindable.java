@@ -22,36 +22,20 @@ import com.jgoodies.binding.PresentationModel;
  */
 public interface Bindable {
     
-    // /**
-    // * @param newAdapter
-    // */
-    // void addAdapter(DomainModelAdapter<?> newAdapter);
-    
-    // /**
-    // * @param key
-    // * @return
-    // */
-    // DomainModelAdapter<?> getAdapterByName(String key);
-    
-    // /**
-    // * @return
-    // */
-    // Map<String, DomainModelAdapter<?>> getAdapters();
     
     /**
+     * Get a presenter by his index.
+     *
      * @param flInfosPresenterIndex
-     * @return
+     *            index of the presenter.
+     * @return a Presentation model.
      */
     PresentationModel<?> getPresenter(int flInfosPresenterIndex);
-    
+
     /**
-     * @return
+     * Get the presenters.
+     *
+     * @return list of presentation model.
      */
     List<PresentationModel<?>> getPresenters();
-    
-    // /**
-    // * @param newAdapter
-    // */
-    // void setAdapters(Map<String, DomainModelAdapter<?>> newAdapter);
-    
 }

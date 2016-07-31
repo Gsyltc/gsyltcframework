@@ -17,6 +17,7 @@ package fr.gsyltc.framework.adapters.api;
  *
  * @author Goubaud Sylvain
  * @param <M>
+ *            type of the mode.
  *
  */
 public interface DomainModelAdapter<M> extends CommonAdapter {
@@ -28,7 +29,7 @@ public interface DomainModelAdapter<M> extends CommonAdapter {
      * @return The model.
      */
     M getModel();
-    
+
     /**
      * Set the Model Adapter.
      *
@@ -36,5 +37,5 @@ public interface DomainModelAdapter<M> extends CommonAdapter {
      *            Model to set.
      */
     void setModel(M model);
-    
+
 }

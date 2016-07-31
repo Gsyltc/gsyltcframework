@@ -20,7 +20,7 @@ import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotActionnable;
 
 /**
  * Define a signal. A signal is an observable objet, attached to a topic. An
- * event is fire over the topix ro the attached {@SlotReceiver}.
+ * event is fire over the topic to the attached slot receiver.
  *
  * @author Goubaud Sylvain
  *
@@ -34,17 +34,18 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
     private static final long serialVersionUID = -3262485442303240084L;
     /** */
     private final String topicName;
-    
+
     /**
      * Construct a signal.
      *
      * @param newTopicName
+     *            the topic name.
      */
     public Signal(final String newTopicName) {
         super();
         this.topicName = newTopicName;
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -52,7 +53,7 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
     public void attachSlotReceiver(final SlotActionnable receiver) {
         this.addObserver(receiver);
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -61,7 +62,7 @@ public class Signal extends Observable implements SignalActionner, TopicAttached
         this.setChanged();
         this.notifyObservers(object);
     }
-    
+
     /**
      * {@inheritDoc}.
      */

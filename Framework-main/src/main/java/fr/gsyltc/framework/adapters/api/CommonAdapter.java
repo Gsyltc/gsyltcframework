@@ -27,16 +27,17 @@ public interface CommonAdapter {
      * @return the Adapter Name.
      */
     String getAdapterName();
-    
+
     /**
      * Initialize the adapter.
      */
     void init();
-    
+
     /**
      * Set the name of the adapter.
-     * 
+     *
      * @param newAdapterName
+     *            the parameter name.
      */
     void setAdapterName(String newAdapterName);
 }
