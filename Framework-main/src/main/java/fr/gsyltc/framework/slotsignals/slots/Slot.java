@@ -117,9 +117,20 @@ public class Slot implements SlotActionnable, TopicAttached {
     }
 
     /**
+     * Set if the slot is registered.
+     *
+     * @param isRregistered
+     *            is the slot registered
+     */
+    private void setRegistered(final boolean isRregistered) {
+        this.registered = isRregistered;
+    }
+
+    /**
      * Define the action for the slot.
      *
      * @param newSlotAction
+     *            the slot action.
      */
     @Override
     public void setSlotAction(final SlotAction newSlotAction) {
@@ -142,16 +153,6 @@ public class Slot implements SlotActionnable, TopicAttached {
         } else {
             this.slotAction.doAction(toUpdate);
         }
-    }
-
-    /**
-     * Set if the slot is registered.
-     *
-     * @param isRregistered
-     *            is the slot registered
-     */
-    private void setRegistered(final boolean isRregistered) {
-        this.registered = isRregistered;
     }
 
 }
