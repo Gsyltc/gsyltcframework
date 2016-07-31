@@ -140,7 +140,6 @@
                         <branchName>${project.version}</branchName>
                         <detail>true</detail>
                         <goals>install</goals>
-                        <localRepoDirectory>file://${user.home}/.m2/repository/</localRepoDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
