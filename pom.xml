@@ -3,7 +3,7 @@
 
     <groupId>fr.gsyltc</groupId>
     <artifactId>framework</artifactId>
-    <version>1.1.14</version>
+    <version>1.1.15-SNAPSHOT</version>
 
     <name>Framework</name>
 
@@ -101,7 +101,6 @@
         <url>https://github.com/Gsyltc/gsyltcframework</url>
         <connection>scm:git:https://github.com/Gsyltc/gsyltcframework.git</connection>
         <developerConnection>scm:git:https://github.com/Gsyltc/gsyltcframework.git</developerConnection>
-      <tag>framework-1.1.14</tag>
   </scm>
     <dependencyManagement>
         <dependencies>
@@ -123,7 +122,7 @@
                     <localCheckout>true</localCheckout>
                     <branchName>${project.version}</branchName>
                     <remoteTagging>false</remoteTagging>
-                    <goals>install</goals>
+                    <goals>site</goals>
                 </configuration>
             </plugin>
             <plugin>
