@@ -5,7 +5,7 @@
         <!-- <relativePath>Framework/pom.xml</relativePath> -->
         <groupId>fr.gsyltc</groupId>
         <artifactId>framework</artifactId>
-        <version>1.2.4</version>
+        <version>1.2.5-SNAPSHOT</version>
     </parent>
     <artifactId>Framework-main</artifactId>
     <name>Framework-main</name>
