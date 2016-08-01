@@ -1,9 +1,9 @@
 /*
- * @(#)SignalProvider.java
+ * @(#)SignalsProvider.java
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -28,11 +28,12 @@ import fr.gsyltc.framework.slotsignals.signals.Signal;
  * @author Goubaud Sylvain
  *
  */
-public final class SignalProvider {
+public enum SignalsProvider {
     
+    INSTANCE;
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SignalProvider.class);
+    private static final Log LOGGER = LogFactory.getLog(SignalsProvider.class);
     
     /** List of signals registered. */
     private static final Map<String, Signal> SIGNALS = new ConcurrentHashMap<String, Signal>();
@@ -44,14 +45,14 @@ public final class SignalProvider {
      *            the topic of the signal
      * @return the registered signal.
      */
-    public static Signal findSignalByTopicName(final String topicName) {
+    public Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
     }
     
     /**
      * @return the slots
      */
-    public static Map<String, Signal> getSignals() {
+    public Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(SIGNALS);
     }
     
@@ -62,7 +63,7 @@ public final class SignalProvider {
      *            the signal to register.
      * @return the registered signal.
      */
-    public static Signal registerSignal(final Signal newSignal) {
+    public Signal registerSignal(final Signal newSignal) {
         final String topicName = newSignal.getTopicName();
         Signal signal = findSignalByTopicName(topicName);
         if (null == signal) {
@@ -82,16 +83,10 @@ public final class SignalProvider {
      * @param signals
      *            map of signals to register.
      */
-    public static void registerSignals(final List<Signal> signals) {
+    public void registerSignals(final List<Signal> signals) {
         for (final Signal signal : signals) {
             SIGNALS.put(signal.getTopicName(), signal);
         }
     }
     
-    /**
-     * Protected Constructor.
-     */
-    private SignalProvider() {
-        // Nothing to do.
-    }
 }

@@ -1,9 +1,9 @@
 /*
- * @(#)ModelProvider.java
+ * @(#)ModelsProvider.java
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 28 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -21,21 +21,22 @@ import org.apache.commons.logging.LogFactory;
 
 import com.jgoodies.binding.beans.Model;
 
-import fr.gsyltc.framework.slotsignals.common.SignalProvider;
+import fr.gsyltc.framework.slotsignals.common.SignalsProvider;
 
 /**
  * @author Goubaud Sylvain
  *
  */
-public final class ModelProvider {
-    
+public enum ModelsProvider {
+    /** the singleton instances. */
+    INSTANCE;
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SignalProvider.class);
-
+    private static final Log LOGGER = LogFactory.getLog(SignalsProvider.class);
+    
     /** List of signals registered. */
     private static final Map<String, Model> MODELS = new ConcurrentHashMap<String, Model>();
-
+    
     /**
      * Find a registered model by his topic name.
      *
@@ -43,17 +44,17 @@ public final class ModelProvider {
      *            the topic of the model
      * @return the registered model.
      */
-    public static Model findModelByName(final String name) {
+    public Model findModelByName(final String name) {
         return MODELS.get(name);
     }
-
+    
     /**
      * @return the slots
      */
-    public static Map<String, Model> getModels() {
+    public Map<String, Model> getModels() {
         return Collections.unmodifiableMap(MODELS);
     }
-
+    
     /**
      * Register a model.
      *
@@ -64,7 +65,7 @@ public final class ModelProvider {
      *            the model to register.
      * @return the registered model.
      */
-    public static Model registerModel(final String name, final Model newModel) {
+    public Model registerModel(final String name, final Model newModel) {
         Model model = findModelByName(name);
         if (null == model) {
             model = newModel;
@@ -76,21 +77,14 @@ public final class ModelProvider {
         }
         return model;
     }
-
+    
     /**
      * Register multiple models.
      *
      * @param models
      *            map of models to register.
      */
-    public static void registerModels(final Map<String, Model> models) {
+    public void registerModels(final Map<String, Model> models) {
         MODELS.putAll(models);
-    }
-
-    /**
-     * Protected Constructor.
-     */
-    private ModelProvider() {
-        // Nothing to do.
     }
 }

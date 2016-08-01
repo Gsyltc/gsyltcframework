@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -28,14 +28,15 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  * @author Goubaud Sylvain
  *
  */
-public final class SlotsProvider {
-    
+public enum SlotsProvider {
+    /** The singleton instance. */
+    INSTANCE;
     
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
     /** List of slots registered. */
     private static final Map<String, Slot> SLOTS = new ConcurrentHashMap<String, Slot>();
-
+    
     /**
      * Find a registered slot by his topic name.
      *
@@ -43,26 +44,26 @@ public final class SlotsProvider {
      *            the topic of the slot
      * @return the registered slot.
      */
-    public static Slot findSlotBySlotName(final String topicName) {
+    public Slot findSlotBySlotName(final String topicName) {
         return SLOTS.get(topicName);
     }
-
+    
     /**
      * Get the slots map.
      *
      * @return the slots
      */
-    public static Map<String, Slot> getSlots() {
+    public Map<String, Slot> getSlots() {
         return Collections.unmodifiableMap(SLOTS);
     }
-
+    
     /**
      * Register a slot.
      *
      * @param newSlot
      *            the slot to register.
      */
-    public static void registerSlot(final Slot newSlot) {
+    public void registerSlot(final Slot newSlot) {
         Slot slot = findSlotBySlotName(newSlot.getSlotName());
         if (null == slot) {
             slot = newSlot;
@@ -73,23 +74,16 @@ public final class SlotsProvider {
             }
         }
     }
-
+    
     /**
      * Register multiple slot.
      *
      * @param slots
      *            list of slots to register.
      */
-    public static void regsiterSlots(final List<Slot> slots) {
+    public void regsiterSlots(final List<Slot> slots) {
         for (final Slot slot : slots) {
             registerSlot(slot);
         }
-    }
-
-    /**
-     * Protected Constructor.
-     */
-    private SlotsProvider() {
-        // Nothing to do
     }
 }
