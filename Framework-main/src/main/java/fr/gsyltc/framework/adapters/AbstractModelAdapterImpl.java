@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.adapters;
 
+import com.jgoodies.binding.beans.Model;
+
 import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
 
 /**
@@ -21,7 +23,7 @@ import fr.gsyltc.framework.adapters.api.DomainModelAdapter;
  * @param <M>
  *            the model.
  */
-public abstract class AbstractModelAdapterImpl<M> extends AbstractAdapterImpl implements DomainModelAdapter<M> {
+public abstract class AbstractModelAdapterImpl<M extends Model> extends AbstractAdapterImpl implements DomainModelAdapter<M> {
     
     
     /**

@@ -12,11 +12,14 @@
 
 package fr.gsyltc.framework.adapters;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.jgoodies.binding.beans.Model;
 
 import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
@@ -28,12 +31,12 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *            Model type.
  *
  */
-public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelAdapterImpl<M> //
+public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends AbstractModelAdapterImpl<M> //
         implements SlotReceiver {
     
     
     /** Map of attached slots. */
-    Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
+    private final Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
 
     /** */
     private static final long serialVersionUID = -8721921882502026575L;
@@ -117,8 +120,16 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
      *            the topic name.
      * @return the desired slot.
      */
+    @Override
     public Slot findSlot(final String topicName) {
-        return slotsMap.get(topicName);
+        return getSlotsMap().get(topicName);
+    }
+
+    /**
+     * @return the slotsMap
+     */
+    public Map<String, Slot> getSlotsMap() {
+        return Collections.unmodifiableMap(slotsMap);
     }
 
     /**
@@ -128,7 +139,8 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder(30);
         stringBuilder//
-                .append("Adapter  : ").append(this.getAdapterName()); //
+                .append("Adapter  : ").append(this.getAdapterName())//
+                .append("Nb slots  : ").append(slotsMap.size()); //
         return stringBuilder.toString();
     }
 }

@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.adapters.api;
 
+import com.jgoodies.binding.beans.Model;
+
 /**
  * This interface is used to provide method for the GraphicalModelAdapter.
  *
@@ -20,7 +22,7 @@ package fr.gsyltc.framework.adapters.api;
  *            type of the mode.
  *
  */
-public interface DomainModelAdapter<M> extends CommonAdapter {
+public interface DomainModelAdapter<M extends Model> extends CommonAdapter {
     
     
     /**
@@ -29,7 +31,7 @@ public interface DomainModelAdapter<M> extends CommonAdapter {
      * @return The model.
      */
     M getModel();
-
+    
     /**
      * Set the Model Adapter.
      *
@@ -37,5 +39,5 @@ public interface DomainModelAdapter<M> extends CommonAdapter {
      *            Model to set.
      */
     void setModel(M model);
-
+    
 }
