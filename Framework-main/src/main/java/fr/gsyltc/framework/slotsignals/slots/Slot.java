@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 23 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -57,8 +57,8 @@ public class Slot implements SlotActionnable, TopicAttached {
      *            Receiver Name.
      */
     public Slot(final String newTopicName, final String newReceiverName) {
-        this.topicName = newTopicName;
-        this.receiverName = newReceiverName;
+        topicName = newTopicName;
+        receiverName = newReceiverName;
         registerSlot();
     }
 
@@ -67,7 +67,7 @@ public class Slot implements SlotActionnable, TopicAttached {
      */
     @Override
     public String getReceiverName() {
-        return this.receiverName;
+        return receiverName;
     }
 
     /**
@@ -76,14 +76,14 @@ public class Slot implements SlotActionnable, TopicAttached {
      */
     @Override
     public SlotAction getSlotAction() {
-        return this.slotAction;
+        return slotAction;
     }
 
     /**
      * @return the receiverName
      */
     public String getSlotName() {
-        return this.topicName + "." + this.receiverName;
+        return topicName + "." + receiverName;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Slot implements SlotActionnable, TopicAttached {
      */
     @Override
     public String getTopicName() {
-        return this.topicName;
+        return topicName;
     }
 
     /**
@@ -101,7 +101,7 @@ public class Slot implements SlotActionnable, TopicAttached {
      * @return the registered
      */
     public boolean isRegistered() {
-        return this.registered;
+        return registered;
     }
 
     /**
@@ -110,8 +110,8 @@ public class Slot implements SlotActionnable, TopicAttached {
      */
     @Override
     public final void registerSlot() {
-        if (!this.registered) {
-            SlotsProvider.registerSlot(this);
+        if (!registered) {
+            SlotsProvider.INSTANCE.registerSlot(this);
             setRegistered(true);
         }
     }
@@ -123,7 +123,7 @@ public class Slot implements SlotActionnable, TopicAttached {
      *            is the slot registered
      */
     private void setRegistered(final boolean isRregistered) {
-        this.registered = isRregistered;
+        registered = isRregistered;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Slot implements SlotActionnable, TopicAttached {
      */
     @Override
     public void setSlotAction(final SlotAction newSlotAction) {
-        this.slotAction = newSlotAction;
+        slotAction = newSlotAction;
     }
 
     /**
@@ -146,12 +146,12 @@ public class Slot implements SlotActionnable, TopicAttached {
             LOGGER.debug("Signal received for topic : " + signal);
             LOGGER.debug("Object to update : " + toUpdate);
         }
-        if (null == this.slotAction) {
+        if (null == slotAction) {
             if (LOGGER.isErrorEnabled()) {
                 LOGGER.error("Slot " + getSlotName() + " has no slot action");
             }
         } else {
-            this.slotAction.doAction(toUpdate);
+            slotAction.doAction(toUpdate);
         }
     }
 

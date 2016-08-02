@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 25 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -27,9 +27,10 @@ import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
  * @author Goubaud Sylvain
  *
  */
-public final class AdaptersProvider {
-    
-    
+public enum AdaptersProvider {
+    /** the singleton instance. */
+    INSTANCE;
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
     /** List of slots registered. */
@@ -42,14 +43,14 @@ public final class AdaptersProvider {
      *            the name of the adapter
      * @return the registered adapter.
      */
-    public static CommonAdapter findAdapterByName(final String name) {
+    public CommonAdapter findAdapterByName(final String name) {
         return ADAPTERS.get(name);
     }
 
     /**
      * @return the slots
      */
-    public static Map<String, CommonAdapter> getAdapters() {
+    public Map<String, CommonAdapter> getAdapters() {
         return Collections.unmodifiableMap(ADAPTERS);
     }
 
@@ -59,7 +60,7 @@ public final class AdaptersProvider {
      * @param newAdapter
      *            the adapter to register.
      */
-    public static void registerAdapter(final CommonAdapter newAdapter) {
+    public void registerAdapter(final CommonAdapter newAdapter) {
         CommonAdapter adapter = findAdapterByName(newAdapter.getAdapterName());
         if (null == adapter) {
             adapter = newAdapter;
@@ -77,16 +78,9 @@ public final class AdaptersProvider {
      * @param adapters
      *            list of adapters to register.
      */
-    public static void registerAdapters(final List<CommonAdapter> adapters) {
+    public void registerAdapters(final List<CommonAdapter> adapters) {
         for (final CommonAdapter adapter : adapters) {
             registerAdapter(adapter);
         }
-    }
-
-    /**
-     * Protected Constructor.
-     */
-    private AdaptersProvider() {
-        // Nothing to do
     }
 }

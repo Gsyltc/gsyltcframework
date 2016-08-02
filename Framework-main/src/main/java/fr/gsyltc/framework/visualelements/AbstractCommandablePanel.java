@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 25 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -22,7 +22,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.jgoodies.binding.PresentationModel;
 
-import fr.gsyltc.framework.slotsignals.common.SignalProvider;
+import fr.gsyltc.framework.slotsignals.common.SignalsProvider;
 import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 import fr.gsyltc.framework.slotsignals.signals.Signal;
 import fr.gsyltc.framework.slotsignals.slotcommandable.api.SlotCommandable;
@@ -43,6 +43,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private static final long serialVersionUID = 2794578279603616940L;
     /** Signals list. */
     private final Map<String, Signal> signals = new ConcurrentHashMap<String, Signal>();
+    /** Signals list. */
+    private final Map<String, Slot> slots = new ConcurrentHashMap<String, Slot>();
 
     /**
      * Constructor.
@@ -51,12 +53,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      *            Presentation Models list for the panel.
      */
     protected AbstractCommandablePanel(final PresentationModel<?>... presentationModels) {
-        super();
-        if (null != presentationModels) {
-            for (final PresentationModel<?> presentationModel : presentationModels) {
-                this.presenters.add(presentationModel);
-            }
-        }
+        super(presentationModels);
     }
 
     /**
@@ -65,7 +62,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      */
     @Override
     public final void attachSignal(final String topicName) {
-        final Signal signal = SignalProvider.findSignalByTopicName(topicName);
+        final Signal signal = SignalsProvider.INSTANCE.findSignalByTopicName(topicName);
         if (null == signal) {
             throw new NotImplementedException("No signal to regsiter");
         } else if (getSignals().containsKey(topicName)) {
@@ -73,7 +70,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
                 LOGGER.warn("Signal already exist :" + topicName);
             }
         } else {
-            this.signals.put(topicName, signal);
+            signals.put(topicName, signal);
         }
     }
 
@@ -82,7 +79,9 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      */
     @Override
     public final Slot attachSlot(final String topicName) {
-        return SlotsProvider.findSlotBySlotName(topicName + "." + getName());
+        final Slot slot = SlotsProvider.INSTANCE.findSlotBySlotName(topicName + "." + getName());
+        slots.put(topicName, slot);
+        return slot;
     }
 
     /**
@@ -93,7 +92,6 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         super.build();
         this.createSignals();
         this.createSlots();
-        // registerSlots();
     }
 
     /**
@@ -126,12 +124,20 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     }
 
     /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public final Slot findSlot(final String topicName) {
+        return getSlots().get(topicName);
+    }
+
+    /**
      *
      * {@inheritDoc}.
      */
     @Override
     public final void registerSignal(final Signal newSignal) {
-        SignalProvider.registerSignal(newSignal);
+        SignalsProvider.INSTANCE.registerSignal(newSignal);
         attachSignal(newSignal.getTopicName());
     }
 
@@ -143,10 +149,9 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         final StringBuilder stringBuilder = new StringBuilder(100);
         stringBuilder//
                 .append("Component  : ").append(this.getName()) //
-                // .append("Nb adapters :
-                // ").append(this.adapters.size()).append(NEW_LINE) //
-                .append("Nb presenters : ").append(this.presenters.size()).append(NEW_LINE) //
-                .append("Nb signals : ").append(this.signals.size()).append(NEW_LINE); //
+                .append("Nb presenters : ").append(presenters.size()).append(NEW_LINE) //
+                .append("Nb slots : ").append(slots.size()).append(NEW_LINE) //
+                .append("Nb signals : ").append(signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
 
@@ -154,6 +159,13 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
      * @return the signals
      */
     private Map<String, Signal> getSignals() {
-        return Collections.unmodifiableMap(this.signals);
+        return Collections.unmodifiableMap(signals);
+    }
+
+    /**
+     * @return the slots
+     */
+    private Map<String, Slot> getSlots() {
+        return slots;
     }
 }

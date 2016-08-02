@@ -20,18 +20,22 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.JPanel;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.jgoodies.binding.PresentationModel;
 
+import fr.gsyltc.framework.adapters.AdaptersProvider;
+import fr.gsyltc.framework.adapters.api.Adaptable;
+import fr.gsyltc.framework.adapters.api.CommonAdapter;
 import fr.gsyltc.framework.visualelements.api.Bindable;
 
 /**
  * @author Goubaud Sylvain
  *
  */
-public abstract class AbstractCommonPanel extends JPanel implements Bindable {
+public abstract class AbstractCommonPanel extends JPanel implements Bindable, Adaptable {
     
     
     /** The logger of this class. */
@@ -41,15 +45,14 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
 
-    // /** Adapters for the visual elements. */
-    // protected Map<String, DomainModelAdapter<?>> adapters = new
-    // ConcurrentHashMap<String, DomainModelAdapter<?>>();
     /** */
     protected Map<String, ? extends Object> attributeMap = new ConcurrentHashMap<String, Object>();
-    
+
     /** Presenters for the visual elements. */
     protected final List<PresentationModel<?>> presenters = new CopyOnWriteArrayList<PresentationModel<?>>();
-    
+    /** Signals list. */
+    private final Map<String, CommonAdapter> adapters = new ConcurrentHashMap<String, CommonAdapter>();
+
     /**
      * Constructor.
      *
@@ -60,23 +63,12 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
         super();
         if (null != presentationModels) {
             for (final PresentationModel<?> presentationModel : presentationModels) {
-                this.presenters.add(presentationModel);
+                presenters.add(presentationModel);
             }
         }
+
     }
-    
-    // /**
-    // *
-    // * {@inheritDoc}
-    // */
-    // @Override
-    // public final void addAdapter(final DomainModelAdapter<?> adapter) {
-    // if (LOGGER.isDebugEnabled()) {
-    // LOGGER.debug("DEBUG : set Adapter :" + adapter.getAdapterName());
-    // }
-    // this.adapters.put(adapter.getAdapterName(), adapter);
-    // }
-    
+
     /**
      * Build the visual element.
      */
@@ -84,28 +76,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Build the panel");
         }
+        createAdapters();
     }
 
-    // /**
-    // * Get an adapter by his name.
-    // *
-    // * @param key
-    // * Name of the adapter.
-    // * @return A graphical adapter.
-    // */
-    // @Override
-    // public final DomainModelAdapter<?> getAdapterByName(final String key) {
-    // return this.getAdapters().get(key);
-    // }
-    //
-    // /**
-    // * @return the adapter
-    // */
-    // @Override
-    // public final Map<String, DomainModelAdapter<?>> getAdapters() {
-    // return Collections.unmodifiableMap(this.adapters);
-    // }
-    
     /**
      * Get a Presenter by index.
      *
@@ -115,9 +88,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      */
     @Override
     public final PresentationModel<?> getPresenter(final int flInfosPresenterIndex) {
-        return this.presenters.get(flInfosPresenterIndex);
+        return presenters.get(flInfosPresenterIndex);
     }
-    
+
     /**
      * Get the list of presenters.
      *
@@ -125,24 +98,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
      */
     @Override
     public final List<PresentationModel<?>> getPresenters() {
-        return Collections.unmodifiableList(this.presenters);
+        return Collections.unmodifiableList(presenters);
     }
-    
-    // /**
-    // * Set the adapters for the visual element.
-    // *
-    // * @param newAdapters
-    // * the adapters to set
-    // */
-    // @Override
-    // public final void setAdapters(final Map<String, DomainModelAdapter<?>>
-    // newAdapters) {
-    // if (LOGGER.isDebugEnabled()) {
-    // LOGGER.debug("DEBUG : Set adapters : " + newAdapters);
-    // }
-    // this.adapters = newAdapters;
-    // }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -151,9 +109,51 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable {
         final StringBuilder stringBuilder = new StringBuilder(100);
         stringBuilder//
                 .append("Component  : ").append(getName()) //
-                // .append("Nb adapters :
-                // ").append(this.adapters.size()).append(NEW_LINE) //
-                .append("Nb presenters : ").append(this.presenters.size()).append(NEW_LINE);
+                .append("Nb presenters : ").append(presenters.size()).append(NEW_LINE)//
+                .append("Nb adapters : ").append(adapters.size()).append(NEW_LINE);
         return stringBuilder.toString();
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public final CommonAdapter findAdapter(final String adapterName) {
+        return getAdapters().get(adapterName);
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public void createAdapters() {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Create Adapters");
+        }
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public final CommonAdapter attachAdapter(final String adapterName) {
+        final CommonAdapter adapter = AdaptersProvider.INSTANCE.findAdapterByName(adapterName);
+        if (null == adapter) {
+            throw new NotImplementedException("No signal to regsiter");
+        } else if (getAdapters().containsKey(adapterName)) {
+            if (LOGGER.isWarnEnabled()) {
+                LOGGER.warn("Adapter already exist :" + adapterName);
+            }
+        } else {
+            adapters.put(adapterName, adapter);
+        }
+        return adapter;
+    }
+
+    /**
+     * @return the adapters
+     */
+    private Map<String, CommonAdapter> getAdapters() {
+        return Collections.unmodifiableMap(adapters);
     }
 }

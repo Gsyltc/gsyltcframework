@@ -36,4 +36,13 @@ public interface SlotReceiver {
      * elements can receive a signal event over a topic.
      */
     void createSlots();
+
+    /**
+     * Get a slot by his topic name.
+     *
+     * @param topicName
+     *            Topic attached to the slot.
+     * @return a slot.
+     */
+    Slot findSlot(String topicName);
 }

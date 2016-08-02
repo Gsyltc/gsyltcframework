@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 27 juil. 2016.
+ * Modified : 1 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -11,6 +11,9 @@
  */
 
 package fr.gsyltc.framework.adapters;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,12 +32,15 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
         implements SlotReceiver {
     
     
+    /** Map of attached slots. */
+    Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
+
     /** */
     private static final long serialVersionUID = -8721921882502026575L;
-    
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
-    
+
     /**
      * Constructor.
      *
@@ -42,7 +48,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl() {
         this(null);
     }
-    
+
     /**
      * Constructor.
      *
@@ -52,7 +58,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         this(adapterName, null);
     }
-    
+
     /**
      * Constructor.
      *
@@ -64,15 +70,17 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public final Slot attachSlot(final String topicName) {
-        return SlotsProvider.findSlotBySlotName(topicName + "." + getAdapterName());
+        final Slot slot = SlotsProvider.INSTANCE.findSlotBySlotName(topicName + "." + getAdapterName());
+        slotsMap.put(topicName, slot);
+        return slot;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -83,7 +91,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
             LOGGER.debug("Create Slots for" + this.getAdapterName());
         }
     }
-    
+
     /**
      * Build the visual element.
      */
@@ -91,7 +99,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
     public void init() {
         this.createSlots();
     }
-    
+
     /**
      * @param slots
      *            the slots to set
@@ -101,7 +109,18 @@ public abstract class AbstractReceiverModelAdapterImpl<M> extends AbstractModelA
             slot.registerSlot();
         }
     }
-    
+
+    /**
+     * Return a slot attached to the adapter by his topic name.
+     *
+     * @param topicName
+     *            the topic name.
+     * @return the desired slot.
+     */
+    public Slot findSlot(final String topicName) {
+        return slotsMap.get(topicName);
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -127,7 +127,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
         super.createSignals();
         final Signal hardCodedSignal = new Signal(TopicName.HARD_CODED_TOPIC.name());
         registerSignal(hardCodedSignal);
-
+        
         // attach an injected signal
         attachSignal(TopicName.INJECTION_TOPIC.name());
     }

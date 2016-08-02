@@ -12,6 +12,8 @@
 
 package fr.gsyltc.framework.slotsignals.signals.api;
 
+import fr.gsyltc.framework.slotsignals.signals.Signal;
+
 /**
  * @author Goubaud Sylvain
  *
@@ -24,4 +26,13 @@ public interface SignalSender {
      * elements can send a signal event over a topic.
      */
     void createSignals();
+
+    /**
+     * Get a signal by his topic name.
+     *
+     * @param topicName
+     *            Topic attached to the signal.
+     * @return a Signal.
+     */
+    Signal findSignal(String topicName);
 }
