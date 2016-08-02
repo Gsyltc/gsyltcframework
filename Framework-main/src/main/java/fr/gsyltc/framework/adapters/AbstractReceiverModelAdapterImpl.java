@@ -12,6 +12,7 @@
 
 package fr.gsyltc.framework.adapters;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -35,14 +36,14 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     
     
     /** Map of attached slots. */
-    Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
-    
+    private final Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
+
     /** */
     private static final long serialVersionUID = -8721921882502026575L;
-    
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
-    
+
     /**
      * Constructor.
      *
@@ -50,7 +51,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl() {
         this(null);
     }
-    
+
     /**
      * Constructor.
      *
@@ -60,7 +61,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         this(adapterName, null);
     }
-    
+
     /**
      * Constructor.
      *
@@ -72,7 +73,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -82,7 +83,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
         slotsMap.put(topicName, slot);
         return slot;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -93,7 +94,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
             LOGGER.debug("Create Slots for" + this.getAdapterName());
         }
     }
-    
+
     /**
      * Build the visual element.
      */
@@ -101,7 +102,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public void init() {
         this.createSlots();
     }
-    
+
     /**
      * @param slots
      *            the slots to set
@@ -111,7 +112,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
             slot.registerSlot();
         }
     }
-    
+
     /**
      * Return a slot attached to the adapter by his topic name.
      *
@@ -121,9 +122,16 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
      */
     @Override
     public Slot findSlot(final String topicName) {
-        return slotsMap.get(topicName);
+        return getSlotsMap().get(topicName);
     }
-    
+
+    /**
+     * @return the slotsMap
+     */
+    public Map<String, Slot> getSlotsMap() {
+        return Collections.unmodifiableMap(slotsMap);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -131,7 +139,8 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder(30);
         stringBuilder//
-                .append("Adapter  : ").append(this.getAdapterName()); //
+                .append("Adapter  : ").append(this.getAdapterName())//
+                .append("Nb slots  : ").append(slotsMap.size()); //
         return stringBuilder.toString();
     }
 }

@@ -98,14 +98,4 @@ public enum LifeCycleManager {
             }
         }
     }
-
-    // public statistic void
-
-    /**
-     * Protected constructor.
-     */
-    private LifeCycleManager() {
-        // Noting to do
-    }
-
 }

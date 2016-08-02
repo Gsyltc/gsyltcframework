@@ -29,15 +29,15 @@ import fr.gsyltc.framework.slotsignals.signals.Signal;
  *
  */
 public enum SignalsProvider {
-    
+    /** The singleton instance. */
     INSTANCE;
-    
+
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(SignalsProvider.class);
-    
+
     /** List of signals registered. */
     private static final Map<String, Signal> SIGNALS = new ConcurrentHashMap<String, Signal>();
-    
+
     /**
      * Find a registered signal by his topic name.
      *
@@ -48,14 +48,14 @@ public enum SignalsProvider {
     public Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
     }
-    
+
     /**
      * @return the slots
      */
     public Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(SIGNALS);
     }
-    
+
     /**
      * Register a signal.
      *
@@ -76,7 +76,7 @@ public enum SignalsProvider {
         }
         return signal;
     }
-    
+
     /**
      * Register multiple signals.
      *
@@ -88,5 +88,5 @@ public enum SignalsProvider {
             SIGNALS.put(signal.getTopicName(), signal);
         }
     }
-    
+
 }
