@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 2 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -14,6 +14,8 @@ package fr.gsyltc.framework.samples.slotsignals.adapters;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.jgoodies.binding.beans.Model;
 
 import fr.gsyltc.framework.adapters.AbstractReceiverModelAdapterImpl;
 import fr.gsyltc.framework.samples.slotsignals.types.TopicName;
@@ -26,7 +28,7 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *            Model type.
  *
  */
-public class SampleReceiverAdapter<M> extends AbstractReceiverModelAdapterImpl<M> {
+public class SampleReceiverAdapter<M extends Model> extends AbstractReceiverModelAdapterImpl<M> {
     
     
     /** The logger of this class. */
