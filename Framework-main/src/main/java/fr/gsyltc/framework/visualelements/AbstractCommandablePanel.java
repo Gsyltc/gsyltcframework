@@ -45,7 +45,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private final Map<String, Signal> signals = new ConcurrentHashMap<String, Signal>();
     /** Signals list. */
     private final Map<String, Slot> slots = new ConcurrentHashMap<String, Slot>();
-
+    
     /**
      * Constructor.
      *
@@ -55,7 +55,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     protected AbstractCommandablePanel(final PresentationModel<?>... presentationModels) {
         super(presentationModels);
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -73,7 +73,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             signals.put(topicName, signal);
         }
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -83,7 +83,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         slots.put(topicName, slot);
         return slot;
     }
-
+    
     /**
      * Build the visual element.
      */
@@ -93,7 +93,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         this.createSignals();
         this.createSlots();
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -103,7 +103,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Signals for" + this.getName());
         }
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -113,7 +113,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Slots for" + this.getName());
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -122,7 +122,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public Signal findSignal(final String topicName) {
         return getSignals().get(topicName);
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -130,7 +130,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     public final Slot findSlot(final String topicName) {
         return getSlots().get(topicName);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -140,7 +140,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         SignalsProvider.INSTANCE.registerSignal(newSignal);
         attachSignal(newSignal.getTopicName());
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -154,14 +154,14 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
                 .append("Nb signals : ").append(signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
-
+    
     /**
      * @return the signals
      */
     private Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(signals);
     }
-
+    
     /**
      * @return the slots
      */
