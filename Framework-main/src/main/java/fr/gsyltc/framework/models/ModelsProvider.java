@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -18,6 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.beans.Model;
 
@@ -32,7 +34,7 @@ public enum ModelsProvider {
     INSTANCE;
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SignalsProvider.class);
+    private static final Logger LOGGER = LogManager.getLogger(ModelsProvider.class);
     
     /** List of signals registered. */
     private static final Map<String, Model> MODELS = new ConcurrentHashMap<String, Model>();

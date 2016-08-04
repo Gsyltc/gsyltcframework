@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.PresentationModel;
 
@@ -36,7 +38,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(AbstractCommandablePanel.class);
+    private static final Logger LOGGER = LogManager.getLogger(AbstractCommandablePanel.class);
+    
     /** */
     private static final Object NEW_LINE = "\n";
     /** */

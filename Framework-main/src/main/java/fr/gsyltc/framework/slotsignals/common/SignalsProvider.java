@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import fr.gsyltc.framework.slotsignals.signals.Signal;
 
@@ -31,13 +33,13 @@ import fr.gsyltc.framework.slotsignals.signals.Signal;
 public enum SignalsProvider {
     /** The singleton instance. */
     INSTANCE;
-
+    
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SignalsProvider.class);
-
+    private static final Logger LOGGER = LogManager.getLogger(SignalsProvider.class);
+    
     /** List of signals registered. */
     private static final Map<String, Signal> SIGNALS = new ConcurrentHashMap<String, Signal>();
-
+    
     /**
      * Find a registered signal by his topic name.
      *
@@ -48,14 +50,14 @@ public enum SignalsProvider {
     public Signal findSignalByTopicName(final String topicName) {
         return SIGNALS.get(topicName);
     }
-
+    
     /**
      * @return the slots
      */
     public Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(SIGNALS);
     }
-
+    
     /**
      * Register a signal.
      *
@@ -76,7 +78,7 @@ public enum SignalsProvider {
         }
         return signal;
     }
-
+    
     /**
      * Register multiple signals.
      *
@@ -88,5 +90,5 @@ public enum SignalsProvider {
             SIGNALS.put(signal.getTopicName(), signal);
         }
     }
-
+    
 }

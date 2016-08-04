@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import fr.gsyltc.framework.adapters.api.CommonAdapter;
 import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
@@ -30,12 +32,13 @@ import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 public enum AdaptersProvider {
     /** the singleton instance. */
     INSTANCE;
-
+    
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
+    private static final Logger LOGGER = LogManager.getLogger(AdaptersProvider.class);
+    
     /** List of slots registered. */
     private static final Map<String, CommonAdapter> ADAPTERS = new ConcurrentHashMap<String, CommonAdapter>();
-
+    
     /**
      * Find a registered adapter by his name.
      *
@@ -46,14 +49,14 @@ public enum AdaptersProvider {
     public CommonAdapter findAdapterByName(final String name) {
         return ADAPTERS.get(name);
     }
-
+    
     /**
      * @return the slots
      */
     public Map<String, CommonAdapter> getAdapters() {
         return Collections.unmodifiableMap(ADAPTERS);
     }
-
+    
     /**
      * Register a slot.
      *
@@ -71,7 +74,7 @@ public enum AdaptersProvider {
             }
         }
     }
-
+    
     /**
      * Register multiple adapters.
      *

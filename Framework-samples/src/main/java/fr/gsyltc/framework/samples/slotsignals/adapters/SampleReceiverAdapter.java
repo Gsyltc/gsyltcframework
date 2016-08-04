@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 2 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -14,6 +14,8 @@ package fr.gsyltc.framework.samples.slotsignals.adapters;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.beans.Model;
 
@@ -32,7 +34,7 @@ public class SampleReceiverAdapter<M extends Model> extends AbstractReceiverMode
     
     
     /** The logger of this class. */
-    protected static final Log LOGGER = LogFactory.getLog(SampleReceiverAdapter.class);
+    protected static final Logger LOGGER = LogManager.getLogger(SampleReceiverAdapter.class);
     
     /**
      *

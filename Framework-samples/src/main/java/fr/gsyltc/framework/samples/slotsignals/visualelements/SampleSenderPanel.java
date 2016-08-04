@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 24 juil. 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -18,8 +18,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -38,7 +38,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
     
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SampleSenderPanel.class);
+    private static final Logger LOGGER = LogManager.getLogger(SampleSenderPanel.class);
 
     /**
      *
@@ -50,7 +50,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
      *
      * @return the logger
      */
-    protected static final Log getLogger() {
+    protected static final Logger getLogger() {
         return LOGGER;
     }
 
@@ -127,7 +127,7 @@ public class SampleSenderPanel extends AbstractCommandablePanel {
         super.createSignals();
         final Signal hardCodedSignal = new Signal(TopicName.HARD_CODED_TOPIC.name());
         registerSignal(hardCodedSignal);
-        
+
         // attach an injected signal
         attachSignal(TopicName.INJECTION_TOPIC.name());
     }
