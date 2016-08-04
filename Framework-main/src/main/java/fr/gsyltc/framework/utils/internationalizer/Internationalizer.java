@@ -27,9 +27,9 @@ public class Internationalizer {
     
     /** */
     private static ResourceBundleMessageSource bundleMessageSource = new ResourceBundleMessageSource();
-
+    
     /**
-     * Get the internationalized String form properties files
+     * Get the internationalized String form properties files.
      *
      * @param key
      * @return
@@ -43,9 +43,9 @@ public class Internationalizer {
         }
         return message;
     }
-
+    
     /**
-     * Set the bundles for internationalization Injected by Spring
+     * Set the bundles for internationalization Injected by Spring.
      *
      * @param bundles
      */
