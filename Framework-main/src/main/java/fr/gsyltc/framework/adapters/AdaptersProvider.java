@@ -29,13 +29,13 @@ import fr.gsyltc.framework.adapters.api.CommonAdapter;
 public enum AdaptersProvider {
     /** the singleton instance. */
     INSTANCE;
-    
+
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(AdaptersProvider.class);
-    
+
     /** List of slots registered. */
     private static final Map<String, CommonAdapter> ADAPTERS = new ConcurrentHashMap<String, CommonAdapter>();
-    
+
     /**
      * Find a registered adapter by his name.
      *
@@ -49,14 +49,14 @@ public enum AdaptersProvider {
         }
         return ADAPTERS.get(name);
     }
-    
+
     /**
      * @return the slots
      */
     public Map<String, CommonAdapter> getAdapters() {
         return Collections.unmodifiableMap(ADAPTERS);
     }
-    
+
     /**
      * Register a slot.
      *
@@ -77,7 +77,7 @@ public enum AdaptersProvider {
             }
         }
     }
-    
+
     /**
      * Register multiple adapters.
      *

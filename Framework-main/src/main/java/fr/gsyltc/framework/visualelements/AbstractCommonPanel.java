@@ -40,7 +40,6 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(AbstractCommonPanel.class);
-
     /** */
     private static final String NEW_LINE = "\n";
     /** */

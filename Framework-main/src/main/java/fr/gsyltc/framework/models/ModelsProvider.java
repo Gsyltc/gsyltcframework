@@ -28,13 +28,12 @@ import com.jgoodies.binding.beans.Model;
 public enum ModelsProvider {
     /** the singleton instances. */
     INSTANCE;
-
+    
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(ModelsProvider.class);
-
     /** List of signals registered. */
     private static final Map<String, Model> MODELS = new ConcurrentHashMap<String, Model>();
-
+    
     /**
      * Find a registered model by his topic name.
      *
@@ -48,14 +47,14 @@ public enum ModelsProvider {
         }
         return MODELS.get(name);
     }
-
+    
     /**
      * @return the slots
      */
     public Map<String, Model> getModels() {
         return Collections.unmodifiableMap(MODELS);
     }
-
+    
     /**
      * Register a model.
      *
@@ -81,7 +80,7 @@ public enum ModelsProvider {
         }
         return model;
     }
-
+    
     /**
      * Register multiple models.
      *

@@ -40,10 +40,9 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
 public enum LifeCycleManager {
     /** the singleton instance. */
     INSTANCE;
-    
+
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(LifeCycleManager.class);
-    
     /** */
     public static final String MODELS_BEAN = "id-Models";
     /** */
@@ -54,10 +53,9 @@ public enum LifeCycleManager {
     public static final String ADAPTERS_BEAN = "id-Adapters";
     /** */
     public static final String LOGGER_BEAN = "id-Logger";
-    
     /** */
     private static final ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
-    
+
     /**
      * Lifecycle init. Must be the first method of the main.
      */
@@ -89,7 +87,7 @@ public enum LifeCycleManager {
             final Map<String, Model> models = (Map<String, Model>) CONTEXT.getBean(MODELS_BEAN);
             ModelsProvider.INSTANCE.registerModels(models);
         }
-        
+
         if (CONTEXT.containsBean(SIGNALS_BEAN)) {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Initialize SIGNALS_BEAN");
@@ -97,7 +95,7 @@ public enum LifeCycleManager {
             final List<Signal> signals = (List<Signal>) CONTEXT.getBean(SIGNALS_BEAN);
             SignalsProvider.INSTANCE.registerSignals(signals);
         }
-        
+
         if (CONTEXT.containsBean(SLOTS_BEAN)) {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Initialize SLOTS_BEAN");
@@ -105,7 +103,7 @@ public enum LifeCycleManager {
             final List<Slot> slots = (List<Slot>) CONTEXT.getBean(SLOTS_BEAN);
             SlotsProvider.INSTANCE.regsiterSlots(slots);
         }
-        
+
         if (CONTEXT.containsBean(ADAPTERS_BEAN)) {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Initialize ADAPTERS_BEAN");
@@ -113,12 +111,12 @@ public enum LifeCycleManager {
             final List<CommonAdapter> adapters = (List<CommonAdapter>) CONTEXT.getBean(ADAPTERS_BEAN);
             AdaptersProvider.INSTANCE.registerAdapters(adapters);
         }
-
+        
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("End of Initialization");
         }
     }
-    
+
     /**
      * Register beans in the providers.
      */
@@ -127,7 +125,7 @@ public enum LifeCycleManager {
             LOGGER.debug("Register slots");
         }
         final Map<String, Slot> slots = SlotsProvider.INSTANCE.getSlots();
-        
+
         for (final Entry<String, Slot> entry : slots.entrySet()) {
             final Slot slot = entry.getValue();
             if (LOGGER.isDebugEnabled()) {
