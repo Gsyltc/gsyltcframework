@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -156,6 +156,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     }
     
     /**
+     * Get the map of the attached signals.
+     *
      * @return the signals
      */
     private Map<String, Signal> getSignals() {
@@ -163,6 +165,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     }
     
     /**
+     * Get the map of attached slots.
+     *
      * @return the slots
      */
     private Map<String, Slot> getSlots() {

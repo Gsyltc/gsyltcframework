@@ -41,7 +41,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractCommonPanel.class);
     /** */
-    private static final Object NEW_LINE = "\n";
+    private static final String NEW_LINE = "\n";
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
 
@@ -80,11 +80,8 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
-     * Get a Presenter by index.
      *
-     * @param flInfosPresenterIndex
-     *            Index of the presenter to return.
-     * @return The presenter.
+     * {@inheritDoc}.
      */
     @Override
     public final PresentationModel<?> getPresenter(final int flInfosPresenterIndex) {
@@ -92,9 +89,8 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
-     * Get the list of presenters.
      *
-     * @return the presenters
+     * {@inheritDoc}.
      */
     @Override
     public final List<PresentationModel<?>> getPresenters() {
@@ -102,7 +98,8 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
-     * {@inheritDoc}
+     *
+     * {@inheritDoc}.
      */
     @Override
     public String toString() {
@@ -115,6 +112,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
+     *
      * {@inheritDoc}.
      */
     @Override
@@ -123,6 +121,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
+     *
      * {@inheritDoc}.
      */
     @Override
@@ -133,6 +132,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
+     *
      * {@inheritDoc}.
      */
     @Override
@@ -151,6 +151,8 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     }
 
     /**
+     * Get the map of attached adapters.
+     *
      * @return the adapters
      */
     private Map<String, CommonAdapter> getAdapters() {
