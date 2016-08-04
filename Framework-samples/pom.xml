@@ -4,7 +4,7 @@
     <parent>
         <groupId>fr.gsyltc</groupId>
         <artifactId>framework</artifactId>
-        <version>1.2.10</version>
+        <version>1.2.11-SNAPSHOT</version>
     </parent>
     <artifactId>Framework-samples</artifactId>
     <name>Framework-samples</name>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>fr.gsyltc</groupId>
             <artifactId>Framework-main</artifactId>
-            <version>1.2.10</version>
+            <version>1.2.11-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
@@ -54,7 +54,7 @@
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
-                            <version>7.0</version>
+                            <version>7.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>

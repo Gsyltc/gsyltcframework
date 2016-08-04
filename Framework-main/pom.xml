@@ -5,7 +5,7 @@
         <!-- <relativePath>Framework/pom.xml</relativePath> -->
         <groupId>fr.gsyltc</groupId>
         <artifactId>framework</artifactId>
-        <version>1.2.10</version>
+        <version>1.2.11-SNAPSHOT</version>
     </parent>
     <artifactId>Framework-main</artifactId>
     <name>Framework-main</name>
@@ -80,7 +80,7 @@
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
-                            <version>7.0</version>
+                            <version>7.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>
