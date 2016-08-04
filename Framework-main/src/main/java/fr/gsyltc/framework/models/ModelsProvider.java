@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -16,12 +16,10 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.beans.Model;
-
-import fr.gsyltc.framework.slotsignals.common.SignalsProvider;
 
 /**
  * @author Goubaud Sylvain
@@ -30,13 +28,13 @@ import fr.gsyltc.framework.slotsignals.common.SignalsProvider;
 public enum ModelsProvider {
     /** the singleton instances. */
     INSTANCE;
-    
+
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SignalsProvider.class);
-    
+    private static final Logger LOGGER = LogManager.getLogger(ModelsProvider.class);
+
     /** List of signals registered. */
     private static final Map<String, Model> MODELS = new ConcurrentHashMap<String, Model>();
-    
+
     /**
      * Find a registered model by his topic name.
      *
@@ -45,16 +43,19 @@ public enum ModelsProvider {
      * @return the registered model.
      */
     public Model findModelByName(final String name) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Find model : " + name());
+        }
         return MODELS.get(name);
     }
-    
+
     /**
      * @return the slots
      */
     public Map<String, Model> getModels() {
         return Collections.unmodifiableMap(MODELS);
     }
-    
+
     /**
      * Register a model.
      *
@@ -66,6 +67,9 @@ public enum ModelsProvider {
      * @return the registered model.
      */
     public Model registerModel(final String name, final Model newModel) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Register model : " + newModel.toString());
+        }
         Model model = findModelByName(name);
         if (null == model) {
             model = newModel;
@@ -77,7 +81,7 @@ public enum ModelsProvider {
         }
         return model;
     }
-    
+
     /**
      * Register multiple models.
      *

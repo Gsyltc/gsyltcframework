@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -17,11 +17,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import fr.gsyltc.framework.adapters.api.CommonAdapter;
-import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 
 /**
  * @author Goubaud Sylvain
@@ -30,12 +29,13 @@ import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 public enum AdaptersProvider {
     /** the singleton instance. */
     INSTANCE;
-
+    
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(SlotsProvider.class);
+    private static final Logger LOGGER = LogManager.getLogger(AdaptersProvider.class);
+    
     /** List of slots registered. */
     private static final Map<String, CommonAdapter> ADAPTERS = new ConcurrentHashMap<String, CommonAdapter>();
-
+    
     /**
      * Find a registered adapter by his name.
      *
@@ -44,16 +44,19 @@ public enum AdaptersProvider {
      * @return the registered adapter.
      */
     public CommonAdapter findAdapterByName(final String name) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Find adapter : " + name);
+        }
         return ADAPTERS.get(name);
     }
-
+    
     /**
      * @return the slots
      */
     public Map<String, CommonAdapter> getAdapters() {
         return Collections.unmodifiableMap(ADAPTERS);
     }
-
+    
     /**
      * Register a slot.
      *
@@ -61,6 +64,9 @@ public enum AdaptersProvider {
      *            the adapter to register.
      */
     public void registerAdapter(final CommonAdapter newAdapter) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Regsiter adapter : " + newAdapter.getAdapterName());
+        }
         CommonAdapter adapter = findAdapterByName(newAdapter.getAdapterName());
         if (null == adapter) {
             adapter = newAdapter;
@@ -71,7 +77,7 @@ public enum AdaptersProvider {
             }
         }
     }
-
+    
     /**
      * Register multiple adapters.
      *

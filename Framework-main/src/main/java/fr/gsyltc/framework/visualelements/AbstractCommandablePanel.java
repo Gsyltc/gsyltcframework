@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.NotImplementedException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.PresentationModel;
 
@@ -36,7 +36,8 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(AbstractCommandablePanel.class);
+    private static final Logger LOGGER = LogManager.getLogger(AbstractCommandablePanel.class);
+
     /** */
     private static final Object NEW_LINE = "\n";
     /** */
@@ -45,7 +46,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private final Map<String, Signal> signals = new ConcurrentHashMap<String, Signal>();
     /** Signals list. */
     private final Map<String, Slot> slots = new ConcurrentHashMap<String, Slot>();
-    
+
     /**
      * Constructor.
      *
@@ -55,13 +56,16 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     protected AbstractCommandablePanel(final PresentationModel<?>... presentationModels) {
         super(presentationModels);
     }
-    
+
     /**
      *
      * {@inheritDoc}
      */
     @Override
     public final void attachSignal(final String topicName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Attach signal : " + topicName);
+        }
         final Signal signal = SignalsProvider.INSTANCE.findSignalByTopicName(topicName);
         if (null == signal) {
             throw new NotImplementedException("No signal to regsiter");
@@ -73,17 +77,20 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             signals.put(topicName, signal);
         }
     }
-    
+
     /**
      * {@inheritDoc}.
      */
     @Override
     public final Slot attachSlot(final String topicName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Attach slot : " + topicName);
+        }
         final Slot slot = SlotsProvider.INSTANCE.findSlotBySlotName(topicName + "." + getName());
         slots.put(topicName, slot);
         return slot;
     }
-    
+
     /**
      * Build the visual element.
      */
@@ -93,7 +100,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         this.createSignals();
         this.createSlots();
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -103,7 +110,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Signals for" + this.getName());
         }
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -113,34 +120,43 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Slots for" + this.getName());
         }
     }
-    
+
     /**
      *
      * {@inheritDoc}.
      */
     @Override
     public Signal findSignal(final String topicName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Find signal : " + topicName);
+        }
         return getSignals().get(topicName);
     }
-    
+
     /**
      * {@inheritDoc}.
      */
     @Override
     public final Slot findSlot(final String topicName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Find slot : " + topicName);
+        }
         return getSlots().get(topicName);
     }
-    
+
     /**
      *
      * {@inheritDoc}.
      */
     @Override
     public final void registerSignal(final Signal newSignal) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Register signal : " + newSignal.getTopicName());
+        }
         SignalsProvider.INSTANCE.registerSignal(newSignal);
         attachSignal(newSignal.getTopicName());
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -154,7 +170,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
                 .append("Nb signals : ").append(signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
-    
+
     /**
      * Get the map of the attached signals.
      *
@@ -163,7 +179,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(signals);
     }
-    
+
     /**
      * Get the map of attached slots.
      *

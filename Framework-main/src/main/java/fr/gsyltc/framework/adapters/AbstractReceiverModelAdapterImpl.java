@@ -16,8 +16,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.beans.Model;
 
@@ -42,7 +42,8 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     private static final long serialVersionUID = -8721921882502026575L;
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(AbstractReceiverModelAdapterImpl.class);
+    
     /** */
     private static final String NEW_LINE = "\n";
     
@@ -82,6 +83,9 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
      */
     @Override
     public final Slot attachSlot(final String topicName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Atach Slots for" + topicName);
+        }
         final Slot slot = SlotsProvider.INSTANCE.findSlotBySlotName(topicName + "." + getAdapterName());
         slotsMap.put(topicName, slot);
         return slot;
@@ -123,6 +127,9 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
      */
     @Override
     public Slot findSlot(final String topicName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Find Slots for" + topicName);
+        }
         return getSlotsMap().get(topicName);
     }
     

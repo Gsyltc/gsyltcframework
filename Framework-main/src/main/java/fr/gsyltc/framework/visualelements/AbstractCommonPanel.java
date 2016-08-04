@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 25 juil. 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -21,8 +21,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.NotImplementedException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.PresentationModel;
 
@@ -39,7 +39,8 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(AbstractCommonPanel.class);
+    private static final Logger LOGGER = LogManager.getLogger(AbstractCommonPanel.class);
+
     /** */
     private static final String NEW_LINE = "\n";
     /** */
@@ -137,6 +138,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
      */
     @Override
     public final CommonAdapter attachAdapter(final String adapterName) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Attach adapter" + adapterName);
+        }
         final CommonAdapter adapter = AdaptersProvider.INSTANCE.findAdapterByName(adapterName);
         if (null == adapter) {
             throw new NotImplementedException("No signal to regsiter");

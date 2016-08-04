@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 26 juil. 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -19,8 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import fr.gsyltc.framework.lifecycle.LifeCycleManager;
 
@@ -33,12 +33,12 @@ public final class Starter {
     
     
     /** The logger of this class. */
-    private static final Log LOGGER = LogFactory.getLog(Starter.class);
+    private static final Logger LOGGER = LogManager.getLogger(Starter.class);
 
     /**
      * @return the logger
      */
-    public static Log getLogger() {
+    public static Logger getLogger() {
         return LOGGER;
     }
 
