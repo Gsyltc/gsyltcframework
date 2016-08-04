@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 1 août 2016.
+ * Modified : 4 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -37,13 +37,15 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     
     /** Map of attached slots. */
     private final Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
-
+    
     /** */
     private static final long serialVersionUID = -8721921882502026575L;
-
+    
     /** The logger of this class. */
     private static final Log LOGGER = LogFactory.getLog(AbstractReceiverModelAdapterImpl.class);
-
+    /** */
+    private static final String NEW_LINE = "\n";
+    
     /**
      * Constructor.
      *
@@ -51,7 +53,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl() {
         this(null);
     }
-
+    
     /**
      * Constructor.
      *
@@ -61,7 +63,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         this(adapterName, null);
     }
-
+    
     /**
      * Constructor.
      *
@@ -73,9 +75,10 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
     }
-
+    
     /**
-     * {@inheritDoc}
+     *
+     * {@inheritDoc}.
      */
     @Override
     public final Slot attachSlot(final String topicName) {
@@ -83,26 +86,27 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
         slotsMap.put(topicName, slot);
         return slot;
     }
-
+    
     /**
-     * {@inheritDoc}
+     *
+     * {@inheritDoc}.
      */
-    // @Override
     @Override
     public void createSlots() {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Create Slots for" + this.getAdapterName());
         }
     }
-
+    
     /**
-     * Build the visual element.
+     *
+     * {@inheritDoc}.
      */
     @Override
     public void init() {
         this.createSlots();
     }
-
+    
     /**
      * @param slots
      *            the slots to set
@@ -112,34 +116,32 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
             slot.registerSlot();
         }
     }
-
+    
     /**
-     * Return a slot attached to the adapter by his topic name.
      *
-     * @param topicName
-     *            the topic name.
-     * @return the desired slot.
+     * {@inheritDoc}.
      */
     @Override
     public Slot findSlot(final String topicName) {
         return getSlotsMap().get(topicName);
     }
-
+    
     /**
      * @return the slotsMap
      */
     public Map<String, Slot> getSlotsMap() {
         return Collections.unmodifiableMap(slotsMap);
     }
-
+    
     /**
-     * {@inheritDoc}
+     *
+     * {@inheritDoc}.
      */
     @Override
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder(30);
         stringBuilder//
-                .append("Adapter  : ").append(this.getAdapterName())//
+                .append("Adapter  : ").append(this.getAdapterName()).append(NEW_LINE)//
                 .append("Nb slots  : ").append(slotsMap.size()); //
         return stringBuilder.toString();
     }
