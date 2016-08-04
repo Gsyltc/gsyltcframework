@@ -5,7 +5,7 @@
         <!-- <relativePath>Framework/pom.xml</relativePath> -->
         <groupId>fr.gsyltc</groupId>
         <artifactId>framework</artifactId>
-        <version>1.2.8</version>
+        <version>1.2.9-SNAPSHOT</version>
     </parent>
     <artifactId>Framework-main</artifactId>
     <name>Framework-main</name>
@@ -47,18 +47,14 @@
             <!-- </libs> -->
             <!-- </configuration> -->
             <!-- </plugin> -->
-            <!-- <plugin> -->
-            <!-- <groupId>org.apache.maven.plugins</groupId> -->
-            <!-- <artifactId>maven-release-plugin</artifactId> -->
-            <!-- <version>2.5.3</version> -->
-            <!-- <configuration> -->
-            <!-- <mavenHome>D:\Logiciels\Dev\apache-maven-3.3.9</mavenHome> -->
-            <!-- <pushChanges>false</pushChanges> -->
-            <!-- <localCheckout>true</localCheckout> -->
-            <!-- <branchName>release</branchName> -->
-            <!-- <remoteTagging>false</remoteTagging> -->
-            <!-- </configuration> -->
-            <!-- </plugin> -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -151,6 +147,11 @@
                 <version>2.1</version>
                 <configuration>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
             </plugin>
         </plugins>
     </reporting>
