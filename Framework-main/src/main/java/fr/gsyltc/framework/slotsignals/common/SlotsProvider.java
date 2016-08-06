@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 6 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,13 +31,13 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
 public enum SlotsProvider {
     /** The singleton instance. */
     INSTANCE;
-    
+
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(SlotsProvider.class);
-    
+
     /** List of slots registered. */
     private static final Map<String, Slot> SLOTS = new ConcurrentHashMap<String, Slot>();
-    
+
     /**
      * Find a registered slot by his topic name.
      *
@@ -50,7 +48,7 @@ public enum SlotsProvider {
     public Slot findSlotBySlotName(final String topicName) {
         return SLOTS.get(topicName);
     }
-    
+
     /**
      * Get the slots map.
      *
@@ -59,7 +57,7 @@ public enum SlotsProvider {
     public Map<String, Slot> getSlots() {
         return Collections.unmodifiableMap(SLOTS);
     }
-    
+
     /**
      * Register a slot.
      *
@@ -77,7 +75,7 @@ public enum SlotsProvider {
             }
         }
     }
-    
+
     /**
      * Register multiple slot.
      *

@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 6 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -40,7 +40,7 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
 public enum LifeCycleManager {
     /** the singleton instance. */
     INSTANCE;
-
+    
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(LifeCycleManager.class);
     /** */
@@ -55,7 +55,7 @@ public enum LifeCycleManager {
     public static final String LOGGER_BEAN = "id-Logger";
     /** */
     private static final ClassPathXmlApplicationContext CONTEXT = new ClassPathXmlApplicationContext("./config/imports.xml");
-
+    
     /**
      * Lifecycle init. Must be the first method of the main.
      */
@@ -64,14 +64,14 @@ public enum LifeCycleManager {
         if (CONTEXT.containsBean(LOGGER_BEAN)) {
             final ClassLoader loader = CONTEXT.getClassLoader();
             final URL res = loader.getResource((String) CONTEXT.getBean(LOGGER_BEAN));
-            final LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
-            if (null != res) {
-                try {
+            final LoggerContext context = (LoggerContext) LogManager.getContext(false);
+            try {
+                if (null != res) {
                     context.setConfigLocation(res.toURI());
-                } catch (final URISyntaxException e) {
-                    if (LOGGER.isErrorEnabled()) {
-                        LOGGER.error("Error while loading configuration file for logger");
-                    }
+                }
+            } catch (final URISyntaxException e) {
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error("Error while loading configuration file for logger");
                 }
             }
         }
@@ -87,7 +87,7 @@ public enum LifeCycleManager {
             final Map<String, Model> models = (Map<String, Model>) CONTEXT.getBean(MODELS_BEAN);
             ModelsProvider.INSTANCE.registerModels(models);
         }
-
+        
         if (CONTEXT.containsBean(SIGNALS_BEAN)) {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Initialize SIGNALS_BEAN");
@@ -95,7 +95,7 @@ public enum LifeCycleManager {
             final List<Signal> signals = (List<Signal>) CONTEXT.getBean(SIGNALS_BEAN);
             SignalsProvider.INSTANCE.registerSignals(signals);
         }
-
+        
         if (CONTEXT.containsBean(SLOTS_BEAN)) {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Initialize SLOTS_BEAN");
@@ -103,7 +103,7 @@ public enum LifeCycleManager {
             final List<Slot> slots = (List<Slot>) CONTEXT.getBean(SLOTS_BEAN);
             SlotsProvider.INSTANCE.regsiterSlots(slots);
         }
-
+        
         if (CONTEXT.containsBean(ADAPTERS_BEAN)) {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Initialize ADAPTERS_BEAN");
@@ -116,7 +116,7 @@ public enum LifeCycleManager {
             LOGGER.debug("End of Initialization");
         }
     }
-
+    
     /**
      * Register beans in the providers.
      */
@@ -125,7 +125,7 @@ public enum LifeCycleManager {
             LOGGER.debug("Register slots");
         }
         final Map<String, Slot> slots = SlotsProvider.INSTANCE.getSlots();
-
+        
         for (final Entry<String, Slot> entry : slots.entrySet()) {
             final Slot slot = entry.getValue();
             if (LOGGER.isDebugEnabled()) {

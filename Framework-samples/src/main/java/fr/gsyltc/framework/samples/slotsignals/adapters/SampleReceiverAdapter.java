@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 6 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -12,8 +12,6 @@
 
 package fr.gsyltc.framework.samples.slotsignals.adapters;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,19 +33,19 @@ public class SampleReceiverAdapter<M extends Model> extends AbstractReceiverMode
     
     /** The logger of this class. */
     protected static final Logger LOGGER = LogManager.getLogger(SampleReceiverAdapter.class);
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 9062007717447227968L;
-    
+
     /**
      * @param adapterName
      */
     public SampleReceiverAdapter(final String adapterName) {
         super(adapterName);
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -62,7 +60,7 @@ public class SampleReceiverAdapter<M extends Model> extends AbstractReceiverMode
              *
              */
             private static final long serialVersionUID = 4107279115915098256L;
-            
+
             /**
              *
              * {@inheritDoc}
@@ -74,7 +72,7 @@ public class SampleReceiverAdapter<M extends Model> extends AbstractReceiverMode
                 }
             }
         });
-        
+
         final Slot injectedSlot = attachSlot(TopicName.INJECTION_TOPIC.name());
         if (null != injectedSlot) {
             injectedSlot.setSlotAction(new SlotAction<String>() {
@@ -84,7 +82,7 @@ public class SampleReceiverAdapter<M extends Model> extends AbstractReceiverMode
                  *
                  */
                 private static final long serialVersionUID = 2239594398348315192L;
-                
+
                 /**
                  *
                  * {@inheritDoc}

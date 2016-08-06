@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 6 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -14,8 +14,6 @@ package fr.gsyltc.framework.slotsignals.slots;
 
 import java.util.Observable;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,12 +33,12 @@ public class Slot implements SlotActionnable, TopicAttached {
     
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(Slot.class);
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 7440550503924717386L;
-    
+
     /** the slot action. */
     private SlotAction slotAction;
     /** The topic to . */
@@ -49,7 +47,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     private final String receiverName;
     /** true if slot is registered in the SlotProvider. */
     private boolean registered;
-    
+
     /**
      * A slot can listen an event fire by a signal.
      *
@@ -63,7 +61,7 @@ public class Slot implements SlotActionnable, TopicAttached {
         receiverName = newReceiverName;
         registerSlot();
     }
-    
+
     /**
      * @return the receiverName
      */
@@ -71,7 +69,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public String getReceiverName() {
         return receiverName;
     }
-    
+
     /**
      *
      * {@inheritDoc}.
@@ -80,14 +78,14 @@ public class Slot implements SlotActionnable, TopicAttached {
     public SlotAction getSlotAction() {
         return slotAction;
     }
-    
+
     /**
      * @return the receiverName
      */
     public String getSlotName() {
         return topicName + "." + receiverName;
     }
-    
+
     /**
      *
      * {@inheritDoc}.
@@ -96,7 +94,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public String getTopicName() {
         return topicName;
     }
-    
+
     /**
      * Get the registration satus of the slot.
      *
@@ -105,7 +103,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public boolean isRegistered() {
         return registered;
     }
-    
+
     /**
      *
      * {@inheritDoc}.
@@ -117,7 +115,7 @@ public class Slot implements SlotActionnable, TopicAttached {
             setRegistered(true);
         }
     }
-    
+
     /**
      * Set if the slot is registered.
      *
@@ -127,7 +125,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     private void setRegistered(final boolean isRregistered) {
         registered = isRregistered;
     }
-    
+
     /**
      * Define the action for the slot.
      *
@@ -138,7 +136,7 @@ public class Slot implements SlotActionnable, TopicAttached {
     public void setSlotAction(final SlotAction newSlotAction) {
         slotAction = newSlotAction;
     }
-    
+
     /**
      * {@inheritDoc}.
      */
@@ -156,5 +154,5 @@ public class Slot implements SlotActionnable, TopicAttached {
             slotAction.doAction(toUpdate);
         }
     }
-    
+
 }
