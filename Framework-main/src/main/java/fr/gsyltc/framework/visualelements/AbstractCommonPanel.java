@@ -41,18 +41,18 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(AbstractCommonPanel.class);
     /** */
-    private static final String NEW_LINE = "\n";
+    public static final String NEW_LINE = "\n";
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
-
+    
     /** */
     protected Map<String, ? extends Object> attributeMap = new ConcurrentHashMap<String, Object>();
-
+    
     /** Presenters for the visual elements. */
     protected final List<PresentationModel<?>> presenters = new CopyOnWriteArrayList<PresentationModel<?>>();
     /** Signals list. */
     private final Map<String, CommonAdapter> adapters = new ConcurrentHashMap<String, CommonAdapter>();
-
+    
     /**
      * Constructor.
      *
@@ -66,9 +66,9 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
                 presenters.add(presentationModel);
             }
         }
-
+        
     }
-
+    
     /**
      * Build the visual element.
      */
@@ -78,7 +78,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
         }
         createAdapters();
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -87,7 +87,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     public final PresentationModel<?> getPresenter(final int flInfosPresenterIndex) {
         return presenters.get(flInfosPresenterIndex);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -96,7 +96,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     public final List<PresentationModel<?>> getPresenters() {
         return Collections.unmodifiableList(presenters);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -110,7 +110,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
                 .append("Nb adapters : ").append(adapters.size()).append(NEW_LINE);
         return stringBuilder.toString();
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -119,7 +119,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
     public final CommonAdapter findAdapter(final String adapterName) {
         return getAdapters().get(adapterName);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -130,7 +130,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
             LOGGER.debug("Create Adapters");
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -152,7 +152,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
         }
         return adapter;
     }
-
+    
     /**
      * Get the map of attached adapters.
      *

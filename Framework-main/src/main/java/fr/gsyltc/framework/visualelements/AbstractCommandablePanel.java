@@ -39,8 +39,6 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private static final Logger LOGGER = LogManager.getLogger(AbstractCommandablePanel.class);
 
     /** */
-    private static final Object NEW_LINE = "\n";
-    /** */
     private static final long serialVersionUID = 2794578279603616940L;
     /** Signals list. */
     private final Map<String, Signal> signals = new ConcurrentHashMap<String, Signal>();
