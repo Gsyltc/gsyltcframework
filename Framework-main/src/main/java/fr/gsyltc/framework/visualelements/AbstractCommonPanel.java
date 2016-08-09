@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 9 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -26,22 +26,20 @@ import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.PresentationModel;
 
-import fr.gsyltc.framework.adapters.AdaptersProvider;
 import fr.gsyltc.framework.adapters.api.Adaptable;
 import fr.gsyltc.framework.adapters.api.CommonAdapter;
+import fr.gsyltc.framework.utils.constants.AbstractCommonConstant;
 import fr.gsyltc.framework.visualelements.api.Bindable;
 
 /**
  * @author Goubaud Sylvain
  *
  */
-public abstract class AbstractCommonPanel extends JPanel implements Bindable, Adaptable {
+public abstract class AbstractCommonPanel extends JPanel implements Bindable, Adaptable, AbstractCommonConstant {
     
     
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(AbstractCommonPanel.class);
-    /** */
-    public static final String NEW_LINE = "\n";
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
     
@@ -140,7 +138,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Attach adapter" + adapterName);
         }
-        final CommonAdapter adapter = AdaptersProvider.INSTANCE.findAdapterByName(adapterName);
+        final CommonAdapter adapter = ADAPTERS_PROVIDER.findAdapterByName(adapterName);
         if (null == adapter) {
             throw new NotImplementedException("No signal to regsiter");
         } else if (getAdapters().containsKey(adapterName)) {
