@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 9 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -22,29 +22,27 @@ import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.PresentationModel;
 
-import fr.gsyltc.framework.slotsignals.common.SignalsProvider;
-import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 import fr.gsyltc.framework.slotsignals.signals.Signal;
 import fr.gsyltc.framework.slotsignals.slotcommandable.api.SlotCommandable;
 import fr.gsyltc.framework.slotsignals.slots.Slot;
+import fr.gsyltc.framework.utils.constants.AbstractCommandableConstant;
 
 /**
  * @author Goubaud Sylvain
  *
  */
-public abstract class AbstractCommandablePanel extends AbstractCommonPanel implements SlotCommandable {
+public abstract class AbstractCommandablePanel extends AbstractCommonPanel implements SlotCommandable, AbstractCommandableConstant {
     
     
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(AbstractCommandablePanel.class);
-
     /** */
     private static final long serialVersionUID = 2794578279603616940L;
     /** Signals list. */
     private final Map<String, Signal> signals = new ConcurrentHashMap<String, Signal>();
     /** Signals list. */
     private final Map<String, Slot> slots = new ConcurrentHashMap<String, Slot>();
-
+    
     /**
      * Constructor.
      *
@@ -54,7 +52,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     protected AbstractCommandablePanel(final PresentationModel<?>... presentationModels) {
         super(presentationModels);
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -64,7 +62,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Attach signal : " + topicName);
         }
-        final Signal signal = SignalsProvider.INSTANCE.findSignalByTopicName(topicName);
+        final Signal signal = SIGNAL_PROVIDER.findSignalByTopicName(topicName);
         if (null == signal) {
             throw new NotImplementedException("No signal to regsiter");
         } else if (getSignals().containsKey(topicName)) {
@@ -75,7 +73,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             signals.put(topicName, signal);
         }
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -84,11 +82,11 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Attach slot : " + topicName);
         }
-        final Slot slot = SlotsProvider.INSTANCE.findSlotBySlotName(topicName + "." + getName());
+        final Slot slot = SLOT_PROVIDER.findSlotBySlotName(topicName + "." + getName());
         slots.put(topicName, slot);
         return slot;
     }
-
+    
     /**
      * Build the visual element.
      */
@@ -98,7 +96,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         this.createSignals();
         this.createSlots();
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -108,7 +106,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Signals for" + this.getName());
         }
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -118,7 +116,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
             LOGGER.debug("Create Slots for" + this.getName());
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -130,7 +128,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         }
         return getSignals().get(topicName);
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -141,7 +139,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         }
         return getSlots().get(topicName);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -151,10 +149,10 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Register signal : " + newSignal.getTopicName());
         }
-        SignalsProvider.INSTANCE.registerSignal(newSignal);
+        SIGNAL_PROVIDER.registerSignal(newSignal);
         attachSignal(newSignal.getTopicName());
     }
-
+    
     /**
      * {@inheritDoc}.
      */
@@ -168,7 +166,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
                 .append("Nb signals : ").append(signals.size()).append(NEW_LINE); //
         return stringBuilder.toString();
     }
-
+    
     /**
      * Get the map of the attached signals.
      *
@@ -177,7 +175,7 @@ public abstract class AbstractCommandablePanel extends AbstractCommonPanel imple
     private Map<String, Signal> getSignals() {
         return Collections.unmodifiableMap(signals);
     }
-
+    
     /**
      * Get the map of attached slots.
      *

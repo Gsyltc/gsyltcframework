@@ -3,7 +3,7 @@
  *
  * Goubaud Sylvain
  * Created : 2016
- * Modified : 4 août 2016.
+ * Modified : 9 août 2016.
  *
  * This code may be freely used and modified on any personal or professional
  * project.  It comes with no warranty.
@@ -21,9 +21,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.jgoodies.binding.beans.Model;
 
-import fr.gsyltc.framework.slotsignals.common.SlotsProvider;
 import fr.gsyltc.framework.slotsignals.slotreceiver.api.SlotReceiver;
 import fr.gsyltc.framework.slotsignals.slots.Slot;
+import fr.gsyltc.framework.utils.constants.AbstractCommandableConstant;
 
 /**
  * @author Goubaud Sylvain
@@ -32,7 +32,7 @@ import fr.gsyltc.framework.slotsignals.slots.Slot;
  *
  */
 public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends AbstractModelAdapterImpl<M> //
-        implements SlotReceiver {
+        implements SlotReceiver, AbstractCommandableConstant {
     
     
     /** Map of attached slots. */
@@ -86,7 +86,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Atach Slots for" + topicName);
         }
-        final Slot slot = SlotsProvider.INSTANCE.findSlotBySlotName(topicName + "." + getAdapterName());
+        final Slot slot = SLOT_PROVIDER.findSlotBySlotName(topicName + "." + getAdapterName());
         slotsMap.put(topicName, slot);
         return slot;
     }
