@@ -27,10 +27,10 @@ public interface AbstractCommonConstant {
     String NEW_LINE = "\n";
     /** The adapter provider instance. */
     AdaptersProvider ADAPTERS_PROVIDER = AdaptersProvider.INSTANCE;
-
+    
     /** The models provider instance. */
     ModelsProvider MODELS_PROVIDER = ModelsProvider.INSTANCE;
-
+    
     /** Default adapters bean name. */
     String ADAPTERS_BEAN = "id-Adapters";
     /** Default models bean name. */
