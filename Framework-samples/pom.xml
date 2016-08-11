@@ -4,7 +4,7 @@
     <parent>
         <groupId>fr.gsyltc</groupId>
         <artifactId>framework</artifactId>
-        <version>1.2.11-SNAPSHOT</version>
+        <version>1.2.11</version>
     </parent>
     <artifactId>Framework-samples</artifactId>
     <name>Framework-samples</name>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>fr.gsyltc</groupId>
             <artifactId>Framework-main</artifactId>
-            <version>1.2.11-SNAPSHOT</version>
+            <version>1.2.11</version>
         </dependency>
     </dependencies>
     <build>
