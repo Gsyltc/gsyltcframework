@@ -140,7 +140,7 @@ public abstract class AbstractCommonPanel extends JPanel implements Bindable, Ad
         }
         final CommonAdapter adapter = ADAPTERS_PROVIDER.findAdapterByName(adapterName);
         if (null == adapter) {
-            throw new NotImplementedException("No signal to regsiter");
+            throw new NotImplementedException("No adapter to register : " + adapterName);
         } else if (getAdapters().containsKey(adapterName)) {
             if (LOGGER.isWarnEnabled()) {
                 LOGGER.warn("Adapter already exist :" + adapterName);

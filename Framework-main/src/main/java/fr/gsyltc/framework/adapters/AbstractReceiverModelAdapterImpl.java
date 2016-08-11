@@ -37,16 +37,16 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     
     /** Map of attached slots. */
     private final Map<String, Slot> slotsMap = new ConcurrentHashMap<String, Slot>();
-
+    
     /** */
     private static final long serialVersionUID = -8721921882502026575L;
-
+    
     /** The logger of this class. */
     private static final Logger LOGGER = LogManager.getLogger(AbstractReceiverModelAdapterImpl.class);
-
+    
     /** */
     private static final String NEW_LINE = "\n";
-
+    
     /**
      * Constructor.
      *
@@ -54,7 +54,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl() {
         this(null);
     }
-
+    
     /**
      * Constructor.
      *
@@ -64,7 +64,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl(final String adapterName) {
         this(adapterName, null);
     }
-
+    
     /**
      * Constructor.
      *
@@ -76,7 +76,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public AbstractReceiverModelAdapterImpl(final String adapterName, final M model) {
         super(adapterName, model);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -90,7 +90,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
         slotsMap.put(topicName, slot);
         return slot;
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -101,7 +101,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
             LOGGER.debug("Create Slots for" + this.getAdapterName());
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -110,7 +110,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
     public void init() {
         this.createSlots();
     }
-
+    
     /**
      * @param slots
      *            the slots to set
@@ -120,7 +120,7 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
             slot.registerSlot();
         }
     }
-
+    
     /**
      *
      * {@inheritDoc}.
@@ -132,14 +132,14 @@ public abstract class AbstractReceiverModelAdapterImpl<M extends Model> extends 
         }
         return getSlotsMap().get(topicName);
     }
-
+    
     /**
      * @return the slotsMap
      */
     public Map<String, Slot> getSlotsMap() {
         return Collections.unmodifiableMap(slotsMap);
     }
-
+    
     /**
      *
      * {@inheritDoc}.
