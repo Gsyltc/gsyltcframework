@@ -10,7 +10,14 @@
     <artifactId>Framework-main</artifactId>
     <name>Framework-main</name>
     <url>http://maven.apache.org</url>
-
+    <dependencies>
+        <!-- JScience -->
+        <dependency>
+            <groupId>org.jscience</groupId>
+            <artifactId>jscience</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
